@@ -2,8 +2,8 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Play, X, Film, ChevronLeft, ChevronRight } from 'lucide-react';
-import Image from 'next/image';
+import { Play, X, Film, ChevronLeft, ChevronRight, VideoOff } from 'lucide-react';
+import FallbackImage from '../FallbackImage';
 
 // Video data - Add your videos here
 const videos = [
@@ -46,6 +46,7 @@ export default function VideoGallery() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [selectedVideo, setSelectedVideo] = useState<typeof videos[0] | null>(null);
+  const [videoError, setVideoError] = useState(false);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -136,11 +137,12 @@ export default function VideoGallery() {
                   >
                     <div className="relative rounded-2xl overflow-hidden mb-4">
                       <div className="aspect-video relative">
-                        <Image
+                        <FallbackImage
                           src={video.thumbnail}
                           alt={video.title}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          fallbackText="Coming Soon"
                         />
                       </div>
                       {/* Overlay */}
@@ -190,7 +192,7 @@ export default function VideoGallery() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
-          onClick={() => setSelectedVideo(null)}
+          onClick={() => { setSelectedVideo(null); setVideoError(false); }}
         >
           <motion.div
             initial={{ scale: 0.9 }}
@@ -199,20 +201,29 @@ export default function VideoGallery() {
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              onClick={() => setSelectedVideo(null)}
+              onClick={() => { setSelectedVideo(null); setVideoError(false); }}
               className="absolute -top-12 right-0 p-2 text-white/60 hover:text-white transition-colors"
             >
               <X className="w-8 h-8" />
             </button>
             <div className="aspect-video bg-black rounded-xl overflow-hidden">
-              <video
-                src={selectedVideo.videoUrl}
-                controls
-                autoPlay
-                className="w-full h-full"
-              >
-                Your browser does not support the video tag.
-              </video>
+              {videoError ? (
+                <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#1a4d2e] to-[#0d2818]">
+                  <VideoOff className="w-16 h-16 text-[#c9a962]/50 mb-4" />
+                  <p className="text-[#c9a962] font-medium text-xl">Video Coming Soon</p>
+                  <p className="text-white/40 text-sm mt-2">This video will be available shortly</p>
+                </div>
+              ) : (
+                <video
+                  src={selectedVideo.videoUrl}
+                  controls
+                  autoPlay
+                  className="w-full h-full"
+                  onError={() => setVideoError(true)}
+                >
+                  Your browser does not support the video tag.
+                </video>
+              )}
             </div>
             <div className="mt-4">
               <h3 className="text-white text-xl font-semibold">{selectedVideo.title}</h3>

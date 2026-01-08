@@ -30,7 +30,7 @@ export const projects: Project[] = [
       'Gated Community',
     ],
     thumbnail: '/images/projects/meadow-breeze/gallery/hero.jpg',
-    logo: '/images/projects/meadow-breeze/logo.png',
+    logo: '/images/projects/meadow-breeze/logo.svg',
     slug: 'meadow-breeze',
   },
 ];
@@ -43,7 +43,7 @@ export const companyInfo = {
   mission: 'To transform how people connect with land, offering not just property but a lifestyle of tranquility and growth through sustainable development.',
   vision: 'To be the most trusted name in premium farmland development, creating communities where nature and modern living coexist in perfect harmony.',
   established: 2024,
-  logo: '/images/company/logo.png',
+  logo: '/images/company/logo.svg',
   contact: {
     phone: '+91-9888932555',
     email: 'info@kresta.in',

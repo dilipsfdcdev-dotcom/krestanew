@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import Image from 'next/image';
+import FallbackImage from '../FallbackImage';
 import { Maximize2, X, MapPin, Route, TreePine, Home, Compass } from 'lucide-react';
 
 const planFeatures = [
@@ -90,12 +91,13 @@ export default function MasterPlan() {
             className="relative mb-12"
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
-              <div className="relative aspect-[16/10] w-full">
-                <Image
-                  src="/images/projects/meadow-breeze/masterplan/layout.png"
+              <div className="relative aspect-[16/10] w-full bg-[#1a4d2e]/50">
+                <FallbackImage
+                  src="/images/projects/meadow-breeze/masterplan/layout.svg"
                   alt="The Meadow Breeze Master Plan"
                   fill
-                  className="object-contain bg-[#1a4d2e]/50"
+                  className="object-contain"
+                  fallbackText="Master Plan Coming Soon"
                 />
               </div>
 
@@ -159,7 +161,7 @@ export default function MasterPlan() {
             className="relative max-w-7xl w-full h-full flex items-center justify-center"
           >
             <Image
-              src="/images/projects/meadow-breeze/masterplan/layout.png"
+              src="/images/projects/meadow-breeze/masterplan/layout.svg"
               alt="The Meadow Breeze Master Plan"
               fill
               className="object-contain"

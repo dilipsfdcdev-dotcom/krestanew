@@ -3,7 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import FallbackImage from './FallbackImage';
 import { MapPin, TreePine, ArrowRight, Sparkles } from 'lucide-react';
 
 const projects = [
@@ -18,7 +18,7 @@ const projects = [
     status: 'Now Booking',
     features: ['360° Mountain Views', 'Gated Community', 'Organic Farming'],
     image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800',
-    logo: '/images/projects/meadow-breeze/logo.png',
+    logo: '/images/projects/meadow-breeze/logo.svg',
     slug: '/projects/meadow-breeze',
   },
 ];
@@ -93,11 +93,12 @@ export default function ProjectsShowcase() {
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.7 }}
                       >
-                        <Image
+                        <FallbackImage
                           src={project.image}
                           alt={project.name}
                           fill
                           className="object-cover"
+                          fallbackText="Coming Soon"
                         />
                       </motion.div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -126,11 +127,12 @@ export default function ProjectsShowcase() {
                             </div>
                           </div>
                           <div className="hidden md:block w-20 h-20 relative">
-                            <Image
+                            <FallbackImage
                               src={project.logo}
                               alt={`${project.name} Logo`}
                               fill
                               className="object-contain"
+                              fallbackText=""
                             />
                           </div>
                         </div>
