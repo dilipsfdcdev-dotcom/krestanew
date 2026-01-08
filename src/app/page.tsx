@@ -1,9 +1,7 @@
 import Navigation from "@/components/Navigation";
-import Hero from "@/components/Hero";
+import CompanyHero from "@/components/CompanyHero";
 import About from "@/components/About";
-import Project from "@/components/Project";
-import PlantForest from "@/components/PlantForest";
-import Amenities from "@/components/Amenities";
+import ProjectsShowcase from "@/components/ProjectsShowcase";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -11,11 +9,9 @@ export default function Home() {
   return (
     <main className="overflow-hidden">
       <Navigation />
-      <Hero />
+      <CompanyHero />
       <About />
-      <Project />
-      <PlantForest />
-      <Amenities />
+      <ProjectsShowcase />
       <Contact />
       <Footer />
     </main>
