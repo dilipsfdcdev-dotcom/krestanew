@@ -13,6 +13,40 @@ const stats = [
   { icon: Award, value: '100%', label: 'Trust & Quality' },
 ];
 
+// Pre-defined particle positions to avoid hydration mismatch
+const particles = [
+  { left: 5, top: 12, duration: 5.2, delay: 0.3 },
+  { left: 15, top: 45, duration: 6.1, delay: 1.2 },
+  { left: 25, top: 78, duration: 4.8, delay: 2.5 },
+  { left: 35, top: 23, duration: 5.9, delay: 0.8 },
+  { left: 45, top: 67, duration: 4.5, delay: 1.9 },
+  { left: 55, top: 34, duration: 6.4, delay: 2.1 },
+  { left: 65, top: 89, duration: 5.1, delay: 0.5 },
+  { left: 75, top: 56, duration: 4.9, delay: 1.7 },
+  { left: 85, top: 15, duration: 6.2, delay: 2.8 },
+  { left: 95, top: 42, duration: 5.5, delay: 0.9 },
+  { left: 10, top: 91, duration: 4.7, delay: 1.4 },
+  { left: 20, top: 38, duration: 6.0, delay: 2.3 },
+  { left: 30, top: 62, duration: 5.3, delay: 0.6 },
+  { left: 40, top: 8, duration: 4.6, delay: 1.8 },
+  { left: 50, top: 75, duration: 6.3, delay: 2.6 },
+  { left: 60, top: 28, duration: 5.0, delay: 0.4 },
+  { left: 70, top: 53, duration: 4.4, delay: 1.5 },
+  { left: 80, top: 86, duration: 6.5, delay: 2.9 },
+  { left: 90, top: 19, duration: 5.6, delay: 0.7 },
+  { left: 8, top: 71, duration: 4.3, delay: 2.0 },
+  { left: 18, top: 4, duration: 5.8, delay: 1.1 },
+  { left: 28, top: 95, duration: 6.6, delay: 2.4 },
+  { left: 38, top: 31, duration: 5.4, delay: 0.2 },
+  { left: 48, top: 84, duration: 4.2, delay: 1.6 },
+  { left: 58, top: 47, duration: 6.7, delay: 2.7 },
+  { left: 68, top: 11, duration: 5.7, delay: 1.0 },
+  { left: 78, top: 69, duration: 4.1, delay: 2.2 },
+  { left: 88, top: 36, duration: 6.8, delay: 0.1 },
+  { left: 98, top: 82, duration: 5.2, delay: 1.3 },
+  { left: 3, top: 59, duration: 4.0, delay: 2.5 },
+];
+
 export default function CompanyHero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -38,13 +72,13 @@ export default function CompanyHero() {
 
         {/* Animated Particles */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(30)].map((_, i) => (
+          {particles.map((particle, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-[#c9a962]/40 rounded-full"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
               }}
               animate={{
                 y: [0, -30, 0],
@@ -52,10 +86,10 @@ export default function CompanyHero() {
                 scale: [1, 1.5, 1],
               }}
               transition={{
-                duration: 4 + Math.random() * 3,
+                duration: particle.duration,
                 repeat: Infinity,
                 repeatType: 'reverse',
-                delay: Math.random() * 3,
+                delay: particle.delay,
               }}
             />
           ))}
