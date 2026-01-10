@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import AdaptiveLogo from '../AdaptiveLogo';
 import { ChevronDown, MapPin, TreePine, Mountain, Shield } from 'lucide-react';
 
 const highlights = [
@@ -49,24 +48,6 @@ export default function ProjectHero() {
 
       {/* Content */}
       <motion.div style={{ y, opacity }} className="relative z-10 container-luxury text-center px-4">
-        {/* Project Logo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-          className="mb-6"
-        >
-          <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto">
-            <AdaptiveLogo
-              basePath="/images/projects/meadow-breeze/logo"
-              alt="The Meadow Breeze Logo"
-              fill
-              className="object-contain drop-shadow-2xl"
-              priority
-            />
-          </div>
-        </motion.div>
-
         {/* Project Name */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
