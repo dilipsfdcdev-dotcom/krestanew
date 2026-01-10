@@ -58,7 +58,7 @@ export default function ProjectHero() {
         >
           <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto">
             <Image
-              src="/images/projects/meadow-breeze/logo.jpg"
+              src="/images/projects/meadow-breeze/logo.png"
               alt="The Meadow Breeze Logo"
               fill
               className="object-contain drop-shadow-2xl"

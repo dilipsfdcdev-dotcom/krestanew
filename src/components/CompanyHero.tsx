@@ -128,7 +128,7 @@ export default function CompanyHero() {
             {/* Company Logo */}
             <div className="w-28 h-28 md:w-32 md:h-32 relative">
               <Image
-                src="/images/company/logo.jpg"
+                src="/images/company/logo.png"
                 alt="Kresta Logo"
                 fill
                 className="object-contain drop-shadow-2xl"

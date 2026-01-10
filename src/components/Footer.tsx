@@ -39,7 +39,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-3 mb-6 group">
               <div className="relative w-14 h-14">
                 <Image
-                  src="/images/company/logo.jpg"
+                  src="/images/company/logo.png"
                   alt="Kresta Logo"
                   fill
                   className="object-contain"

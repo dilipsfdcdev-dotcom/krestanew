@@ -18,7 +18,7 @@ const projects = [
     status: 'Now Booking',
     features: ['360° Mountain Views', 'Gated Community', 'Organic Farming'],
     image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800',
-    logo: '/images/projects/meadow-breeze/logo.jpg',
+    logo: '/images/projects/meadow-breeze/logo.png',
     slug: '/projects/meadow-breeze',
   },
 ];
