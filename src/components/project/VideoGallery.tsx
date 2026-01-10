@@ -60,7 +60,7 @@ export default function VideoGallery() {
 
   return (
     <>
-      <section id="videos" className="py-24 md:py-32 bg-[#0d2818] relative overflow-hidden">
+      <section id="videos" className="py-24 md:py-32 bg-[#0a0a0a] relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0">
           <motion.div
@@ -208,7 +208,7 @@ export default function VideoGallery() {
             </button>
             <div className="aspect-video bg-black rounded-xl overflow-hidden">
               {videoError ? (
-                <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#1a4d2e] to-[#0d2818]">
+                <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]">
                   <VideoOff className="w-16 h-16 text-[#c9a962]/50 mb-4" />
                   <p className="text-[#c9a962] font-medium text-xl">Video Coming Soon</p>
                   <p className="text-white/40 text-sm mt-2">This video will be available shortly</p>

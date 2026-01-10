@@ -166,7 +166,7 @@ export default function ProjectsShowcase() {
                         {project.features.map((feature) => (
                           <span
                             key={feature}
-                            className="inline-flex items-center gap-1 px-3 py-1 bg-[#1a4d2e]/10 text-[#1a4d2e] text-sm rounded-full"
+                            className="inline-flex items-center gap-1 px-3 py-1 bg-[#1a1a1a]/10 text-[#1a1a1a] text-sm rounded-full"
                           >
                             <TreePine className="w-3 h-3" />
                             {feature}
@@ -176,7 +176,7 @@ export default function ProjectsShowcase() {
 
                       {/* CTA */}
                       <div className="flex items-center gap-4">
-                        <span className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a4d2e] text-white rounded-full font-medium group-hover:bg-[#2d6a4f] transition-colors">
+                        <span className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-full font-medium group-hover:bg-[#333] transition-colors">
                           View Project Details
                           <motion.span
                             animate={{ x: [0, 5, 0] }}

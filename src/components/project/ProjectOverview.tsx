@@ -81,7 +81,7 @@ export default function ProjectOverview() {
               className="p-6 bg-gradient-to-br from-[#faf8f5] to-white rounded-2xl border border-[#c9a962]/20 shadow-lg hover:shadow-xl transition-all"
             >
               <stat.icon className="w-8 h-8 text-[#c9a962] mb-3" />
-              <h3 className="text-2xl md:text-3xl font-bold text-[#1a4d2e]">{stat.value}</h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-[#1a1a1a]">{stat.value}</h3>
               <p className="text-gray-500 text-sm">{stat.label}</p>
             </motion.div>
           ))}
@@ -94,7 +94,7 @@ export default function ProjectOverview() {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-[#1a4d2e] rounded-3xl p-8 md:p-10 text-white relative overflow-hidden"
+            className="bg-[#1a1a1a] rounded-3xl p-8 md:p-10 text-white relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-40 h-40 bg-[#c9a962]/10 rounded-full filter blur-[60px]" />
             <h3 className="text-2xl font-bold mb-6">Strategic Location</h3>
@@ -158,7 +158,7 @@ export default function ProjectOverview() {
                 whileHover={{ y: -5, scale: 1.02 }}
                 className="p-5 bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl hover:border-[#c9a962]/30 transition-all text-center"
               >
-                <h4 className="text-xl font-bold text-[#1a4d2e] mb-1">{plot.size}</h4>
+                <h4 className="text-xl font-bold text-[#1a1a1a] mb-1">{plot.size}</h4>
                 <p className="text-[#c9a962] font-medium text-sm mb-2">{plot.area}</p>
                 <p className="text-gray-500 text-xs">{plot.description}</p>
               </motion.div>

@@ -32,7 +32,7 @@ export default function ProjectHero() {
             backgroundImage: `url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000')`,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0d2818]/80 via-[#1a4d2e]/60 to-[#0d2818]/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/90 via-[#1a1a1a]/80 to-[#0a0a0a]/95" />
 
         {/* Floating Elements */}
         <motion.div
@@ -41,7 +41,7 @@ export default function ProjectHero() {
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-10 w-96 h-96 bg-[#1a4d2e]/30 rounded-full filter blur-[100px]"
+          className="absolute bottom-1/4 right-10 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[100px]"
           animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 10, repeat: Infinity }}
         />

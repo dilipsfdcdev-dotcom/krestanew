@@ -27,7 +27,7 @@ export default function MasterPlan() {
 
   return (
     <>
-      <section id="masterplan" className="py-24 md:py-32 bg-[#0d2818] relative overflow-hidden">
+      <section id="masterplan" className="py-24 md:py-32 bg-[#0a0a0a] relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0">
           <motion.div
@@ -36,7 +36,7 @@ export default function MasterPlan() {
             transition={{ duration: 10, repeat: Infinity }}
           />
           <motion.div
-            className="absolute bottom-20 right-20 w-96 h-96 bg-[#1a4d2e]/30 rounded-full filter blur-[120px]"
+            className="absolute bottom-20 right-20 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[120px]"
             animate={{ scale: [1.2, 1, 1.2] }}
             transition={{ duration: 10, repeat: Infinity }}
           />
@@ -91,7 +91,7 @@ export default function MasterPlan() {
             className="relative mb-12"
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
-              <div className="relative aspect-[16/10] w-full bg-[#1a4d2e]/50">
+              <div className="relative aspect-[16/10] w-full bg-[#1a1a1a]/50">
                 <FallbackImage
                   src="/images/projects/meadow-breeze/masterplan/layout.svg"
                   alt="The Meadow Breeze Master Plan"

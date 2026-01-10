@@ -200,7 +200,7 @@ export default function Navigation() {
                   <a
                     href="https://wa.me/919888932555"
                     target="_blank"
-                    className="block w-full py-4 bg-[#1a4d2e] text-white text-center rounded-xl font-medium hover:bg-[#2d6a4f] transition-colors"
+                    className="block w-full py-4 bg-[#1a1a1a] text-white text-center rounded-xl font-medium hover:bg-[#333] transition-colors"
                   >
                     Schedule a Visit
                   </a>

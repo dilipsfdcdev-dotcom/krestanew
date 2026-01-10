@@ -148,7 +148,7 @@ export default function ProjectAmenities() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-gradient-to-r from-[#1a4d2e] to-[#2d6a4f] rounded-2xl text-white">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-gradient-to-r from-[#1a1a1a] to-[#333] rounded-2xl text-white">
             <div className="text-left">
               <h4 className="font-semibold mb-1">Ready to experience luxury farmland?</h4>
               <p className="text-white/70 text-sm">Schedule a site visit and see these amenities firsthand</p>

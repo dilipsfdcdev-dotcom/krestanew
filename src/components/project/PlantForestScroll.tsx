@@ -74,9 +74,9 @@ export default function PlantForestScroll() {
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
         >
           {[
-            { icon: TreePine, value: plantStats.totalSpecies, label: 'Tree Species', color: 'from-[#1a4d2e] to-[#2d6a4f]' },
+            { icon: TreePine, value: plantStats.totalSpecies, label: 'Tree Species', color: 'from-[#1a1a1a] to-[#333]' },
             { icon: Leaf, value: plantStats.totalPlants, label: 'Total Plants', color: 'from-[#c9a962] to-[#8b7355]' },
-            { icon: Wind, value: plantStats.categories, label: 'Categories', color: 'from-[#1a4d2e] to-[#2d6a4f]' },
+            { icon: Wind, value: plantStats.categories, label: 'Categories', color: 'from-[#1a1a1a] to-[#333]' },
             { icon: Heart, value: '100%', label: 'Organic', color: 'from-[#c9a962] to-[#8b7355]' },
           ].map((stat, index) => (
             <motion.div
@@ -107,7 +107,7 @@ export default function PlantForestScroll() {
                 onClick={() => setSelectedCategory(category.id)}
                 className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
                   selectedCategory === category.id
-                    ? 'bg-[#1a4d2e] text-white shadow-lg scale-105'
+                    ? 'bg-[#1a1a1a] text-white shadow-lg scale-105'
                     : 'bg-white border border-gray-200 text-gray-600 hover:border-[#c9a962] hover:text-[#c9a962]'
                 }`}
               >
@@ -127,13 +127,13 @@ export default function PlantForestScroll() {
           {/* Navigation Arrows */}
           <button
             onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center text-[#1a4d2e] hover:bg-[#1a4d2e] hover:text-white transition-all -ml-6 hidden md:flex"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all -ml-6 hidden md:flex"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center text-[#1a4d2e] hover:bg-[#1a4d2e] hover:text-white transition-all -mr-6 hidden md:flex"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all -mr-6 hidden md:flex"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
@@ -162,7 +162,7 @@ export default function PlantForestScroll() {
                       className="object-cover hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute top-3 left-3">
-                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#1a4d2e] text-xs font-medium rounded-full">
+                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#1a1a1a] text-xs font-medium rounded-full">
                         {plantCategories[plant.category as keyof typeof plantCategories]}
                       </span>
                     </div>
@@ -176,7 +176,7 @@ export default function PlantForestScroll() {
                   {/* Content */}
                   <div className="p-5">
                     <h3 className="font-bold text-[#1a1a1a] text-lg mb-2">{plant.name}</h3>
-                    <p className="text-[#1a4d2e] font-medium text-sm mb-4">Quantity: {plant.quantity}</p>
+                    <p className="text-[#1a1a1a] font-medium text-sm mb-4">Quantity: {plant.quantity}</p>
 
                     {/* Benefits - Always Visible */}
                     <div className="pt-3 border-t border-gray-100">
@@ -185,7 +185,7 @@ export default function PlantForestScroll() {
                         {plant.benefits.map((benefit, i) => (
                           <span
                             key={i}
-                            className="px-2 py-1 bg-[#1a4d2e]/10 text-[#1a4d2e] text-xs rounded-full"
+                            className="px-2 py-1 bg-[#c9a962]/10 text-[#c9a962] text-xs rounded-full"
                           >
                             {benefit}
                           </span>
@@ -209,7 +209,7 @@ export default function PlantForestScroll() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="mt-16 bg-gradient-to-r from-[#1a4d2e] to-[#2d6a4f] rounded-3xl p-8 md:p-12 text-white relative overflow-hidden"
+          className="mt-16 bg-gradient-to-r from-[#1a1a1a] to-[#333] rounded-3xl p-8 md:p-12 text-white relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#c9a962]/10 rounded-full filter blur-[80px]" />
           <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
