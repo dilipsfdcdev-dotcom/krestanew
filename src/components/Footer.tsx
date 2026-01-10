@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
+import AdaptiveLogo from './AdaptiveLogo';
 import { Phone, Mail, MapPin, ArrowUp, Heart } from 'lucide-react';
 
 const quickLinks = [
@@ -38,8 +38,8 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-6 group">
               <div className="relative w-14 h-14">
-                <Image
-                  src="/images/company/logo.png"
+                <AdaptiveLogo
+                  basePath="/images/company/logo"
                   alt="Kresta Logo"
                   fill
                   className="object-contain"

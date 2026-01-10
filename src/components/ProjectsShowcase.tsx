@@ -4,6 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Link from 'next/link';
 import FallbackImage from './FallbackImage';
+import AdaptiveLogo from './AdaptiveLogo';
 import { MapPin, TreePine, ArrowRight, Sparkles } from 'lucide-react';
 
 const projects = [
@@ -18,7 +19,7 @@ const projects = [
     status: 'Now Booking',
     features: ['360° Mountain Views', 'Gated Community', 'Organic Farming'],
     image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800',
-    logo: '/images/projects/meadow-breeze/logo.png',
+    logoPath: '/images/projects/meadow-breeze/logo',
     slug: '/projects/meadow-breeze',
   },
 ];
@@ -127,12 +128,11 @@ export default function ProjectsShowcase() {
                             </div>
                           </div>
                           <div className="hidden md:block w-20 h-20 relative">
-                            <FallbackImage
-                              src={project.logo}
+                            <AdaptiveLogo
+                              basePath={project.logoPath}
                               alt={`${project.name} Logo`}
                               fill
                               className="object-contain"
-                              fallbackText=""
                             />
                           </div>
                         </div>

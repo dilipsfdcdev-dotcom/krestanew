@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, MapPin } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
+import AdaptiveLogo from './AdaptiveLogo';
 import { usePathname } from 'next/navigation';
 
 const homeNavLinks = [
@@ -79,8 +79,8 @@ export default function Navigation() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative w-10 h-10 md:w-12 md:h-12">
-                <Image
-                  src="/images/company/logo.png"
+                <AdaptiveLogo
+                  basePath="/images/company/logo"
                   alt="Kresta Logo"
                   fill
                   className="object-contain"
@@ -159,8 +159,8 @@ export default function Navigation() {
                 {/* Logo in Mobile Menu */}
                 <div className="flex items-center gap-3 mb-8 pb-6 border-b border-gray-100">
                   <div className="relative w-12 h-12">
-                    <Image
-                      src="/images/company/logo.png"
+                    <AdaptiveLogo
+                      basePath="/images/company/logo"
                       alt="Kresta Logo"
                       fill
                       className="object-contain"

@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import Image from 'next/image';
+import AdaptiveLogo from '../AdaptiveLogo';
 import { ChevronDown, MapPin, TreePine, Mountain, Shield } from 'lucide-react';
 
 const highlights = [
@@ -57,8 +57,8 @@ export default function ProjectHero() {
           className="mb-6"
         >
           <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto">
-            <Image
-              src="/images/projects/meadow-breeze/logo.png"
+            <AdaptiveLogo
+              basePath="/images/projects/meadow-breeze/logo"
               alt="The Meadow Breeze Logo"
               fill
               className="object-contain drop-shadow-2xl"

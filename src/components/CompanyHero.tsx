@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
+import AdaptiveLogo from './AdaptiveLogo';
 
 
 // Pre-defined particle positions to avoid hydration mismatch
@@ -127,8 +127,8 @@ export default function CompanyHero() {
             />
             {/* Company Logo */}
             <div className="w-28 h-28 md:w-32 md:h-32 relative">
-              <Image
-                src="/images/company/logo.png"
+              <AdaptiveLogo
+                basePath="/images/company/logo"
                 alt="Kresta Logo"
                 fill
                 className="object-contain drop-shadow-2xl"
