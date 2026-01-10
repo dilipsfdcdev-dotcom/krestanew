@@ -80,7 +80,7 @@ export default function Navigation() {
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative w-10 h-10 md:w-12 md:h-12">
                 <Image
-                  src="/images/company/logo.svg"
+                  src="/images/company/logo.jpg"
                   alt="Kresta Logo"
                   fill
                   className="object-contain"
@@ -160,7 +160,7 @@ export default function Navigation() {
                 <div className="flex items-center gap-3 mb-8 pb-6 border-b border-gray-100">
                   <div className="relative w-12 h-12">
                     <Image
-                      src="/images/company/logo.svg"
+                      src="/images/company/logo.jpg"
                       alt="Kresta Logo"
                       fill
                       className="object-contain"
