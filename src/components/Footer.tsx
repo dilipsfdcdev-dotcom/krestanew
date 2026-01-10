@@ -53,8 +53,8 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-white/70 mb-6 leading-relaxed">
-              Crafting luxury, building dreams. We create exceptional farmland communities
-              that harmonize with nature while providing modern amenities.
+              Crafting luxury, building dreams. Premium real estate solutions from luxury
+              residences to farmland estates, commercial spaces, and integrated townships.
             </p>
             {/* Social Links */}
             <div className="flex gap-3">

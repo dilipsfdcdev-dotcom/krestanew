@@ -3,14 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Award, Clock, MapPin, Shield, Users, Building } from 'lucide-react';
-
-const stats = [
-  { number: '50+', label: 'Acres of Premium Land', icon: MapPin },
-  { number: '524', label: 'Trees Per Community', icon: Building },
-  { number: '100%', label: 'Customer Satisfaction', icon: Users },
-  { number: '24/7', label: 'Security & Support', icon: Shield },
-];
+import { Award, Clock, MapPin } from 'lucide-react';
 
 const values = [
   {
@@ -58,14 +51,14 @@ export default function About() {
             <div className="line-gold-solid mb-8" />
 
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              Kresta Infra & Developers Pvt. Ltd. is an emerging real estate development company
-              dedicated to creating exceptional farmland communities and residential spaces that
-              harmonize with nature.
+              Kresta Infra & Developers Pvt. Ltd. is a premier real estate development company
+              specializing in luxury residential projects, premium farmland communities, commercial
+              spaces, and integrated township developments.
             </p>
             <p className="text-gray-600 leading-relaxed mb-8">
-              We emphasize sustainable development that respects the environment while providing
-              modern amenities and connectivity. Our vision is to transform how people connect
-              with land, offering not just property but a lifestyle of tranquility and growth.
+              From high-rise apartments to serene farmland estates, we deliver diverse real estate
+              solutions with world-class quality. Our vision is to transform spaces into thriving
+              communities that blend modern living with sustainable design.
             </p>
 
             {/* Values */}
@@ -132,25 +125,6 @@ export default function About() {
             </div>
           </motion.div>
         </div>
-
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-24 grid grid-cols-2 lg:grid-cols-4 gap-8"
-        >
-          {stats.map((stat, index) => (
-            <div
-              key={stat.label}
-              className="text-center p-6 rounded-2xl bg-gradient-to-br from-[#faf8f5] to-white border border-[#c9a962]/20 card-luxury"
-            >
-              <stat.icon className="w-8 h-8 text-[#c9a962] mx-auto mb-4" />
-              <h3 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-2">{stat.number}</h3>
-              <p className="text-gray-600 text-sm">{stat.label}</p>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

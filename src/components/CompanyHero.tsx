@@ -177,8 +177,8 @@ export default function CompanyHero() {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="text-base md:text-lg text-white/60 max-w-2xl mx-auto mb-12"
         >
-          Creating exceptional farmland communities and residential spaces
-          that harmonize with nature
+          Premium real estate solutions — from luxury residences and farmland estates
+          to commercial spaces and integrated townships
         </motion.p>
 
         {/* CTA Buttons */}

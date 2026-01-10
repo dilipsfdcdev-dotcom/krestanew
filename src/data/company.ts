@@ -39,9 +39,9 @@ export const companyInfo = {
   name: 'Kresta Infra & Developers Pvt. Ltd.',
   shortName: 'Kresta',
   tagline: 'Crafting Luxury, Building Dreams',
-  description: 'An emerging real estate development company dedicated to creating exceptional farmland communities and residential spaces that harmonize with nature.',
-  mission: 'To transform how people connect with land, offering not just property but a lifestyle of tranquility and growth through sustainable development.',
-  vision: 'To be the most trusted name in premium farmland development, creating communities where nature and modern living coexist in perfect harmony.',
+  description: 'A premier real estate development company specializing in luxury residential projects, premium farmland communities, commercial spaces, and integrated township developments.',
+  mission: 'To deliver exceptional real estate solutions that transform spaces into thriving communities, combining world-class quality with sustainable design.',
+  vision: 'To be the most trusted name in premium real estate development, creating diverse projects from luxury residences to farmland estates that exceed expectations.',
   established: 2024,
   logoPath: '/images/company/logo',
   contact: {
