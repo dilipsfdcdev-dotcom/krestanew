@@ -44,7 +44,7 @@ export default function Navigation() {
     <>
       {/* Top Bar - Only on home page */}
       {!isProjectPage && (
-        <div className="hidden lg:block bg-[#1a4d2e] text-white py-2 relative z-50">
+        <div className="hidden lg:block bg-[#1a1a1a] text-white py-2 relative z-50">
           <div className="container-luxury flex justify-between items-center text-sm">
             <div className="flex items-center gap-6">
               <a href="tel:+919888932555" className="flex items-center gap-2 hover:text-[#c9a962] transition-colors">

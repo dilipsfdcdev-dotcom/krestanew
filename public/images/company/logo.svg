@@ -1,20 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160" fill="none">
   <defs>
     <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#c9a962"/>
-      <stop offset="100%" style="stop-color:#8b7355"/>
+      <stop offset="0%" style="stop-color:#d4af37"/>
+      <stop offset="30%" style="stop-color:#c9a962"/>
+      <stop offset="70%" style="stop-color:#b8944d"/>
+      <stop offset="100%" style="stop-color:#9a7b3b"/>
+    </linearGradient>
+    <linearGradient id="goldGradLight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e8d5a3"/>
+      <stop offset="50%" style="stop-color:#d4af37"/>
+      <stop offset="100%" style="stop-color:#c9a962"/>
     </linearGradient>
   </defs>
-  <!-- Shield shape -->
-  <path d="M100 10 L180 50 L180 120 C180 160 140 190 100 190 C60 190 20 160 20 120 L20 50 Z" fill="none" stroke="url(#goldGrad)" stroke-width="4"/>
-  <!-- Inner building/tower design -->
-  <path d="M100 40 L100 160" stroke="url(#goldGrad)" stroke-width="4"/>
-  <path d="M70 70 L70 140" stroke="url(#goldGrad)" stroke-width="3"/>
-  <path d="M130 70 L130 140" stroke="url(#goldGrad)" stroke-width="3"/>
-  <path d="M55 90 L55 130" stroke="url(#goldGrad)" stroke-width="2"/>
-  <path d="M145 90 L145 130" stroke="url(#goldGrad)" stroke-width="2"/>
-  <!-- Top element -->
-  <circle cx="100" cy="35" r="8" fill="url(#goldGrad)"/>
-  <!-- K letter -->
-  <text x="100" y="115" font-family="Georgia, serif" font-size="50" font-weight="bold" fill="url(#goldGrad)" text-anchor="middle">K</text>
+
+  <!-- Outer Shield Shape -->
+  <path d="M60 5 L110 30 L110 95 Q110 130 60 150 Q10 130 10 95 L10 30 Z"
+        stroke="url(#goldGrad)" stroke-width="3" fill="none"/>
+
+  <!-- Inner K Monogram - stylized building design -->
+  <!-- Center vertical line (building spire) -->
+  <path d="M60 25 L60 120" stroke="url(#goldGrad)" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Left vertical of K -->
+  <path d="M35 40 L35 115" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Right vertical of K -->
+  <path d="M85 40 L85 115" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- K diagonal arms meeting at center -->
+  <path d="M35 75 L60 50" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M85 75 L60 50" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Lower K diagonals -->
+  <path d="M35 75 L60 100" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M85 75 L60 100" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Top crown element -->
+  <path d="M50 30 L60 20 L70 30" stroke="url(#goldGrad)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Inner shield accent -->
+  <path d="M60 130 Q30 115 30 85 L30 45 L60 28 L90 45 L90 85 Q90 115 60 130"
+        stroke="url(#goldGrad)" stroke-width="1.5" fill="none" opacity="0.4"/>
 </svg>

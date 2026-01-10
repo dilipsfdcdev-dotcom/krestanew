@@ -68,7 +68,7 @@ export default function CompanyHero() {
             backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000')`,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0d2818]/95 via-[#1a4d2e]/90 to-[#0d2818]/98" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/97 via-[#1a1a1a]/95 to-[#0a0a0a]/98" />
 
         {/* Animated Particles */}
         <div className="absolute inset-0 overflow-hidden">
@@ -102,8 +102,8 @@ export default function CompanyHero() {
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#1a4d2e]/20 rounded-full filter blur-[120px]"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#c9a962]/5 rounded-full filter blur-[120px]"
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
           transition={{ duration: 8, repeat: Infinity, delay: 4 }}
         />
       </motion.div>
