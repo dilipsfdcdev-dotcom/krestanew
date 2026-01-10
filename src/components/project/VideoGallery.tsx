@@ -4,48 +4,13 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Play, X, Film, ChevronLeft, ChevronRight, VideoOff } from 'lucide-react';
 import FallbackImage from '../FallbackImage';
-
-// Video data - Add your videos here
-const videos = [
-  {
-    id: 1,
-    title: 'Aerial View of The Meadow Breeze',
-    description: 'Stunning drone footage showcasing the entire project layout',
-    thumbnail: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600',
-    videoUrl: '/videos/projects/meadow-breeze/aerial-view.mp4',
-    duration: '2:30',
-  },
-  {
-    id: 2,
-    title: 'Site Walkthrough',
-    description: 'Take a virtual tour of the premium farmland plots',
-    thumbnail: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600',
-    videoUrl: '/videos/projects/meadow-breeze/walkthrough.mp4',
-    duration: '4:15',
-  },
-  {
-    id: 3,
-    title: '360° Mountain Views',
-    description: 'Experience the breathtaking panoramic views',
-    thumbnail: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600',
-    videoUrl: '/videos/projects/meadow-breeze/mountain-views.mp4',
-    duration: '1:45',
-  },
-  {
-    id: 4,
-    title: 'Infrastructure & Amenities',
-    description: 'Explore the world-class amenities and infrastructure',
-    thumbnail: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=600',
-    videoUrl: '/videos/projects/meadow-breeze/amenities.mp4',
-    duration: '3:20',
-  },
-];
+import { meadowBreezeVideos, VIDEO_BASE_PATH, Video } from '@/data/videos';
 
 export default function VideoGallery() {
   const ref = useRef(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [selectedVideo, setSelectedVideo] = useState<typeof videos[0] | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [videoError, setVideoError] = useState(false);
 
   const scroll = (direction: 'left' | 'right') => {
@@ -57,6 +22,9 @@ export default function VideoGallery() {
       });
     }
   };
+
+  // Get full video URL
+  const getVideoUrl = (videoFile: string) => `${VIDEO_BASE_PATH}/${videoFile}`;
 
   return (
     <>
@@ -104,18 +72,22 @@ export default function VideoGallery() {
             className="relative"
           >
             {/* Navigation Arrows */}
-            <button
-              onClick={() => scroll('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-[#c9a962] transition-all -ml-6 hidden md:flex"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-              onClick={() => scroll('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-[#c9a962] transition-all -mr-6 hidden md:flex"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+            {meadowBreezeVideos.length > 2 && (
+              <>
+                <button
+                  onClick={() => scroll('left')}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-[#c9a962] transition-all -ml-6 hidden md:flex"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={() => scroll('right')}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-[#c9a962] transition-all -mr-6 hidden md:flex"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </>
+            )}
 
             {/* Scrollable Container */}
             <div
@@ -123,7 +95,7 @@ export default function VideoGallery() {
               className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {videos.map((video, index) => (
+              {meadowBreezeVideos.map((video, index) => (
                 <motion.div
                   key={video.id}
                   initial={{ opacity: 0, x: 50 }}
@@ -132,7 +104,7 @@ export default function VideoGallery() {
                   className="flex-shrink-0 w-[350px] md:w-[400px] snap-start"
                 >
                   <div
-                    onClick={() => setSelectedVideo(video)}
+                    onClick={() => { setSelectedVideo(video); setVideoError(false); }}
                     className="group cursor-pointer"
                   >
                     <div className="relative rounded-2xl overflow-hidden mb-4">
@@ -171,15 +143,15 @@ export default function VideoGallery() {
             </div>
           </motion.div>
 
-          {/* Add Your Videos Note */}
+          {/* Video Count */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-12 text-center"
+            className="mt-8 text-center"
           >
             <p className="text-white/40 text-sm">
-              Videos are loaded from: <code className="text-[#c9a962]">/public/videos/projects/meadow-breeze/</code>
+              {meadowBreezeVideos.length} videos available
             </p>
           </motion.div>
         </div>
@@ -211,11 +183,14 @@ export default function VideoGallery() {
                 <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]">
                   <VideoOff className="w-16 h-16 text-[#c9a962]/50 mb-4" />
                   <p className="text-[#c9a962] font-medium text-xl">Video Coming Soon</p>
-                  <p className="text-white/40 text-sm mt-2">This video will be available shortly</p>
+                  <p className="text-white/40 text-sm mt-2">Drop your video file at:</p>
+                  <code className="text-[#c9a962]/60 text-xs mt-1">
+                    /public{VIDEO_BASE_PATH}/{selectedVideo.videoFile}
+                  </code>
                 </div>
               ) : (
                 <video
-                  src={selectedVideo.videoUrl}
+                  src={getVideoUrl(selectedVideo.videoFile)}
                   controls
                   autoPlay
                   className="w-full h-full"
