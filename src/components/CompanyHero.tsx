@@ -2,16 +2,10 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { ChevronDown, Building2, TreePine, Users, Award } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const stats = [
-  { icon: Building2, value: '50+', label: 'Acres Developed' },
-  { icon: TreePine, value: '524+', label: 'Trees Planted' },
-  { icon: Users, value: '100+', label: 'Happy Families' },
-  { icon: Award, value: '100%', label: 'Trust & Quality' },
-];
 
 // Pre-defined particle positions to avoid hydration mismatch
 const particles = [
@@ -222,28 +216,6 @@ export default function CompanyHero() {
           </Link>
         </motion.div>
 
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.6 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto"
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.7 + index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="p-4 md:p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-[#c9a962]/30 transition-all cursor-default"
-            >
-              <stat.icon className="w-6 h-6 md:w-8 md:h-8 text-[#c9a962] mx-auto mb-2" />
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-1">{stat.value}</h3>
-              <p className="text-white/60 text-xs md:text-sm">{stat.label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
       </motion.div>
 
       {/* Scroll Indicator */}
