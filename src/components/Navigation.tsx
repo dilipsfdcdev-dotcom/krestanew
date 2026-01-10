@@ -51,7 +51,7 @@ export default function Navigation() {
                 <Phone size={14} />
                 <span>+91-9888932555</span>
               </a>
-              <a href="https://maps.google.com" target="_blank" className="flex items-center gap-2 hover:text-[#c9a962] transition-colors">
+              <a href="https://maps.app.goo.gl/4HvLznBYEHfcQcHP7" target="_blank" className="flex items-center gap-2 hover:text-[#c9a962] transition-colors">
                 <MapPin size={14} />
                 <span>Hyderabad, Telangana</span>
               </a>

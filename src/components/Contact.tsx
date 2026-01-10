@@ -24,7 +24,7 @@ const contactInfo = [
     icon: MapPin,
     title: 'Office Address',
     value: '94, HIG, TV Colony, Vanasthalipuram, Hyderabad - 500070',
-    link: 'https://maps.google.com',
+    link: 'https://maps.app.goo.gl/4HvLznBYEHfcQcHP7',
     color: 'bg-red-500',
   },
   {
@@ -281,7 +281,7 @@ Message: ${formData.message}`;
           <div className="bg-white p-4 rounded-2xl shadow-xl">
             <div className="rounded-xl overflow-hidden h-80">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3808.1234!2d78.7234!3d17.3234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDE5JzI0LjEiTiA3OMKwNDMnMjQuMiJF!5e0!3m2!1sen!2sin!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3808.5!2d78.5634!3d17.3134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcba1f72a26c7c7%3A0x9c9c9c9c9c9c9c9c!2sVanasthalipuram%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1704067200000"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
