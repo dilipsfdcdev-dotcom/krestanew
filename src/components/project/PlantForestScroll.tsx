@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import Image from 'next/image';
+import AdaptiveImage from '../AdaptiveImage';
 import { plants, plantCategories, plantStats } from '@/data/plants';
 import { TreePine, Leaf, Wind, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -75,7 +75,7 @@ export default function PlantForestScroll() {
         >
           {[
             { icon: TreePine, value: plantStats.totalSpecies, label: 'Tree Species', color: 'from-[#1a1a1a] to-[#333]' },
-            { icon: Leaf, value: plantStats.totalPlants, label: 'Total Plants', color: 'from-[#c9a962] to-[#8b7355]' },
+            { icon: Leaf, value: '600-900', label: 'Plants Per Plot', color: 'from-[#c9a962] to-[#8b7355]' },
             { icon: Wind, value: plantStats.categories, label: 'Categories', color: 'from-[#1a1a1a] to-[#333]' },
             { icon: Heart, value: '100%', label: 'Organic', color: 'from-[#c9a962] to-[#8b7355]' },
           ].map((stat, index) => (
@@ -125,18 +125,22 @@ export default function PlantForestScroll() {
           className="relative"
         >
           {/* Navigation Arrows */}
-          <button
-            onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all -ml-6 hidden md:flex"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all -mr-6 hidden md:flex"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+          {filteredPlants.length > 3 && (
+            <>
+              <button
+                onClick={() => scroll('left')}
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all -ml-6 hidden md:flex"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={() => scroll('right')}
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all -mr-6 hidden md:flex"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </>
+          )}
 
           {/* Scrollable Plant Cards */}
           <div
@@ -154,21 +158,17 @@ export default function PlantForestScroll() {
               >
                 <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all h-full border border-gray-100 hover:border-[#c9a962]/30">
                   {/* Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={plant.image}
+                  <div className="relative h-56 overflow-hidden">
+                    <AdaptiveImage
+                      basePath={plant.imagePath}
                       alt={plant.name}
                       fill
                       className="object-cover hover:scale-110 transition-transform duration-500"
+                      fallbackText={plant.name}
                     />
                     <div className="absolute top-3 left-3">
                       <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#1a1a1a] text-xs font-medium rounded-full">
                         {plantCategories[plant.category as keyof typeof plantCategories]}
-                      </span>
-                    </div>
-                    <div className="absolute top-3 right-3">
-                      <span className="px-3 py-1 bg-[#c9a962] text-white text-xs font-medium rounded-full">
-                        {plant.height}
                       </span>
                     </div>
                   </div>
@@ -176,22 +176,7 @@ export default function PlantForestScroll() {
                   {/* Content */}
                   <div className="p-5">
                     <h3 className="font-bold text-[#1a1a1a] text-lg mb-2">{plant.name}</h3>
-                    <p className="text-[#1a1a1a] font-medium text-sm mb-4">Quantity: {plant.quantity}</p>
-
-                    {/* Benefits - Always Visible */}
-                    <div className="pt-3 border-t border-gray-100">
-                      <p className="text-xs text-gray-500 mb-2 font-medium">Benefits:</p>
-                      <div className="flex flex-wrap gap-1">
-                        {plant.benefits.map((benefit, i) => (
-                          <span
-                            key={i}
-                            className="px-2 py-1 bg-[#c9a962]/10 text-[#c9a962] text-xs rounded-full"
-                          >
-                            {benefit}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed">{plant.description}</p>
                   </div>
                 </div>
               </motion.div>
@@ -234,44 +219,56 @@ export default function PlantForestScroll() {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-2xl overflow-hidden h-32">
-                <Image
-                  src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300"
+              <div className="rounded-2xl overflow-hidden h-32 relative">
+                <AdaptiveImage
+                  basePath="/images/projects/meadow-breeze/plants/forest-1"
                   alt="Forest"
-                  width={200}
-                  height={150}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  fallbackText="Forest"
                 />
               </div>
-              <div className="rounded-2xl overflow-hidden h-32 mt-6">
-                <Image
-                  src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=300"
+              <div className="rounded-2xl overflow-hidden h-32 mt-6 relative">
+                <AdaptiveImage
+                  basePath="/images/projects/meadow-breeze/plants/forest-2"
                   alt="Trees"
-                  width={200}
-                  height={150}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  fallbackText="Trees"
                 />
               </div>
-              <div className="rounded-2xl overflow-hidden h-32">
-                <Image
-                  src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=300"
+              <div className="rounded-2xl overflow-hidden h-32 relative">
+                <AdaptiveImage
+                  basePath="/images/projects/meadow-breeze/plants/forest-3"
                   alt="Nature"
-                  width={200}
-                  height={150}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  fallbackText="Nature"
                 />
               </div>
-              <div className="rounded-2xl overflow-hidden h-32 mt-6">
-                <Image
-                  src="https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=300"
+              <div className="rounded-2xl overflow-hidden h-32 mt-6 relative">
+                <AdaptiveImage
+                  basePath="/images/projects/meadow-breeze/plants/forest-4"
                   alt="Green"
-                  width={200}
-                  height={150}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  fallbackText="Green"
                 />
               </div>
             </div>
           </div>
+        </motion.div>
+
+        {/* Plant Count Note */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mt-8 text-center"
+        >
+          <p className="text-gray-500 text-sm">
+            {plants.length} plant varieties available
+          </p>
         </motion.div>
       </div>
 
