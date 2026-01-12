@@ -323,7 +323,7 @@ export const plants: Plant[] = [
   },
   {
     id: 28,
-    name: 'Bathyai (Guava)',
+    name: 'Guava',
     height: '5ft',
     quantity: 2,
     price: 650,
