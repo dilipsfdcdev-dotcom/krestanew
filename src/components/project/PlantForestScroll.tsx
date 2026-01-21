@@ -221,7 +221,7 @@ export default function PlantForestScroll() {
             <div className="grid grid-cols-2 gap-4">
               <div className="rounded-2xl overflow-hidden h-32 relative">
                 <AdaptiveImage
-                  basePath="/images/projects/meadow-breeze/plants/forest-1"
+                  basePath="/images/projects/meadow-breeze/plants/Marri (Banyan)"
                   alt="Forest"
                   fill
                   className="object-cover"
@@ -230,7 +230,7 @@ export default function PlantForestScroll() {
               </div>
               <div className="rounded-2xl overflow-hidden h-32 mt-6 relative">
                 <AdaptiveImage
-                  basePath="/images/projects/meadow-breeze/plants/forest-2"
+                  basePath="/images/projects/meadow-breeze/plants/Rain Tree"
                   alt="Trees"
                   fill
                   className="object-cover"
@@ -239,7 +239,7 @@ export default function PlantForestScroll() {
               </div>
               <div className="rounded-2xl overflow-hidden h-32 relative">
                 <AdaptiveImage
-                  basePath="/images/projects/meadow-breeze/plants/forest-3"
+                  basePath="/images/projects/meadow-breeze/plants/Green Bamboo"
                   alt="Nature"
                   fill
                   className="object-cover"
@@ -248,7 +248,7 @@ export default function PlantForestScroll() {
               </div>
               <div className="rounded-2xl overflow-hidden h-32 mt-6 relative">
                 <AdaptiveImage
-                  basePath="/images/projects/meadow-breeze/plants/forest-4"
+                  basePath="/images/projects/meadow-breeze/plants/Gulmohar"
                   alt="Green"
                   fill
                   className="object-cover"
