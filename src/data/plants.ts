@@ -8,238 +8,237 @@ export interface Plant {
   name: string;
   description: string;
   category: string;
+  quantity: number;
   imagePath: string; // Base path without extension, e.g., '/images/projects/meadow-breeze/plants/neem'
 }
 
 export const plantCategories = {
-  avenue: 'Avenue Trees',
-  palm: 'Palm Trees',
-  fruit: 'Fruit Plants',
-  ornamental: 'Ornamental Plants',
-  bamboo: 'Bamboo Plants',
+  canopy: 'Tall / Canopy Trees',
+  palm: 'Palms',
+  bamboo: 'Bamboo & Grasses',
+  shrub: 'Shrubs',
+  ornamental: 'Ornamental Anchors',
+  herbs: 'Herbs / Medicinal',
+  fruit: 'Fruit Trees',
 };
 
 export const plants: Plant[] = [
   // =====================
-  // AVENUE TREES
+  // TALL / CANOPY TREES (High Oxygen)
   // =====================
   {
     id: 1,
-    name: 'Vepa (Neem)',
-    description: 'Air purification, medicinal properties, natural pesticide, provides cooling shade',
-    category: 'avenue',
-    imagePath: '/images/projects/meadow-breeze/plants/Vepa (Neem)',
-  },
-  {
-    id: 2,
-    name: 'Raavi (Peepal)',
-    description: '24-hour oxygen release, sacred significance, large canopy, wildlife habitat',
-    category: 'avenue',
-    imagePath: '/images/projects/meadow-breeze/plants/Raavi (Peepal)',
-  },
-  {
-    id: 3,
-    name: 'Marri (Banyan)',
-    description: 'Massive shade coverage, air purification, spiritual significance, long lifespan',
-    category: 'avenue',
-    imagePath: '/images/projects/meadow-breeze/plants/Marri (Banyan)',
-  },
-  {
-    id: 4,
-    name: 'China Badam',
-    description: 'Ornamental beauty, shade provider, low maintenance, drought resistant',
-    category: 'avenue',
-    imagePath: '/images/projects/meadow-breeze/plants/China Badam',
-  },
-  {
-    id: 5,
-    name: 'Cordia Sebastiana',
-    description: 'Fast growing, ornamental flowers, bird attraction, excellent shade provider',
-    category: 'avenue',
-    imagePath: '/images/projects/meadow-breeze/plants/Cardia Sebastian',
-  },
-  {
-    id: 6,
-    name: 'Tabebuia Rosea',
-    description: 'Beautiful pink flowers, ornamental value, moderate shade, attracts pollinators',
-    category: 'avenue',
+    name: 'Tabebuia Rosea (12 ft)',
+    description: 'High oxygen output, wide canopy, temperature reduction',
+    category: 'canopy',
+    quantity: 10,
     imagePath: '/images/projects/meadow-breeze/plants/Tabebuia Rosea',
   },
   {
-    id: 7,
-    name: 'Spathodea',
-    description: 'Flame-colored flowers, fast growing, ornamental beauty, attracts birds',
-    category: 'avenue',
+    id: 2,
+    name: 'Spathodea (12 ft)',
+    description: 'Large leaf surface, strong air purification, shade',
+    category: 'canopy',
+    quantity: 10,
     imagePath: '/images/projects/meadow-breeze/plants/Spethodea',
   },
   {
-    id: 8,
-    name: 'Kadamba',
-    description: 'Fragrant flowers, medicinal uses, cultural significance, fast growing',
-    category: 'avenue',
-    imagePath: '/images/projects/meadow-breeze/plants/Kadamba',
+    id: 3,
+    name: 'Khaya Senegalensis (12 ft)',
+    description: 'High carbon absorption, stable long-life tree',
+    category: 'canopy',
+    quantity: 5,
+    imagePath: '/images/projects/meadow-breeze/plants/Khaya Senegalensis',
   },
   {
-    id: 9,
-    name: 'Mahogany',
-    description: 'Premium timber, dense shade, air purification, extremely long lifespan',
-    category: 'avenue',
-    imagePath: '/images/projects/meadow-breeze/plants/Mahogany',
+    id: 4,
+    name: 'Pongamia / Arjun',
+    description: 'Nitrogen-fixing (Pongamia) / very high oxygen (Arjun)',
+    category: 'canopy',
+    quantity: 2,
+    imagePath: '/images/projects/meadow-breeze/plants/Pongamia',
   },
   {
-    id: 10,
-    name: 'Gulmohar',
-    description: 'Vibrant red flowers, large canopy, summer blooming, stunning ornamental beauty',
-    category: 'avenue',
-    imagePath: '/images/projects/meadow-breeze/plants/Gulmohar',
-  },
-  {
-    id: 11,
-    name: 'Peltophorum',
-    description: 'Yellow flowers, nitrogen fixing, fast growing, provides good shade',
-    category: 'avenue',
-    imagePath: '/images/projects/meadow-breeze/plants/Peltophorum',
-  },
-  {
-    id: 12,
-    name: 'Rain Tree',
-    description: 'Massive canopy, nitrogen fixing, rain collection, excellent wildlife habitat',
-    category: 'avenue',
-    imagePath: '/images/projects/meadow-breeze/plants/Rain Tree',
+    id: 5,
+    name: 'Cordia Sebastian (12 ft)',
+    description: 'Dense foliage, dust trapping, moderate-high oxygen',
+    category: 'canopy',
+    quantity: 5,
+    imagePath: '/images/projects/meadow-breeze/plants/Cardia Sebastian',
   },
 
   // =====================
-  // PALM TREES
+  // PALMS (Moderate-High Oxygen)
   // =====================
   {
-    id: 13,
-    name: 'Royal Palm',
-    description: 'Majestic appearance, tropical aesthetic, wind resistant, low maintenance',
+    id: 6,
+    name: 'Areca Palm (6 ft)',
+    description: 'Excellent oxygen, improves humidity, air purifier',
     category: 'palm',
-    imagePath: '/images/projects/meadow-breeze/plants/Royal Palm',
-  },
-  {
-    id: 14,
-    name: 'Foxtail Palm',
-    description: 'Elegant fronds, self-cleaning, drought tolerant, modern aesthetic',
-    category: 'palm',
-    imagePath: '/images/projects/meadow-breeze/plants/Foxtail Palm',
-  },
-  {
-    id: 15,
-    name: 'Areca Palm',
-    description: 'Air purification, humidity control, NASA recommended, pet safe',
-    category: 'palm',
+    quantity: 30,
     imagePath: '/images/projects/meadow-breeze/plants/Areca Palm',
   },
   {
-    id: 16,
-    name: 'Traveller Palm',
-    description: 'Unique fan shape, water storage, tropical landmark, attracts birds',
+    id: 7,
+    name: 'Foxtail Palm',
+    description: 'Dust filtration, vertical green mass',
     category: 'palm',
-    imagePath: '/images/projects/meadow-breeze/plants/Traveller Palm',
+    quantity: 20,
+    imagePath: '/images/projects/meadow-breeze/plants/Foxtail Palm',
   },
   {
-    id: 17,
-    name: 'Supari Palm',
-    description: 'Betel nut producer, cultural significance, slender beauty, tropical feel',
+    id: 8,
+    name: 'Coconut Palm (10 ft)',
+    description: 'High oxygen release, tropical micro-climate',
     category: 'palm',
-    imagePath: '/images/projects/meadow-breeze/plants/Supari Palm',
+    quantity: 4,
+    imagePath: '/images/projects/meadow-breeze/plants/Coconut Palm',
   },
 
   // =====================
-  // FRUIT PLANTS
+  // BAMBOO & GRASSES (Very High Oxygen)
   // =====================
   {
-    id: 18,
-    name: 'Jamun (Java Plum)',
-    description: 'Delicious fruits, diabetes management, antioxidant rich, provides shade',
-    category: 'fruit',
-    imagePath: '/images/projects/meadow-breeze/plants/Jama (Jamun)',
-  },
-  {
-    id: 19,
-    name: 'Water Apple',
-    description: 'Refreshing fruits, excellent hydration, vitamin rich, ornamental flowers',
-    category: 'fruit',
-    imagePath: '/images/projects/meadow-breeze/plants/Water Apple',
-  },
-  {
-    id: 20,
-    name: 'Sapota (Chikoo)',
-    description: 'Sweet fruits, energy booster, fiber rich, very low maintenance',
-    category: 'fruit',
-    imagePath: '/images/projects/meadow-breeze/plants/Sapota (Chikoo)',
-  },
-  {
-    id: 21,
-    name: 'Custard Apple',
-    description: 'Unique flavor, vitamin C rich, heart health benefits, drought tolerant',
-    category: 'fruit',
-    imagePath: '/images/projects/meadow-breeze/plants/Sitaphal (Custard Apple)',
-  },
-  {
-    id: 22,
-    name: 'Pomegranate',
-    description: 'Superfood, rich in antioxidants, heart health, beautiful flowers',
-    category: 'fruit',
-    imagePath: '/images/projects/meadow-breeze/plants/Dhanimma (Pomegranate)',
-  },
-  {
-    id: 23,
-    name: 'Guava',
-    description: 'High vitamin C, digestive health, fast fruiting, hardy plant',
-    category: 'fruit',
-    imagePath: '/images/projects/meadow-breeze/plants/Guava',
-  },
-  {
-    id: 24,
-    name: 'Amla (Indian Gooseberry)',
-    description: 'Ayurvedic superfood, hair & skin health, immunity booster, long fruiting season',
-    category: 'fruit',
-    imagePath: '/images/projects/meadow-breeze/plants/Usiri (Amla)',
-  },
-
-  // =====================
-  // BAMBOO PLANTS
-  // =====================
-  {
-    id: 25,
-    name: 'Buddha Bamboo',
-    description: 'Unique bulging nodes, ornamental, feng shui significance, compact growth',
+    id: 9,
+    name: 'Buddha Bamboo (5 ft)',
+    description: 'Very high oxygen day & night, sound and dust barrier',
     category: 'bamboo',
+    quantity: 100,
     imagePath: '/images/projects/meadow-breeze/plants/Buddha Bamboo',
   },
   {
-    id: 26,
+    id: 10,
     name: 'Golden Bamboo',
-    description: 'Golden culms, privacy screen, fast growing, excellent wind break',
+    description: 'Fast green wall, carbon sink',
     category: 'bamboo',
+    quantity: 6,
     imagePath: '/images/projects/meadow-breeze/plants/Golden Bamboo',
   },
   {
-    id: 27,
+    id: 11,
     name: 'Green Bamboo',
-    description: 'Classic beauty, oxygen producer, carbon sequester, sustainable resource',
+    description: 'Dense screening, air purification',
     category: 'bamboo',
+    quantity: 6,
     imagePath: '/images/projects/meadow-breeze/plants/Green Bamboo',
+  },
+  {
+    id: 12,
+    name: 'Vetiver Grass',
+    description: 'Deep roots, soil binding, pollution control',
+    category: 'bamboo',
+    quantity: 40,
+    imagePath: '/images/projects/meadow-breeze/plants/Vetiver Grass',
+  },
+  {
+    id: 13,
+    name: 'Lemongrass',
+    description: 'Oxygen rich, mosquito repellent, fragrance',
+    category: 'bamboo',
+    quantity: 25,
+    imagePath: '/images/projects/meadow-breeze/plants/Lemongrass',
   },
 
   // =====================
-  // ADD MORE PLANTS BELOW
+  // SHRUBS (High Oxygen per Sq Ft)
   // =====================
-  // Example:
-  // {
-  //   id: 28,
-  //   name: 'Your Plant Name',
-  //   description: 'Description of the plant and its benefits',
-  //   category: 'avenue', // or 'palm', 'fruit', 'ornamental', 'bamboo'
-  //   imagePath: '/images/projects/meadow-breeze/plants/your-image-name',
-  // },
+  {
+    id: 14,
+    name: 'Ficus Panda Balls',
+    description: 'Very high oxygen, CO₂ absorption, dense hedge',
+    category: 'shrub',
+    quantity: 100,
+    imagePath: '/images/projects/meadow-breeze/plants/Ficus Panda Balls',
+  },
+  {
+    id: 15,
+    name: 'Acalypha / Eranthemum',
+    description: 'Continuous oxygen cycling, visual fullness',
+    category: 'shrub',
+    quantity: 100,
+    imagePath: '/images/projects/meadow-breeze/plants/Acalypha',
+  },
+  {
+    id: 16,
+    name: 'Hibiscus / Ixora',
+    description: 'Pollinator friendly, moderate oxygen, color accent',
+    category: 'shrub',
+    quantity: 15,
+    imagePath: '/images/projects/meadow-breeze/plants/Hibiscus',
+  },
+
+  // =====================
+  // ORNAMENTAL ANCHORS (Moderate Oxygen)
+  // =====================
+  {
+    id: 17,
+    name: 'Ficus Microcarpa (Balls)',
+    description: 'High oxygen, premium sculpted look',
+    category: 'ornamental',
+    quantity: 2,
+    imagePath: '/images/projects/meadow-breeze/plants/Ficus Microcarpa Balls',
+  },
+  {
+    id: 18,
+    name: 'Ficus Microcarpa (Cone)',
+    description: 'Strong CO₂ absorption, entry focal point',
+    category: 'ornamental',
+    quantity: 2,
+    imagePath: '/images/projects/meadow-breeze/plants/Ficus Microcarpa Cone',
+  },
+
+  // =====================
+  // HERBS / MEDICINAL (High Oxygen)
+  // =====================
+  {
+    id: 19,
+    name: 'Tulsi',
+    description: 'Very high oxygen, medicinal, improves air quality',
+    category: 'herbs',
+    quantity: 15,
+    imagePath: '/images/projects/meadow-breeze/plants/Tulsi',
+  },
+
+  // =====================
+  // FRUIT TREES (Moderate Oxygen)
+  // =====================
+  {
+    id: 20,
+    name: 'Jamun',
+    description: 'Oxygen rich, bird attraction',
+    category: 'fruit',
+    quantity: 2,
+    imagePath: '/images/projects/meadow-breeze/plants/Jama (Jamun)',
+  },
+  {
+    id: 21,
+    name: 'Water Apple',
+    description: 'Moderate oxygen, pollinator support',
+    category: 'fruit',
+    quantity: 2,
+    imagePath: '/images/projects/meadow-breeze/plants/Water Apple',
+  },
+  {
+    id: 22,
+    name: 'Kamala',
+    description: 'Native biodiversity support',
+    category: 'fruit',
+    quantity: 2,
+    imagePath: '/images/projects/meadow-breeze/plants/Kamala',
+  },
+  {
+    id: 23,
+    name: 'Bathayi',
+    description: 'Low maintenance fruit tree',
+    category: 'fruit',
+    quantity: 2,
+    imagePath: '/images/projects/meadow-breeze/plants/Bathayi',
+  },
 ];
 
 // Stats (auto-calculated)
 export const plantStats = {
   totalSpecies: plants.length,
+  totalPlants: plants.reduce((sum, plant) => sum + plant.quantity, 0),
   categories: Object.keys(plantCategories).length,
 };
