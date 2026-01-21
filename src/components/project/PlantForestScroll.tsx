@@ -52,7 +52,7 @@ export default function PlantForestScroll() {
             Your Personal Forest
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a1a] mb-4">
-            600-900 Plants Per Plot
+            {plantStats.totalPlants}+ Plants Per Plot
           </h2>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -74,10 +74,10 @@ export default function PlantForestScroll() {
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
         >
           {[
-            { icon: TreePine, value: plantStats.totalSpecies, label: 'Tree Species', color: 'from-[#1a1a1a] to-[#333]' },
-            { icon: Leaf, value: '600-900', label: 'Plants Per Plot', color: 'from-[#c9a962] to-[#8b7355]' },
+            { icon: TreePine, value: plantStats.totalSpecies, label: 'Plant Species', color: 'from-[#1a1a1a] to-[#333]' },
+            { icon: Leaf, value: plantStats.totalPlants + '+', label: 'Plants Per Plot', color: 'from-[#c9a962] to-[#8b7355]' },
             { icon: Wind, value: plantStats.categories, label: 'Categories', color: 'from-[#1a1a1a] to-[#333]' },
-            { icon: Heart, value: '100%', label: 'Organic', color: 'from-[#c9a962] to-[#8b7355]' },
+            { icon: Heart, value: '100%', label: 'Oxygen Rich', color: 'from-[#c9a962] to-[#8b7355]' },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -201,15 +201,17 @@ export default function PlantForestScroll() {
             <div>
               <h3 className="text-2xl md:text-3xl font-bold mb-4">Why Our Forest Setup?</h3>
               <p className="text-white/70 mb-6">
-                Each plot is carefully planned with a diverse mix of trees to create
-                a self-sustaining ecosystem that provides year-round benefits.
+                Each plot is carefully planned with a diverse mix of oxygen-rich plants to create
+                a self-sustaining ecosystem that provides year-round health benefits.
               </p>
               <div className="space-y-3">
                 {[
-                  'Avenue trees for shade and air purification',
-                  'Palm trees for tropical aesthetics',
-                  'Fruit trees for organic produce',
-                  'Bamboo for privacy and carbon capture',
+                  'Canopy trees for high oxygen output, wide shade & temperature reduction',
+                  'Bamboo & grasses for 24/7 oxygen release, sound barriers & carbon capture',
+                  'Palms for air purification, humidity control & dust filtration',
+                  'Shrubs for dense CO₂ absorption & continuous oxygen cycling',
+                  'Medicinal herbs like Tulsi for very high oxygen & air quality improvement',
+                  'Fruit trees for organic produce, pollinator support & biodiversity',
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-[#c9a962]" />
@@ -221,38 +223,38 @@ export default function PlantForestScroll() {
             <div className="grid grid-cols-2 gap-4">
               <div className="rounded-2xl overflow-hidden h-32 relative">
                 <AdaptiveImage
-                  basePath="/images/projects/meadow-breeze/plants/Marri (Banyan)"
-                  alt="Forest"
+                  basePath="/images/projects/meadow-breeze/plants/Buddha Bamboo"
+                  alt="Buddha Bamboo"
                   fill
                   className="object-cover"
-                  fallbackText="Forest"
+                  fallbackText="Bamboo"
                 />
               </div>
               <div className="rounded-2xl overflow-hidden h-32 mt-6 relative">
                 <AdaptiveImage
-                  basePath="/images/projects/meadow-breeze/plants/Rain Tree"
-                  alt="Trees"
+                  basePath="/images/projects/meadow-breeze/plants/Areca Palm"
+                  alt="Areca Palm"
                   fill
                   className="object-cover"
-                  fallbackText="Trees"
+                  fallbackText="Palm"
                 />
               </div>
               <div className="rounded-2xl overflow-hidden h-32 relative">
                 <AdaptiveImage
                   basePath="/images/projects/meadow-breeze/plants/Green Bamboo"
-                  alt="Nature"
+                  alt="Green Bamboo"
                   fill
                   className="object-cover"
-                  fallbackText="Nature"
+                  fallbackText="Bamboo"
                 />
               </div>
               <div className="rounded-2xl overflow-hidden h-32 mt-6 relative">
                 <AdaptiveImage
-                  basePath="/images/projects/meadow-breeze/plants/Gulmohar"
-                  alt="Green"
+                  basePath="/images/projects/meadow-breeze/plants/Tabebuia Rosea"
+                  alt="Tabebuia Rosea"
                   fill
                   className="object-cover"
-                  fallbackText="Green"
+                  fallbackText="Canopy Tree"
                 />
               </div>
             </div>
