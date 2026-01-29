@@ -5,27 +5,27 @@ import { useRef } from 'react';
 import { MapPin, Car, TreePine, Home, Shield, Droplets, Zap, Leaf } from 'lucide-react';
 
 const plotSizes = [
-  { size: '10 Guntas', area: '1,210 sq yards', description: 'Compact farmhouse with garden' },
-  { size: '20 Guntas', area: '2,420 sq yards', description: 'Medium farmhouse with farming' },
-  { size: '30 Guntas', area: '3,630 sq yards', description: 'Spacious farmhouse estate' },
-  { size: '40 Guntas', area: '4,840 sq yards', description: 'Large estate with structures' },
-  { size: '50 Guntas', area: '6,050 sq yards', description: 'Premium expansive estate' },
+  { size: '10 Guntas', area: '~1,210 sq yds', description: 'Compact farmhouse, weekend home, nature retreat' },
+  { size: '12.5-15 Guntas', area: '~1,510-1,815 sq yds', description: 'Farmhouse with landscaped garden' },
+  { size: '17-20 Guntas', area: '~2,060-2,420 sq yds', description: 'Medium farmhouse with farming/orchard area' },
+  { size: '22-25 Guntas', area: '~2,660-3,025 sq yds', description: 'Large farmhouse estate, corner & premium plots' },
+  { size: '25+ Guntas', area: '3,025+ sq yds', description: 'Premium estate near forest & boulder zones' },
 ];
 
 const locationHighlights = [
-  { icon: MapPin, text: '25 km from Exit 11 - ORR' },
+  { icon: MapPin, text: '30 km from ORR Exit 11' },
   { icon: Car, text: '7 km from Vijayawada Highway' },
-  { icon: TreePine, text: 'Nestled in Rachakonda Hills' },
-  { icon: Shield, text: 'Pollution-free environment' },
+  { icon: TreePine, text: '360° Panoramic Mountain Views' },
+  { icon: Shield, text: 'Pure, Pollution-Free Environment' },
 ];
 
 const investmentPoints = [
-  'High appreciation potential in developing corridor',
-  'Managed farmland services available',
-  'Clear titles and legal documentation',
-  'Premium location with excellent connectivity',
-  'Suitable for weekend retreats & retirement homes',
-  'Ideal for organic farming ventures',
+  'Rising land values in Rachakonda corridor',
+  'Only 124 plots in exclusive gated community',
+  'Clear titles with all legal documentation verified',
+  'Infrastructure growth with ORR & highways nearby',
+  'Pre-planted estate with 600-900 plants per plot',
+  '24/7 gated community with CCTV security',
 ];
 
 export default function ProjectOverview() {
@@ -46,17 +46,20 @@ export default function ProjectOverview() {
           className="text-center mb-16"
         >
           <span className="text-[#c9a962] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-            Project Overview
+            A Distinguished 100-Acre Farmland Estate
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a1a] mb-4">
-            Your Dream Farmland Awaits
+            Where the Hills Stand Guard
           </h2>
           <motion.div
             initial={{ scaleX: 0 }}
             animate={isInView ? { scaleX: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto"
+            className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-4"
           />
+          <p className="text-gray-600 max-w-3xl mx-auto">
+            Nestled in the majestic Rachakonda Hills, The Meadow Breeze is crafted for those who value serenity, privacy, and purposeful living. Here, you don&apos;t merely own land — you inherit peace, purpose, and a deeper bond with nature.
+          </p>
         </motion.div>
 
         {/* Main Stats */}

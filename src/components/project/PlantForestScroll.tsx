@@ -49,10 +49,10 @@ export default function PlantForestScroll() {
           className="text-center mb-12"
         >
           <span className="text-[#c9a962] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-            Your Personal Forest
+            A Forest for Every Plot
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a1a] mb-4">
-            600-900 Plants Per Plot
+            Living Inside Nature, Not Beside It
           </h2>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -60,9 +60,11 @@ export default function PlantForestScroll() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6"
           />
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Every plot comes with its own forest setup featuring diverse trees,
-            creating an oxygen-rich environment for you and your family
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            At The Meadow Breeze, nature is not an add-on — it is the foundation. Each plot is thoughtfully designed with a curated mini forest of 600-900 plants, transforming private land ownership into a living ecosystem.
+          </p>
+          <p className="text-[#c9a962] font-medium mt-4 italic">
+            We are not near a forest. We are inside one.
           </p>
         </motion.div>
 
@@ -199,17 +201,16 @@ export default function PlantForestScroll() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#c9a962]/10 rounded-full filter blur-[80px]" />
           <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">Why Our Forest Setup?</h3>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">A Self-Sustaining Green Ecosystem</h3>
               <p className="text-white/70 mb-6">
-                Each plot is carefully planned with a diverse mix of trees to create
-                a self-sustaining ecosystem that provides year-round benefits.
+                Our scientifically planned mix of avenue trees, native forest species, palms, bamboo, medicinal plants, ornamentals, and fruit-bearing trees creates a dense green cover, natural temperature regulation, and a self-sustaining micro-ecosystem.
               </p>
               <div className="space-y-3">
                 {[
-                  'Avenue trees for shade and air purification',
-                  'Palm trees for tropical aesthetics',
-                  'Fruit trees for organic produce',
-                  'Bamboo for privacy and carbon capture',
+                  'Multi-level forest structure for year-round greenery',
+                  'Thick tree canopy reduces heat by 3-5°C naturally',
+                  'Higher oxygen levels & pollution-free environment',
+                  'Supports birds, butterflies & local biodiversity',
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-[#c9a962]" />
@@ -217,6 +218,9 @@ export default function PlantForestScroll() {
                   </div>
                 ))}
               </div>
+              <p className="text-[#c9a962] font-medium mt-6 italic text-sm">
+                Every plot becomes a private green sanctuary.
+              </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="rounded-2xl overflow-hidden h-32 relative">
@@ -257,6 +261,51 @@ export default function PlantForestScroll() {
               </div>
             </div>
           </div>
+        </motion.div>
+
+        {/* Why a Forest-Based Layout */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {[
+            {
+              title: 'Climate-Responsive Living',
+              points: ['Natural temperature reduction', 'Improved soil moisture', 'Natural wind & dust barriers'],
+            },
+            {
+              title: 'Health & Well-being',
+              points: ['Higher oxygen levels', 'Reduced stress & improved wellness', 'Toxin-free environment'],
+            },
+            {
+              title: 'Long-Term Land Value',
+              points: ['Green plots appreciate faster', 'Premium resale value', 'Evergreen visual beauty'],
+            },
+            {
+              title: 'Sustainable Development',
+              points: ['Supports local biodiversity', 'Lowers carbon footprint', 'Eco-conscious living'],
+            },
+          ].map((benefit, index) => (
+            <motion.div
+              key={benefit.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
+              className="p-6 bg-white rounded-2xl border border-gray-100 shadow-lg"
+            >
+              <h4 className="font-bold text-[#1a1a1a] mb-4">{benefit.title}</h4>
+              <ul className="space-y-2">
+                {benefit.points.map((point, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                    <span className="text-[#c9a962] mt-1">✓</span>
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* Plant Count Note */}
