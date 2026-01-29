@@ -7,16 +7,27 @@ import { Maximize2, X, MapPin, Route, TreePine, Home, Compass } from 'lucide-rea
 
 const planFeatures = [
   { icon: Home, label: '124 Premium Plots', color: 'bg-emerald-500' },
-  { icon: Route, label: '60ft & 40ft Wide Roads', color: 'bg-blue-500' },
-  { icon: TreePine, label: 'Surrounding Forest Area', color: 'bg-green-500' },
+  { icon: Route, label: '60ft, 40ft & 33ft Roads', color: 'bg-blue-500' },
+  { icon: TreePine, label: 'Forest Area & Green Buffer', color: 'bg-green-500' },
   { icon: MapPin, label: 'Premium Villa Section', color: 'bg-purple-500' },
-  { icon: Compass, label: 'Walking Trails', color: 'bg-orange-500' },
+  { icon: Compass, label: 'Walking Trails Throughout', color: 'bg-orange-500' },
+];
+
+const masterPlanFeatures = [
+  'Wide Internal Roads — 60 ft & 40 ft for easy access',
+  'Forest Area — Surrounding the community for privacy',
+  'Premium Villa Section — Designated premium plots',
+  'Natural Boulder Preservation — Existing boulders as landmarks',
+  'Walking Trails — Throughout the property',
+  'Strategic Entrance — Wide access with gated security',
+  'Green Buffer Zones — Extensive plantation areas',
 ];
 
 const stats = [
   { label: 'Total Plot Area', value: '179,103 Sq. Yards' },
   { label: 'Roads Area', value: '57,558 Sq. Yards' },
   { label: 'Total Plots', value: '124' },
+  { label: 'Plants Per Plot', value: '600-900' },
 ];
 
 export default function MasterPlan() {
@@ -141,6 +152,30 @@ export default function MasterPlan() {
                 <p className="text-white/80 text-sm">{feature.label}</p>
               </motion.div>
             ))}
+          </motion.div>
+
+          {/* Master Plan Features List */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-12 p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10"
+          >
+            <h3 className="text-xl font-bold text-white mb-6 text-center">Master Plan Features</h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              {masterPlanFeatures.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.9 + index * 0.05 }}
+                  className="flex items-start gap-3"
+                >
+                  <div className="w-2 h-2 rounded-full bg-[#c9a962] mt-2 flex-shrink-0" />
+                  <span className="text-white/80">{feature}</span>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
