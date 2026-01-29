@@ -54,6 +54,9 @@ export default function ProjectHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
+          <p className="text-white/60 text-sm md:text-base tracking-[0.15em] uppercase mb-3">
+            A Distinguished 100-Acre Farmland Estate
+          </p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-2">
             The Meadow Breeze
           </h1>

@@ -18,16 +18,16 @@ export const projects: Project[] = [
     id: 'meadow-breeze',
     name: 'The Meadow Breeze',
     tagline: 'Where the hills whisper peace and the breeze carries serenity',
-    description: 'Premium 50-acre farmland community nestled amidst the lush green hills of Rachakonda with 360° panoramic mountain views. Every plot features 600-900 plants creating an oxygen-rich environment.',
+    description: 'A distinguished 100-acre farmland estate nestled amidst the majestic Rachakonda Hills, crafted for those who value serenity, privacy, and purposeful living. This serene sanctuary unfolds as a living canvas—open skies stretching endlessly, and quiet moments shaped by the gentle rhythm of the hills. Every plot features 600-900 curated plants creating an oxygen-rich environment and a private green sanctuary.',
     location: 'Peepal Pahad, Choutuppal, Yadadri Bhuvanagiri District',
     totalArea: '179,103 Sq. Yards',
     totalPlots: 124,
     status: 'ongoing',
     highlights: [
       '600-900 Plants per plot',
-      '360° Mountain Views',
-      '25 km from ORR Exit 11',
-      'Gated Community',
+      '360° Panoramic Mountain Views',
+      '30 km from ORR Exit 11',
+      'Gated Community with 24/7 Security',
     ],
     thumbnail: '/images/projects/meadow-breeze/gallery/hero.jpg',
     logoPath: '/images/projects/meadow-breeze/logo',
@@ -52,9 +52,14 @@ export const companyInfo = {
   },
   social: {
     facebook: 'https://facebook.com/krestadevelopers',
-    instagram: 'https://instagram.com/krestadevelopers',
+    instagram: 'https://instagram.com/krestainfradevelopers',
     youtube: 'https://youtube.com/@krestadevelopers',
     linkedin: 'https://linkedin.com/company/kresta-developers',
+  },
+  projectSocial: {
+    meadowBreeze: {
+      instagram: 'https://instagram.com/themeadowbreezebykresta',
+    },
   },
 };
 

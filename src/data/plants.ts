@@ -19,6 +19,35 @@ export const plantCategories = {
   bamboo: 'Bamboo Plants',
 };
 
+// Ecological purpose for each plant category (as per forest concept)
+export const categoryPurposes = {
+  avenue: {
+    name: 'Avenue & Forest Trees',
+    purpose: 'Long-term shade, air quality, carbon sinks',
+    benefits: ['Natural temperature reduction', 'Air purification', 'Wildlife habitat'],
+  },
+  palm: {
+    name: 'Palms & Tall Greens',
+    purpose: 'Vertical greenery, wind regulation, drought resilience',
+    benefits: ['Tropical aesthetics', 'Wind barriers', 'Low maintenance'],
+  },
+  fruit: {
+    name: 'Fruit Trees',
+    purpose: 'Edible landscaping, self-sufficiency',
+    benefits: ['Organic produce', 'Nutritional value', 'Year-round harvests'],
+  },
+  ornamental: {
+    name: 'Ornamentals & Shrubs',
+    purpose: 'Visual beauty, natural fencing, attract pollinators',
+    benefits: ['Aesthetic appeal', 'Biodiversity support', 'Natural boundaries'],
+  },
+  bamboo: {
+    name: 'Bamboo Zones',
+    purpose: 'Oxygen generation, sound barriers, erosion control',
+    benefits: ['Maximum oxygen output', 'Privacy screening', 'Carbon capture'],
+  },
+};
+
 export const plants: Plant[] = [
   // =====================
   // AVENUE TREES

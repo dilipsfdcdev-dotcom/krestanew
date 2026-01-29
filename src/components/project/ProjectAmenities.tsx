@@ -19,63 +19,70 @@ const amenities = [
   {
     icon: Shield,
     title: '24/7 Security',
-    description: 'Round-the-clock CCTV surveillance',
+    description: 'Round-the-clock CCTV surveillance and security patrol',
     gradient: 'from-red-500 to-orange-500',
   },
   {
     icon: Droplets,
     title: 'Water Supply',
-    description: 'Dedicated bore wells & tanks',
+    description: 'Dedicated bore wells and underground tank',
     gradient: 'from-blue-500 to-cyan-500',
   },
   {
     icon: TreePine,
     title: 'Drip Irrigation',
-    description: 'Modern efficient systems',
+    description: 'Modern efficient irrigation systems for farming and plantation',
     gradient: 'from-green-500 to-emerald-500',
   },
   {
     icon: Zap,
     title: 'Electricity',
-    description: 'Dedicated transformer',
+    description: 'Dedicated transformer for uninterrupted power',
     gradient: 'from-yellow-500 to-amber-500',
   },
   {
     icon: Route,
     title: 'Wide Roads',
-    description: '60ft & 40ft roads',
+    description: '60 ft, 40 ft & 33 ft wide internal roads',
     gradient: 'from-purple-500 to-pink-500',
   },
   {
     icon: Lock,
     title: 'Gated Entry',
-    description: 'Controlled access points',
+    description: 'Controlled single access point with security',
     gradient: 'from-indigo-500 to-blue-500',
   },
   {
     icon: Cable,
     title: 'Underground Cables',
-    description: 'Clean modern aesthetics',
+    description: 'Clean modern aesthetics, no overhead wires',
     gradient: 'from-gray-500 to-slate-500',
   },
   {
     icon: CloudRain,
     title: 'Drainage System',
-    description: 'Effective water management',
+    description: 'Effective water management and harvesting',
     gradient: 'from-teal-500 to-cyan-500',
   },
   {
     icon: Footprints,
     title: 'Walking Trails',
-    description: 'Nature paths throughout',
+    description: 'Nature paths throughout the property',
     gradient: 'from-lime-500 to-green-500',
   },
   {
     icon: Users,
     title: 'Agronomist Support',
-    description: 'Expert farming guidance',
+    description: 'Expert farming guidance and organic methodology',
     gradient: 'from-orange-500 to-red-500',
   },
+];
+
+const additionalFeatures = [
+  'Avenue plantation on all roads',
+  'Rainwater harvesting infrastructure',
+  'Organic farming support',
+  'Natural landscapes preserved',
 ];
 
 export default function ProjectAmenities() {
@@ -140,6 +147,30 @@ export default function ProjectAmenities() {
             </motion.div>
           ))}
         </div>
+
+        {/* Additional Features */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-12 p-8 bg-gradient-to-br from-[#faf8f5] to-white rounded-2xl border border-[#c9a962]/20"
+        >
+          <h3 className="text-xl font-bold text-[#1a1a1a] mb-6 text-center">Additional Features</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {additionalFeatures.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
+                className="flex items-center gap-2 px-5 py-3 bg-white rounded-full shadow-md border border-gray-100"
+              >
+                <div className="w-2 h-2 rounded-full bg-[#c9a962]" />
+                <span className="text-gray-700">{feature}</span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* CTA */}
         <motion.div
