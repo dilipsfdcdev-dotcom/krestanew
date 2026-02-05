@@ -151,25 +151,23 @@ export default function PlantForestScroll() {
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {filteredPlants.map((plant, index) => (
-              <motion.div
+              <div
                 key={plant.id}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
                 className="flex-shrink-0 w-[300px] snap-start"
               >
-                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all h-full border border-gray-100 hover:border-[#c9a962]/30">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow h-full border border-gray-100 hover:border-[#c9a962]/30">
                   {/* Image */}
                   <div className="relative h-56 overflow-hidden">
                     <AdaptiveImage
                       basePath={plant.imagePath}
                       alt={plant.name}
                       fill
-                      className="object-cover hover:scale-110 transition-transform duration-500"
+                      className="object-cover hover:scale-105 transition-transform duration-300"
                       fallbackText={plant.name}
+                      sizes="300px"
                     />
                     <div className="absolute top-3 left-3">
-                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#1a1a1a] text-xs font-medium rounded-full">
+                      <span className="px-3 py-1 bg-white/90 text-[#1a1a1a] text-xs font-medium rounded-full">
                         {plantCategories[plant.category as keyof typeof plantCategories]}
                       </span>
                     </div>
@@ -181,7 +179,7 @@ export default function PlantForestScroll() {
                     <p className="text-gray-600 text-sm leading-relaxed">{plant.description}</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 

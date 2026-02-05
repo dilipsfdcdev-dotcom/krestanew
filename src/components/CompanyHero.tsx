@@ -7,38 +7,16 @@ import Link from 'next/link';
 import AdaptiveLogo from './AdaptiveLogo';
 
 
-// Pre-defined particle positions to avoid hydration mismatch
+// Reduced particles for better performance (8 instead of 30)
 const particles = [
-  { left: 5, top: 12, duration: 5.2, delay: 0.3 },
-  { left: 15, top: 45, duration: 6.1, delay: 1.2 },
-  { left: 25, top: 78, duration: 4.8, delay: 2.5 },
-  { left: 35, top: 23, duration: 5.9, delay: 0.8 },
-  { left: 45, top: 67, duration: 4.5, delay: 1.9 },
-  { left: 55, top: 34, duration: 6.4, delay: 2.1 },
-  { left: 65, top: 89, duration: 5.1, delay: 0.5 },
-  { left: 75, top: 56, duration: 4.9, delay: 1.7 },
-  { left: 85, top: 15, duration: 6.2, delay: 2.8 },
-  { left: 95, top: 42, duration: 5.5, delay: 0.9 },
-  { left: 10, top: 91, duration: 4.7, delay: 1.4 },
-  { left: 20, top: 38, duration: 6.0, delay: 2.3 },
-  { left: 30, top: 62, duration: 5.3, delay: 0.6 },
-  { left: 40, top: 8, duration: 4.6, delay: 1.8 },
-  { left: 50, top: 75, duration: 6.3, delay: 2.6 },
-  { left: 60, top: 28, duration: 5.0, delay: 0.4 },
-  { left: 70, top: 53, duration: 4.4, delay: 1.5 },
-  { left: 80, top: 86, duration: 6.5, delay: 2.9 },
-  { left: 90, top: 19, duration: 5.6, delay: 0.7 },
-  { left: 8, top: 71, duration: 4.3, delay: 2.0 },
-  { left: 18, top: 4, duration: 5.8, delay: 1.1 },
-  { left: 28, top: 95, duration: 6.6, delay: 2.4 },
-  { left: 38, top: 31, duration: 5.4, delay: 0.2 },
-  { left: 48, top: 84, duration: 4.2, delay: 1.6 },
-  { left: 58, top: 47, duration: 6.7, delay: 2.7 },
-  { left: 68, top: 11, duration: 5.7, delay: 1.0 },
-  { left: 78, top: 69, duration: 4.1, delay: 2.2 },
-  { left: 88, top: 36, duration: 6.8, delay: 0.1 },
-  { left: 98, top: 82, duration: 5.2, delay: 1.3 },
-  { left: 3, top: 59, duration: 4.0, delay: 2.5 },
+  { left: 10, top: 20 },
+  { left: 30, top: 60 },
+  { left: 50, top: 30 },
+  { left: 70, top: 70 },
+  { left: 90, top: 25 },
+  { left: 20, top: 80 },
+  { left: 60, top: 50 },
+  { left: 80, top: 15 },
 ];
 
 export default function CompanyHero() {
@@ -64,42 +42,23 @@ export default function CompanyHero() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/97 via-[#1a1a1a]/95 to-[#0a0a0a]/98" />
 
-        {/* Animated Particles */}
-        <div className="absolute inset-0 overflow-hidden">
+        {/* Static Particles - CSS only for better performance */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {particles.map((particle, i) => (
-            <motion.div
+            <div
               key={i}
-              className="absolute w-1 h-1 bg-[#c9a962]/40 rounded-full"
+              className="absolute w-1 h-1 bg-[#c9a962]/30 rounded-full"
               style={{
                 left: `${particle.left}%`,
                 top: `${particle.top}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.2, 0.6, 0.2],
-                scale: [1, 1.5, 1],
-              }}
-              transition={{
-                duration: particle.duration,
-                repeat: Infinity,
-                repeatType: 'reverse',
-                delay: particle.delay,
               }}
             />
           ))}
         </div>
 
-        {/* Gradient Orbs */}
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[120px]"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#c9a962]/5 rounded-full filter blur-[120px]"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
-          transition={{ duration: 8, repeat: Infinity, delay: 4 }}
-        />
+        {/* Static Gradient Orbs - removed infinite animations */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#c9a962]/5 rounded-full filter blur-[120px]" />
       </motion.div>
 
       {/* Content */}
@@ -112,18 +71,10 @@ export default function CompanyHero() {
           className="mb-8"
         >
           <div className="relative inline-block">
-            {/* Animated Rings */}
-            <motion.div
-              className="absolute inset-0 border-2 border-[#c9a962]/30 rounded-full"
-              animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0, 0.5] }}
-              transition={{ duration: 3, repeat: Infinity }}
-              style={{ width: '180px', height: '180px', top: '-30px', left: '-30px' }}
-            />
-            <motion.div
-              className="absolute inset-0 border border-[#c9a962]/20 rounded-full"
-              animate={{ scale: [1.1, 1.4, 1.1], opacity: [0.3, 0, 0.3] }}
-              transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-              style={{ width: '200px', height: '200px', top: '-40px', left: '-40px' }}
+            {/* Static decorative ring */}
+            <div
+              className="absolute border-2 border-[#c9a962]/20 rounded-full"
+              style={{ width: '160px', height: '160px', top: '-20px', left: '-20px' }}
             />
             {/* Company Logo */}
             <div className="w-28 h-28 md:w-32 md:h-32 relative">
