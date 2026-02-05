@@ -29,13 +29,9 @@ export default function VideoGallery() {
   return (
     <>
       <section id="videos" className="py-24 md:py-32 bg-[#0a0a0a] relative overflow-hidden">
-        {/* Background Effects */}
+        {/* Background Effects - Static gradient for better performance */}
         <div className="absolute inset-0">
-          <motion.div
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[120px]"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-            transition={{ duration: 10, repeat: Infinity }}
-          />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[120px]" />
         </div>
 
         <div className="container-luxury relative z-10" ref={ref}>
@@ -95,12 +91,9 @@ export default function VideoGallery() {
               className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {meadowBreezeVideos.map((video, index) => (
-                <motion.div
+              {meadowBreezeVideos.map((video) => (
+                <div
                   key={video.id}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                   className="flex-shrink-0 w-[350px] md:w-[400px] snap-start"
                 >
                   <div
@@ -113,21 +106,19 @@ export default function VideoGallery() {
                           src={video.thumbnail}
                           alt={video.title}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
                           fallbackText="Coming Soon"
+                          sizes="400px"
                         />
                       </div>
                       {/* Overlay */}
                       <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
                       {/* Play Button */}
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        className="absolute inset-0 flex items-center justify-center"
-                      >
-                        <div className="w-16 h-16 bg-[#c9a962] rounded-full flex items-center justify-center shadow-lg group-hover:shadow-[#c9a962]/30 transition-shadow">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-[#c9a962] rounded-full flex items-center justify-center shadow-lg group-hover:shadow-[#c9a962]/30 group-hover:scale-110 transition-all duration-300">
                           <Play className="w-7 h-7 text-white ml-1" fill="white" />
                         </div>
-                      </motion.div>
+                      </div>
                       {/* Duration */}
                       <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/60 rounded text-white text-xs">
                         {video.duration}
@@ -138,7 +129,7 @@ export default function VideoGallery() {
                     </h3>
                     <p className="text-white/60 text-sm">{video.description}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </motion.div>

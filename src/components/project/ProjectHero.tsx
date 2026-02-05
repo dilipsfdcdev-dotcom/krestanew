@@ -33,17 +33,9 @@ export default function ProjectHero() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/90 via-[#1a1a1a]/80 to-[#0a0a0a]/95" />
 
-        {/* Floating Elements */}
-        <motion.div
-          className="absolute top-1/4 left-10 w-64 h-64 bg-[#c9a962]/20 rounded-full filter blur-[100px]"
-          animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-10 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[100px]"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
+        {/* Static Gradient Elements - removed infinite animations for performance */}
+        <div className="absolute top-1/4 left-10 w-64 h-64 bg-[#c9a962]/20 rounded-full filter blur-[100px]" />
+        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[100px]" />
       </motion.div>
 
       {/* Content */}

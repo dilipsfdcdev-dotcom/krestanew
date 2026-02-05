@@ -1,25 +1,51 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image, { ImageProps } from 'next/image';
 import { ImageOff } from 'lucide-react';
 
 interface AdaptiveImageProps extends Omit<ImageProps, 'src' | 'onError'> {
   basePath: string; // Path without extension, e.g., '/images/masterplan/layout'
   fallbackText?: string;
+  eager?: boolean; // Set to true to disable lazy loading (for above-the-fold images)
 }
 
-const EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'svg'];
+// Prioritize WebP for better compression, then fall back to other formats
+const EXTENSIONS = ['webp', 'jpg', 'jpeg', 'png', 'svg'];
 
 export default function AdaptiveImage({
   basePath,
   fallbackText = 'Image Coming Soon',
   alt,
   className,
+  eager = false,
   ...props
 }: AdaptiveImageProps) {
   const [currentExtIndex, setCurrentExtIndex] = useState(0);
   const [allFailed, setAllFailed] = useState(false);
+  const [isVisible, setIsVisible] = useState(eager);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    if (eager) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' } // Start loading 200px before visible
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [eager]);
 
   const currentSrc = `${basePath}.${EXTENSIONS[currentExtIndex]}`;
 
@@ -41,6 +67,16 @@ export default function AdaptiveImage({
     );
   }
 
+  // Show placeholder until visible
+  if (!isVisible) {
+    return (
+      <div
+        ref={containerRef}
+        className={`absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse ${className || ''}`}
+      />
+    );
+  }
+
   return (
     <Image
       {...props}
@@ -48,6 +84,8 @@ export default function AdaptiveImage({
       alt={alt}
       className={className}
       onError={handleError}
+      loading={eager ? 'eager' : 'lazy'}
+      sizes={props.sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
     />
   );
 }

@@ -8,7 +8,8 @@ interface AdaptiveLogoProps extends Omit<ImageProps, 'src' | 'onError'> {
   fallbackText?: string;
 }
 
-const EXTENSIONS = ['png', 'jpg', 'jpeg', 'webp', 'svg'];
+// Prioritize WebP for better compression (logo.webp is 97% smaller than PNG)
+const EXTENSIONS = ['webp', 'png', 'jpg', 'jpeg', 'svg'];
 
 export default function AdaptiveLogo({
   basePath,
