@@ -1,9 +1,9 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
-import AdaptiveImage from '../AdaptiveImage';
-import { Maximize2, X, MapPin, Route, TreePine, Home, Compass } from 'lucide-react';
+import { useState } from 'react';
+import Image from 'next/image';
+import { Maximize2, X, Home, Route, TreePine, MapPin, Compass } from 'lucide-react';
+import { useReveal } from '@/hooks/useReveal';
 
 const planFeatures = [
   { icon: Home, label: '124 Premium Plots', color: 'bg-emerald-500' },
@@ -31,184 +31,77 @@ const stats = [
 ];
 
 export default function MasterPlan() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const { ref, visible } = useReveal();
+  const [fullscreen, setFullscreen] = useState(false);
 
   return (
     <>
       <section id="masterplan" className="py-24 md:py-32 bg-[#0a0a0a] relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0">
-          <motion.div
-            className="absolute top-20 left-20 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[120px]"
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 10, repeat: Infinity }}
-          />
-          <motion.div
-            className="absolute bottom-20 right-20 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[120px]"
-            animate={{ scale: [1.2, 1, 1.2] }}
-            transition={{ duration: 10, repeat: Infinity }}
-          />
-        </div>
-
         <div className="container-luxury relative z-10" ref={ref}>
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <span className="text-[#c9a962] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-              Layout Design
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              Master Plan
-            </h2>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6"
-            />
-            <p className="text-white/60 max-w-2xl mx-auto">
-              Thoughtfully designed layout by S&S Architects and Infra, ensuring optimal space
-              utilization with natural forest surroundings
-            </p>
-          </motion.div>
+          <div className={`reveal ${visible ? 'visible' : ''} text-center mb-12`}>
+            <span className="section-label mb-4 block">Layout Design</span>
+            <h2 className="section-title font-bold text-white mb-4 font-[family-name:var(--font-heading)]">Master Plan</h2>
+            <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6" />
+            <p className="text-white/50 max-w-2xl mx-auto">Thoughtfully designed layout by S&S Architects and Infra, ensuring optimal space utilization with natural forest surroundings</p>
+          </div>
 
-          {/* Stats Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-8 mb-12"
-          >
-            {stats.map((stat, index) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-2xl md:text-3xl font-bold text-[#c9a962]">{stat.value}</p>
-                <p className="text-white/60 text-sm">{stat.label}</p>
+          <div className={`reveal ${visible ? 'visible' : ''} stagger-1 flex flex-wrap justify-center gap-8 mb-12`}>
+            {stats.map((s) => (
+              <div key={s.label} className="text-center">
+                <p className="text-2xl md:text-3xl font-bold text-[#c9a962]">{s.value}</p>
+                <p className="text-white/50 text-sm">{s.label}</p>
               </div>
             ))}
-          </motion.div>
+          </div>
 
-          {/* Master Plan Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative mb-12"
-          >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
+          <div className={`reveal-scale ${visible ? 'visible' : ''} relative mb-12`}>
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
               <div className="relative aspect-[16/10] w-full bg-[#1a1a1a]/50">
-                <AdaptiveImage
-                  basePath="/images/projects/meadow-breeze/masterplan/layout"
-                  alt="The Meadow Breeze Master Plan"
-                  fill
-                  className="object-contain"
-                  fallbackText="Master Plan Coming Soon"
-                />
+                <Image src="/images/projects/meadow-breeze/masterplan/layout.webp" alt="The Meadow Breeze Master Plan" fill className="object-contain" sizes="100vw" loading="lazy" />
               </div>
-
-              {/* Fullscreen Button */}
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setIsFullscreen(true)}
-                className="absolute top-4 right-4 p-3 bg-black/50 backdrop-blur-sm rounded-full text-white hover:bg-[#c9a962] transition-colors opacity-0 group-hover:opacity-100"
-              >
+              <button onClick={() => setFullscreen(true)} className="absolute top-4 right-4 p-3 bg-black/50 rounded-full text-white hover:bg-[#c9a962] transition-colors opacity-0 group-hover:opacity-100" aria-label="View fullscreen">
                 <Maximize2 className="w-5 h-5" />
-              </motion.button>
-
-              {/* Overlay Info */}
+              </button>
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                <p className="text-white/80 text-sm">
-                  Designed by <span className="text-[#c9a962] font-medium">S&S Architects and Infra</span>
-                </p>
+                <p className="text-white/70 text-sm">Designed by <span className="text-[#c9a962] font-medium">S&S Architects and Infra</span></p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Features Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-5 gap-4"
-          >
-            {planFeatures.map((feature, index) => (
-              <motion.div
-                key={feature.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-[#c9a962]/30 transition-all text-center"
-              >
-                <div className={`w-10 h-10 ${feature.color} rounded-lg flex items-center justify-center mx-auto mb-3`}>
-                  <feature.icon className="w-5 h-5 text-white" />
+          <div className={`reveal ${visible ? 'visible' : ''} stagger-2 grid grid-cols-2 md:grid-cols-5 gap-4`}>
+            {planFeatures.map((f) => (
+              <div key={f.label} className="p-4 bg-white/5 rounded-xl border border-white/10 text-center card-hover">
+                <div className={`w-10 h-10 ${f.color} rounded-lg flex items-center justify-center mx-auto mb-3`}>
+                  <f.icon className="w-5 h-5 text-white" />
                 </div>
-                <p className="text-white/80 text-sm">{feature.label}</p>
-              </motion.div>
+                <p className="text-white/80 text-sm">{f.label}</p>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
-          {/* Master Plan Features List */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="mt-12 p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10"
-          >
-            <h3 className="text-xl font-bold text-white mb-6 text-center">Master Plan Features</h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              {masterPlanFeatures.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.9 + index * 0.05 }}
-                  className="flex items-start gap-3"
-                >
+          <div className={`reveal ${visible ? 'visible' : ''} stagger-3 mt-12 p-8 bg-white/5 rounded-2xl border border-white/10`}>
+            <h3 className="text-xl font-bold text-white mb-6 text-center font-[family-name:var(--font-heading)]">Master Plan Features</h3>
+            <div className="grid md:grid-cols-2 gap-3">
+              {masterPlanFeatures.map((f, i) => (
+                <div key={i} className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-[#c9a962] mt-2 flex-shrink-0" />
-                  <span className="text-white/80">{feature}</span>
-                </motion.div>
+                  <span className="text-white/80">{f}</span>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Fullscreen Modal */}
-      {isFullscreen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
-          onClick={() => setIsFullscreen(false)}
-        >
-          <motion.div
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            className="relative max-w-7xl w-full h-full flex items-center justify-center"
-          >
-            <AdaptiveImage
-              basePath="/images/projects/meadow-breeze/masterplan/layout"
-              alt="The Meadow Breeze Master Plan"
-              fill
-              className="object-contain"
-              fallbackText="Master Plan"
-            />
-            <button
-              onClick={() => setIsFullscreen(false)}
-              className="absolute top-4 right-4 p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-[#c9a962] transition-colors"
-            >
+      {fullscreen && (
+        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4" onClick={() => setFullscreen(false)}>
+          <div className="relative max-w-7xl w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+            <Image src="/images/projects/meadow-breeze/masterplan/layout.webp" alt="The Meadow Breeze Master Plan" fill className="object-contain" sizes="100vw" />
+            <button onClick={() => setFullscreen(false)} className="absolute top-4 right-4 p-3 bg-white/10 rounded-full text-white hover:bg-[#c9a962] transition-colors" aria-label="Close">
               <X className="w-6 h-6" />
             </button>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       )}
     </>
   );
