@@ -31,10 +31,10 @@ export default function ProjectOverview() {
   const { ref, visible } = useReveal();
 
   return (
-    <section id="overview" className="py-28 md:py-40 bg-[#0c0c0c] relative">
+    <section id="overview" className="py-28 md:py-40 bg-[#080808] relative section-glow">
       <div className="container-luxury" ref={ref}>
         <div className={`reveal ${visible ? 'visible' : ''} mb-16`}>
-          <span className="label-gold mb-6 block">A Distinguished 100-Acre Farmland Estate</span>
+          <span className="label-gold mb-6 block font-[family-name:var(--font-body)]">A Distinguished 100-Acre Farmland Estate</span>
           <h2 className="heading-section text-white mb-6 font-[family-name:var(--font-heading)]">
             Where the Hills{' '}
             <span className="text-gold-gradient italic">Stand Guard</span>
@@ -52,22 +52,22 @@ export default function ProjectOverview() {
             { value: '600-900', label: 'Plants/Plot', icon: TreePine },
             { value: '100%', label: 'Organic Setup', icon: Leaf },
           ].map((stat, i) => (
-            <div key={stat.label} className={`reveal ${visible ? 'visible' : ''} stagger-${i + 1} p-6 glass rounded-lg card-lift`}>
-              <stat.icon className="w-6 h-6 text-[#d4af37] mb-4" />
-              <h3 className="text-2xl md:text-3xl font-bold text-white font-[family-name:var(--font-heading)]">{stat.value}</h3>
+            <div key={stat.label} className={`reveal ${visible ? 'visible' : ''} stagger-${i + 1} p-6 glass rounded-2xl card-lift glow-hover`}>
+              <stat.icon className="w-6 h-6 text-[#c9a84c] mb-4" />
+              <h3 className="text-2xl md:text-3xl font-semibold text-white font-[family-name:var(--font-heading)]">{stat.value}</h3>
               <p className="text-white/30 text-sm mt-1">{stat.label}</p>
             </div>
           ))}
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 mb-20">
-          <div className={`reveal-left ${visible ? 'visible' : ''} p-8 md:p-10 glass rounded-lg`}>
+          <div className={`reveal-left ${visible ? 'visible' : ''} p-8 md:p-10 glass rounded-2xl glow-hover`}>
             <h3 className="heading-sub text-white mb-8 font-[family-name:var(--font-heading)]">Strategic Location</h3>
             <div className="space-y-4">
               {locationHighlights.map((item) => (
                 <div key={item.text} className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded bg-[#d4af37]/10 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-5 h-5 text-[#d4af37]" />
+                  <div className="w-10 h-10 rounded-xl icon-premium flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-5 h-5 text-[#c9a84c]" />
                   </div>
                   <span className="text-white/70">{item.text}</span>
                 </div>
@@ -75,12 +75,12 @@ export default function ProjectOverview() {
             </div>
           </div>
 
-          <div className={`reveal-right ${visible ? 'visible' : ''} p-8 md:p-10 bg-[#161616] rounded-lg border border-white/5`}>
+          <div className={`reveal-right ${visible ? 'visible' : ''} p-8 md:p-10 bg-[#111111] rounded-2xl border border-white/5 glow-hover`}>
             <h3 className="heading-sub text-white mb-8 font-[family-name:var(--font-heading)]">Investment Benefits</h3>
             <div className="space-y-3">
               {investmentPoints.map((point, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] mt-2 flex-shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#c9a84c] mt-2 flex-shrink-0" />
                   <span className="text-white/50">{point}</span>
                 </div>
               ))}
@@ -92,9 +92,9 @@ export default function ProjectOverview() {
           <h3 className="heading-sub text-white text-center mb-10 font-[family-name:var(--font-heading)]">Available Plot Sizes</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {plotSizes.map((plot, i) => (
-              <div key={plot.size} className={`reveal ${visible ? 'visible' : ''} stagger-${i + 3} p-5 glass rounded-lg card-lift text-center`}>
-                <h4 className="text-lg font-bold text-white mb-1">{plot.size}</h4>
-                <p className="text-[#d4af37] font-medium text-sm mb-2">{plot.area}</p>
+              <div key={plot.size} className={`reveal ${visible ? 'visible' : ''} stagger-${i + 3} p-5 glass rounded-2xl card-lift glow-hover text-center`}>
+                <h4 className="text-lg font-semibold text-white mb-1">{plot.size}</h4>
+                <p className="text-[#c9a84c] font-medium text-sm mb-2">{plot.area}</p>
                 <p className="text-white/30 text-xs">{plot.description}</p>
               </div>
             ))}

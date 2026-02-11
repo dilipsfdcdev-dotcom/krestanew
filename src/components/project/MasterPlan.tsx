@@ -36,10 +36,10 @@ export default function MasterPlan() {
 
   return (
     <>
-      <section id="masterplan" className="py-28 md:py-40 bg-[#161616] relative overflow-hidden">
+      <section id="masterplan" className="py-28 md:py-40 bg-[#111111] relative overflow-hidden section-glow">
         <div className="container-luxury relative z-10" ref={ref}>
           <div className={`reveal ${visible ? 'visible' : ''} mb-12`}>
-            <span className="label-gold mb-6 block">Layout Design</span>
+            <span className="label-gold mb-6 block font-[family-name:var(--font-body)]">Layout Design</span>
             <h2 className="heading-section text-white mb-6 font-[family-name:var(--font-heading)]">
               Master{' '}
               <span className="text-gold-gradient italic">Plan</span>
@@ -51,43 +51,43 @@ export default function MasterPlan() {
           <div className={`reveal ${visible ? 'visible' : ''} stagger-1 flex flex-wrap gap-8 mb-12`}>
             {stats.map((s) => (
               <div key={s.label}>
-                <p className="text-2xl md:text-3xl font-bold text-[#d4af37] font-[family-name:var(--font-heading)]">{s.value}</p>
-                <p className="text-white/30 text-xs tracking-widest uppercase">{s.label}</p>
+                <p className="text-2xl md:text-3xl font-semibold text-[#c9a84c] font-[family-name:var(--font-heading)]">{s.value}</p>
+                <p className="text-white/30 text-xs tracking-widest uppercase font-[family-name:var(--font-body)]">{s.label}</p>
               </div>
             ))}
           </div>
 
           <div className={`reveal-scale ${visible ? 'visible' : ''} relative mb-12`}>
-            <div className="relative rounded-lg overflow-hidden border border-white/5 group">
-              <div className="relative aspect-[16/10] w-full bg-[#0c0c0c]">
+            <div className="relative rounded-2xl overflow-hidden border border-white/5 group">
+              <div className="relative aspect-[16/10] w-full bg-[#080808]">
                 <Image src="/images/projects/meadow-breeze/masterplan/layout.webp" alt="The Meadow Breeze Master Plan" fill className="object-contain" sizes="100vw" loading="lazy" />
               </div>
-              <button onClick={() => setFullscreen(true)} className="absolute top-4 right-4 p-3 glass rounded text-white hover:bg-[#d4af37] hover:text-[#0c0c0c] transition-colors opacity-0 group-hover:opacity-100" aria-label="View fullscreen">
+              <button onClick={() => setFullscreen(true)} className="absolute top-4 right-4 p-3 glass rounded-xl text-white hover:bg-[#c9a84c] hover:text-[#080808] transition-colors opacity-0 group-hover:opacity-100" aria-label="View fullscreen">
                 <Maximize2 className="w-5 h-5" />
               </button>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0c0c0c]/80 to-transparent p-6">
-                <p className="text-white/50 text-sm">Designed by <span className="text-[#d4af37] font-medium">S&S Architects and Infra</span></p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#080808]/80 to-transparent p-6">
+                <p className="text-white/50 text-sm">Designed by <span className="text-[#c9a84c] font-medium">S&S Architects and Infra</span></p>
               </div>
             </div>
           </div>
 
           <div className={`reveal ${visible ? 'visible' : ''} stagger-2 grid grid-cols-2 md:grid-cols-5 gap-4`}>
             {planFeatures.map((f) => (
-              <div key={f.label} className="p-4 glass rounded-lg text-center card-lift">
-                <div className="w-9 h-9 rounded bg-[#d4af37]/10 flex items-center justify-center mx-auto mb-3">
-                  <f.icon className="w-4 h-4 text-[#d4af37]" />
+              <div key={f.label} className="p-4 glass rounded-2xl text-center card-lift glow-hover">
+                <div className="w-9 h-9 rounded-xl icon-premium flex items-center justify-center mx-auto mb-3">
+                  <f.icon className="w-4 h-4 text-[#c9a84c]" />
                 </div>
                 <p className="text-white/60 text-xs">{f.label}</p>
               </div>
             ))}
           </div>
 
-          <div className={`reveal ${visible ? 'visible' : ''} stagger-3 mt-12 p-8 glass rounded-lg`}>
-            <h3 className="text-lg font-bold text-white mb-6 text-center font-[family-name:var(--font-heading)]">Master Plan Features</h3>
+          <div className={`reveal ${visible ? 'visible' : ''} stagger-3 mt-12 p-8 glass rounded-2xl glow-hover`}>
+            <h3 className="text-lg font-semibold text-white mb-6 text-center font-[family-name:var(--font-heading)]">Master Plan Features</h3>
             <div className="grid md:grid-cols-2 gap-3">
               {masterPlanFeatures.map((f, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] mt-2 flex-shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#c9a84c] mt-2 flex-shrink-0" />
                   <span className="text-white/50 text-sm">{f}</span>
                 </div>
               ))}
@@ -97,10 +97,10 @@ export default function MasterPlan() {
       </section>
 
       {fullscreen && (
-        <div className="fixed inset-0 z-50 bg-[#0c0c0c]/98 flex items-center justify-center p-4" onClick={() => setFullscreen(false)}>
+        <div className="fixed inset-0 z-50 bg-[#080808]/98 flex items-center justify-center p-4" onClick={() => setFullscreen(false)}>
           <div className="relative max-w-7xl w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <Image src="/images/projects/meadow-breeze/masterplan/layout.webp" alt="The Meadow Breeze Master Plan" fill className="object-contain" sizes="100vw" />
-            <button onClick={() => setFullscreen(false)} className="absolute top-4 right-4 p-3 glass rounded text-white hover:bg-[#d4af37] hover:text-[#0c0c0c] transition-colors" aria-label="Close">
+            <button onClick={() => setFullscreen(false)} className="absolute top-4 right-4 p-3 glass rounded-xl text-white hover:bg-[#c9a84c] hover:text-[#080808] transition-colors" aria-label="Close">
               <X className="w-6 h-6" />
             </button>
           </div>

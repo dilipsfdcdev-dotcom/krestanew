@@ -33,10 +33,10 @@ export default function LifestylePathways() {
   const data = lifestyles.find(l => l.id === active) || lifestyles[0];
 
   return (
-    <section id="lifestyle" className="py-28 md:py-40 bg-[#0c0c0c] relative">
+    <section id="lifestyle" className="py-28 md:py-40 bg-[#080808] relative section-glow">
       <div className="container-luxury" ref={ref}>
         <div className={`reveal ${visible ? 'visible' : ''} mb-16`}>
-          <span className="label-gold mb-6 block">Four Distinct Pathways</span>
+          <span className="label-gold mb-6 block font-[family-name:var(--font-body)]">Four Distinct Pathways</span>
           <h2 className="heading-section text-white mb-6 font-[family-name:var(--font-heading)]">
             A Life of{' '}
             <span className="text-gold-gradient italic">Possibilities</span>
@@ -47,7 +47,7 @@ export default function LifestylePathways() {
 
         <div className={`reveal ${visible ? 'visible' : ''} stagger-1 flex flex-wrap justify-center gap-3 mb-12`}>
           {lifestyles.map((l) => (
-            <button key={l.id} onClick={() => setActive(l.id)} className={`flex items-center gap-2 px-5 py-3 rounded font-medium text-sm transition-all ${active === l.id ? 'bg-[#d4af37] text-[#0c0c0c]' : 'glass text-white/50 hover:text-white'}`}>
+            <button key={l.id} onClick={() => setActive(l.id)} className={`flex items-center gap-2 px-5 py-3 rounded-xl font-medium text-sm transition-all ${active === l.id ? 'bg-[#c9a84c] text-[#080808] btn-premium shimmer' : 'glass text-white/50 hover:text-white'}`}>
               <l.icon className="w-4 h-4" />
               <span className="hidden sm:inline">{l.title}</span>
               <span className="sm:hidden">{l.title.split(' ')[0]}</span>
@@ -55,24 +55,24 @@ export default function LifestylePathways() {
           ))}
         </div>
 
-        <div className="glass rounded-lg p-8 md:p-12 transition-all">
+        <div className="glass rounded-2xl p-8 md:p-12 transition-all glow-hover">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#d4af37]/10 border border-[#d4af37]/20 rounded text-[#d4af37] mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#c9a84c]/10 border border-[#c9a84c]/20 rounded-xl text-[#c9a84c] mb-6">
                 <data.icon className="w-4 h-4" />
                 <span className="font-medium text-xs tracking-wide">{data.subtitle}</span>
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 font-[family-name:var(--font-heading)]">{data.title}</h3>
+              <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4 font-[family-name:var(--font-heading)]">{data.title}</h3>
               <p className="text-white/40 text-sm mb-8 leading-relaxed">{data.description}</p>
-              <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3 bg-[#d4af37] text-[#0c0c0c] rounded font-semibold text-sm hover:bg-[#f0d77b] transition-colors">
+              <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3 bg-[#c9a84c] text-[#080808] rounded-xl font-semibold text-sm hover:bg-[#e8d48b] transition-colors btn-premium shimmer">
                 Explore This Lifestyle <MapPin className="w-4 h-4" />
               </a>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {data.features.map((f, i) => (
-                <div key={i} className="p-4 bg-white/[0.03] rounded-lg border border-white/5">
-                  <div className="w-9 h-9 rounded bg-[#d4af37]/10 flex items-center justify-center mb-3">
-                    <f.icon className="w-4 h-4 text-[#d4af37]" />
+                <div key={i} className="p-4 bg-white/[0.03] rounded-2xl border border-white/5 glow-hover">
+                  <div className="w-9 h-9 rounded-xl icon-premium flex items-center justify-center mb-3">
+                    <f.icon className="w-4 h-4 text-[#c9a84c]" />
                   </div>
                   <p className="text-white/70 font-medium text-xs">{f.text}</p>
                 </div>
