@@ -15,10 +15,10 @@ export default function VisionPhilosophy() {
   const { ref, visible } = useReveal();
 
   return (
-    <section id="vision" className="py-28 md:py-40 bg-[#161616] relative">
+    <section id="vision" className="py-28 md:py-40 bg-[#111111] relative section-glow">
       <div className="container-luxury" ref={ref}>
         <div className={`reveal ${visible ? 'visible' : ''} mb-16`}>
-          <span className="label-gold mb-6 block">Our Philosophy</span>
+          <span className="label-gold mb-6 block font-[family-name:var(--font-body)]">Our Philosophy</span>
           <h2 className="heading-section text-white mb-6 font-[family-name:var(--font-heading)]">
             Vision &{' '}
             <span className="text-gold-gradient italic">Philosophy</span>
@@ -32,11 +32,11 @@ export default function VisionPhilosophy() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {visionPillars.map((pillar, i) => (
             <div key={pillar.title} className={`reveal ${visible ? 'visible' : ''} stagger-${i + 1} ${i === 4 ? 'md:col-span-2 lg:col-span-1' : ''}`}>
-              <div className="h-full p-7 glass rounded-lg card-lift group">
-                <div className="w-12 h-12 rounded bg-[#d4af37]/10 flex items-center justify-center mb-5 group-hover:bg-[#d4af37]/20 transition-colors">
-                  <pillar.icon className="w-6 h-6 text-[#d4af37]" />
+              <div className="h-full p-7 glass rounded-2xl card-lift group glow-hover">
+                <div className="w-12 h-12 rounded-xl icon-premium flex items-center justify-center mb-5 group-hover:bg-[#c9a84c]/20 transition-colors">
+                  <pillar.icon className="w-6 h-6 text-[#c9a84c]" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-3">{pillar.title}</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">{pillar.title}</h3>
                 <p className="text-white/40 text-sm leading-relaxed">{pillar.description}</p>
               </div>
             </div>
@@ -44,7 +44,7 @@ export default function VisionPhilosophy() {
         </div>
 
         <div className={`reveal ${visible ? 'visible' : ''} stagger-6 mt-16 text-center`}>
-          <div className="inline-block p-8 md:p-10 glass rounded-lg max-w-3xl">
+          <div className="inline-block p-8 md:p-10 glass rounded-2xl max-w-3xl glow-hover">
             <p className="text-white/60 text-lg md:text-xl italic font-[family-name:var(--font-heading)] leading-relaxed">
               &ldquo;The Meadow Breeze is more than farmland. It is an invitation — to build your private retreat, to nurture the land, to reconnect with what matters, and to invest in a legacy that grows with time and intention.&rdquo;
             </p>
