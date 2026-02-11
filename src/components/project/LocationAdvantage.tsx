@@ -24,54 +24,57 @@ export default function LocationAdvantage() {
   const { ref, visible } = useReveal();
 
   return (
-    <section id="location" className="py-24 md:py-32 bg-white relative">
+    <section id="location" className="py-28 md:py-40 bg-[#0c0c0c] relative">
       <div className="container-luxury" ref={ref}>
-        <div className={`reveal ${visible ? 'visible' : ''} text-center mb-16`}>
-          <span className="section-label mb-4 block">Strategic Position</span>
-          <h2 className="section-title font-bold text-[#1a1a1a] mb-4 font-[family-name:var(--font-heading)]">Location Advantage</h2>
-          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6" />
-          <p className="text-gray-600 max-w-2xl mx-auto">The Meadow Breeze enjoys a coveted location with excellent connectivity and natural beauty</p>
+        <div className={`reveal ${visible ? 'visible' : ''} mb-16`}>
+          <span className="label-gold mb-6 block">Strategic Position</span>
+          <h2 className="heading-section text-white mb-6 font-[family-name:var(--font-heading)]">
+            Location{' '}
+            <span className="text-gold-gradient italic">Advantage</span>
+          </h2>
+          <div className="divider-gold mb-8" />
+          <p className="text-white/40 max-w-2xl">The Meadow Breeze enjoys a coveted location with excellent connectivity and natural beauty</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div className={`reveal-left ${visible ? 'visible' : ''}`}>
-            <h3 className="text-2xl font-bold text-[#1a1a1a] mb-6 flex items-center gap-3 font-[family-name:var(--font-heading)]">
-              <MapPin className="w-6 h-6 text-[#c9a962]" />Distance & Connectivity
+            <h3 className="heading-sub text-white mb-8 flex items-center gap-3 font-[family-name:var(--font-heading)]">
+              <MapPin className="w-5 h-5 text-[#d4af37]" />Distance & Connectivity
             </h3>
-            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#333] rounded-2xl p-6 md:p-8 mb-6">
+            <div className="glass rounded-lg p-6 md:p-8 mb-6">
               <div className="space-y-3">
                 {distances.map((item) => (
-                  <div key={item.landmark} className="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                  <div key={item.landmark} className="flex items-center justify-between p-4 bg-white/[0.02] rounded-lg hover:bg-white/[0.05] transition-colors">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#c9a962]/20 flex items-center justify-center">
-                        <item.icon className="w-5 h-5 text-[#c9a962]" />
+                      <div className="w-9 h-9 rounded bg-[#d4af37]/10 flex items-center justify-center">
+                        <item.icon className="w-4 h-4 text-[#d4af37]" />
                       </div>
-                      <span className="text-white/90">{item.landmark}</span>
+                      <span className="text-white/70 text-sm">{item.landmark}</span>
                     </div>
-                    <span className="text-[#c9a962] font-bold text-lg">{item.distance}</span>
+                    <span className="text-[#d4af37] font-bold">{item.distance}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <a href="https://maps.app.goo.gl/CBX5zyzryJZz9jqe6" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 p-4 bg-[#c9a962] text-white rounded-xl font-medium hover:bg-[#8b7355] transition-colors">
-              <MapPin className="w-5 h-5" />View Project Location on Maps
+            <a href="https://maps.app.goo.gl/CBX5zyzryJZz9jqe6" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 p-4 bg-[#d4af37] text-[#0c0c0c] rounded font-semibold text-sm hover:bg-[#f0d77b] transition-colors">
+              <MapPin className="w-4 h-4" />View on Google Maps
             </a>
           </div>
 
           <div className={`reveal-right ${visible ? 'visible' : ''}`}>
-            <h3 className="text-2xl font-bold text-[#1a1a1a] mb-6 flex items-center gap-3 font-[family-name:var(--font-heading)]">
-              <Sparkles className="w-6 h-6 text-[#c9a962]" />Location Highlights
+            <h3 className="heading-sub text-white mb-8 flex items-center gap-3 font-[family-name:var(--font-heading)]">
+              <Sparkles className="w-5 h-5 text-[#d4af37]" />Location Highlights
             </h3>
             <div className="space-y-4">
               {locationHighlights.map((h, i) => (
-                <div key={h.title} className={`reveal ${visible ? 'visible' : ''} stagger-${i + 1} p-5 bg-gradient-to-br from-[#faf8f5] to-white rounded-2xl border border-gray-100 card-hover`}>
+                <div key={h.title} className={`reveal ${visible ? 'visible' : ''} stagger-${i + 1} p-5 glass rounded-lg card-lift group`}>
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#c9a962]/10 flex items-center justify-center flex-shrink-0">
-                      <h.icon className="w-6 h-6 text-[#c9a962]" />
+                    <div className="w-10 h-10 rounded bg-[#d4af37]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#d4af37]/20 transition-colors">
+                      <h.icon className="w-5 h-5 text-[#d4af37]" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-[#1a1a1a] mb-1">{h.title}</h4>
-                      <p className="text-gray-600 text-sm">{h.description}</p>
+                      <h4 className="font-semibold text-white mb-1 text-sm">{h.title}</h4>
+                      <p className="text-white/40 text-sm">{h.description}</p>
                     </div>
                   </div>
                 </div>

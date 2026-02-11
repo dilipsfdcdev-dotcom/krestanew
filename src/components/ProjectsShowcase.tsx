@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { MapPin, TreePine, ArrowRight, Sparkles } from 'lucide-react';
+import { MapPin, TreePine, ArrowRight } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 
 const projects = [
@@ -26,108 +26,101 @@ export default function ProjectsShowcase() {
   const { ref, visible } = useReveal();
 
   return (
-    <section id="projects" className="py-24 md:py-32 bg-[#faf8f5] relative">
+    <section id="projects" className="py-28 md:py-40 bg-[#161616] relative">
       <div className="container-luxury" ref={ref}>
-        {/* Header */}
-        <div className={`reveal ${visible ? 'visible' : ''} text-center mb-16`}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#1a4d2e]/10 rounded-full mb-6">
-            <Sparkles className="w-4 h-4 text-[#c9a962]" />
-            <span className="text-sm font-medium text-[#1a4d2e]">Featured Projects</span>
+        <div className={`reveal ${visible ? 'visible' : ''} mb-16 md:mb-20`}>
+          <span className="label-gold mb-6 block">Featured Projects</span>
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <h2 className="heading-section text-white font-[family-name:var(--font-heading)]">
+              Our Premium{' '}
+              <span className="text-gold-gradient italic">Developments</span>
+            </h2>
+            <p className="text-white/40 max-w-md lg:text-right">
+              Discover our thoughtfully designed farmland communities that blend luxury living with natural serenity
+            </p>
           </div>
-          <h2 className="section-title font-bold text-[#1a1a1a] mb-4 font-[family-name:var(--font-heading)]">
-            Our Premium<span className="text-[#1a4d2e]"> Developments</span>
-          </h2>
-          <div className="flex justify-center mb-6">
-            <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent" />
-          </div>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Discover our thoughtfully designed farmland communities that blend luxury living with natural serenity
-          </p>
+          <div className="divider-fade w-full mt-8" />
         </div>
 
-        {/* Projects */}
-        <div className="space-y-16">
-          {projects.map((project) => (
-            <div key={project.id} className={`reveal ${visible ? 'visible' : ''} stagger-2`}>
-              <Link href={project.slug} className="group block">
-                <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                  <div className="grid lg:grid-cols-2">
-                    {/* Image */}
-                    <div className="relative h-80 lg:h-[500px] overflow-hidden img-zoom">
-                      <Image src={project.image} alt={project.name} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      <div className="absolute top-6 left-6">
-                        <div className="px-4 py-2 bg-[#c9a962] text-white text-sm font-medium rounded-full shadow-lg">
-                          {project.status}
-                        </div>
+        {projects.map((project) => (
+          <div key={project.id} className={`reveal-scale ${visible ? 'visible' : ''} stagger-2`}>
+            <Link href={project.slug} className="group block">
+              <div className="relative rounded-lg overflow-hidden">
+                <div className="relative h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-[1.2s] ease-out"
+                    sizes="100vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#0c0c0c]/60 to-transparent" />
+                </div>
+
+                <div className="absolute top-6 md:top-8 right-6 md:right-8">
+                  <span className="px-4 py-2 bg-[#d4af37] text-[#0c0c0c] text-xs font-bold tracking-wider uppercase">
+                    {project.status}
+                  </span>
+                </div>
+
+                <div className="absolute top-6 md:top-8 left-6 md:left-8 w-14 h-14 md:w-16 md:h-16 relative rounded-lg overflow-hidden border border-white/10">
+                  <Image src={project.logoPath} alt={`${project.name} Logo`} fill className="object-contain bg-white/90" sizes="64px" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 lg:p-16">
+                  <div className="max-w-2xl">
+                    <div className="flex items-center gap-2 text-[#d4af37] mb-4">
+                      <MapPin className="w-4 h-4" />
+                      <span className="text-sm tracking-wide">{project.location}</span>
+                    </div>
+
+                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-[family-name:var(--font-heading)] tracking-tight">
+                      {project.name}
+                    </h3>
+
+                    <p className="text-white/50 text-lg italic font-[family-name:var(--font-heading)] mb-8">
+                      &ldquo;{project.tagline}&rdquo;
+                    </p>
+
+                    <div className="flex flex-wrap gap-8 mb-8">
+                      <div>
+                        <p className="text-2xl md:text-3xl font-bold text-white">{project.totalPlots}</p>
+                        <p className="text-white/30 text-xs tracking-widest uppercase">Plots</p>
                       </div>
-                      <div className="absolute bottom-6 left-6 right-6">
-                        <div className="flex items-end justify-between">
-                          <div>
-                            <h3 className="text-3xl md:text-4xl font-bold text-white mb-2 font-[family-name:var(--font-heading)]">{project.name}</h3>
-                            <div className="flex items-center gap-2 text-white/80">
-                              <MapPin className="w-4 h-4" />
-                              <span>{project.location}</span>
-                            </div>
-                          </div>
-                          <div className="hidden md:block w-16 h-16 relative">
-                            <Image src={project.logoPath} alt={`${project.name} Logo`} fill className="object-contain" sizes="64px" />
-                          </div>
-                        </div>
+                      <div className="w-px bg-white/10" />
+                      <div>
+                        <p className="text-2xl md:text-3xl font-bold text-white">{project.plantsPerPlot}</p>
+                        <p className="text-white/30 text-xs tracking-widest uppercase">Plants/Plot</p>
+                      </div>
+                      <div className="w-px bg-white/10" />
+                      <div>
+                        <p className="text-lg md:text-xl font-bold text-white">{project.totalArea}</p>
+                        <p className="text-white/30 text-xs tracking-widest uppercase">Total Area</p>
                       </div>
                     </div>
 
-                    {/* Content */}
-                    <div className="p-8 lg:p-12 flex flex-col justify-center">
-                      <p className="text-xl text-gray-600 italic mb-8 font-[family-name:var(--font-heading)]">
-                        &ldquo;{project.tagline}&rdquo;
-                      </p>
-
-                      <div className="grid grid-cols-3 gap-4 mb-8">
-                        <div className="text-center p-4 bg-[#faf8f5] rounded-xl">
-                          <p className="text-2xl font-bold text-[#1a4d2e]">{project.totalPlots}</p>
-                          <p className="text-sm text-gray-500">Plots</p>
-                        </div>
-                        <div className="text-center p-4 bg-[#faf8f5] rounded-xl">
-                          <p className="text-2xl font-bold text-[#1a4d2e]">{project.plantsPerPlot}</p>
-                          <p className="text-sm text-gray-500">Plants/Plot</p>
-                        </div>
-                        <div className="text-center p-4 bg-[#faf8f5] rounded-xl">
-                          <p className="text-lg font-bold text-[#1a4d2e]">{project.totalArea}</p>
-                          <p className="text-sm text-gray-500">Total Area</p>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-wrap gap-2 mb-8">
-                        {project.features.map((f) => (
-                          <span key={f} className="inline-flex items-center gap-1 px-3 py-1.5 bg-[#1a4d2e]/8 text-[#1a4d2e] text-sm rounded-full font-medium">
-                            <TreePine className="w-3.5 h-3.5" />
-                            {f}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="flex items-center gap-4">
-                        <span className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-full font-medium group-hover:bg-[#333] transition-colors">
-                          View Project Details
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <div className="flex flex-wrap items-center gap-4">
+                      {project.features.map((f) => (
+                        <span key={f} className="inline-flex items-center gap-1.5 px-3 py-1.5 glass text-white/70 text-xs rounded tracking-wide">
+                          <TreePine className="w-3 h-3 text-[#d4af37]" />
+                          {f}
                         </span>
-                        <span className="text-[#c9a962] font-medium group-hover:underline">Book Site Visit</span>
-                      </div>
+                      ))}
+                      <span className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-[#0c0c0c] rounded text-sm font-semibold group-hover:bg-[#d4af37] transition-colors ml-auto">
+                        View Details
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
                     </div>
                   </div>
                 </div>
-              </Link>
-            </div>
-          ))}
-        </div>
-
-        {/* Coming Soon */}
-        <div className={`reveal ${visible ? 'visible' : ''} stagger-4 mt-16 text-center`}>
-          <div className="inline-flex items-center gap-3 px-6 py-4 bg-white rounded-2xl shadow-lg border border-[#c9a962]/20">
-            <Sparkles className="w-5 h-5 text-[#c9a962]" />
-            <span className="text-gray-600">More exciting projects coming soon</span>
+              </div>
+            </Link>
           </div>
+        ))}
+
+        <div className={`reveal ${visible ? 'visible' : ''} stagger-4 mt-12 text-center`}>
+          <p className="text-white/20 text-sm tracking-widest uppercase">More projects coming soon</p>
         </div>
       </div>
     </section>

@@ -20,44 +20,44 @@ export default function VideoGallery() {
 
   return (
     <>
-      <section id="videos" className="py-24 md:py-32 bg-[#0a0a0a] relative">
+      <section id="videos" className="py-28 md:py-40 bg-[#161616] relative">
         <div className="container-luxury" ref={ref}>
-          <div className={`reveal ${visible ? 'visible' : ''} text-center mb-12`}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-6">
-              <Film className="w-4 h-4 text-[#c9a962]" />
-              <span className="text-white/80 text-sm">Video Gallery</span>
-            </div>
-            <h2 className="section-title font-bold text-white mb-4 font-[family-name:var(--font-heading)]">Experience The Meadow Breeze</h2>
-            <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6" />
-            <p className="text-white/50 max-w-2xl mx-auto">Watch our videos to get a virtual tour of the stunning farmland community</p>
+          <div className={`reveal ${visible ? 'visible' : ''} mb-12`}>
+            <span className="label-gold mb-6 block">Video Gallery</span>
+            <h2 className="heading-section text-white mb-6 font-[family-name:var(--font-heading)]">
+              Experience{' '}
+              <span className="text-gold-gradient italic">The Meadow Breeze</span>
+            </h2>
+            <div className="divider-gold mb-8" />
+            <p className="text-white/40 max-w-2xl">Watch our videos to get a virtual tour of the stunning farmland community</p>
           </div>
 
           <div className="relative">
             {meadowBreezeVideos.length > 2 && (
               <>
-                <button onClick={() => scroll('left')} className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 rounded-full items-center justify-center text-white hover:bg-[#c9a962] transition-all -ml-6 hidden md:flex" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></button>
-                <button onClick={() => scroll('right')} className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 rounded-full items-center justify-center text-white hover:bg-[#c9a962] transition-all -mr-6 hidden md:flex" aria-label="Next"><ChevronRight className="w-6 h-6" /></button>
+                <button onClick={() => scroll('left')} className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 glass rounded flex items-center justify-center text-white hover:bg-[#d4af37] hover:text-[#0c0c0c] transition-all -ml-5 hidden md:flex" aria-label="Previous"><ChevronLeft className="w-5 h-5" /></button>
+                <button onClick={() => scroll('right')} className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 glass rounded flex items-center justify-center text-white hover:bg-[#d4af37] hover:text-[#0c0c0c] transition-all -mr-5 hidden md:flex" aria-label="Next"><ChevronRight className="w-5 h-5" /></button>
               </>
             )}
 
-            <div ref={scrollRef} className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
+            <div ref={scrollRef} className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
               {meadowBreezeVideos.map((video) => (
-                <div key={video.id} className="flex-shrink-0 w-[320px] md:w-[380px] snap-start">
+                <div key={video.id} className="flex-shrink-0 w-[300px] md:w-[360px] snap-start">
                   <div onClick={() => { setSelectedVideo(video); setVideoError(false); }} className="group cursor-pointer">
-                    <div className="relative rounded-2xl overflow-hidden mb-4">
+                    <div className="relative rounded-lg overflow-hidden mb-3">
                       <div className="aspect-video relative">
-                        <Image src={video.thumbnail} alt={video.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="380px" />
+                        <Image src={video.thumbnail} alt={video.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="360px" />
                       </div>
                       <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-[#c9a962] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                          <Play className="w-7 h-7 text-white ml-1" fill="white" />
+                        <div className="w-14 h-14 bg-[#d4af37] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                          <Play className="w-6 h-6 text-[#0c0c0c] ml-0.5" fill="#0c0c0c" />
                         </div>
                       </div>
-                      <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/60 rounded text-white text-xs">{video.duration}</div>
+                      <div className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/60 rounded text-white text-[10px]">{video.duration}</div>
                     </div>
-                    <h3 className="text-white font-semibold mb-1 group-hover:text-[#c9a962] transition-colors">{video.title}</h3>
-                    <p className="text-white/50 text-sm">{video.description}</p>
+                    <h3 className="text-white font-semibold text-sm mb-1 group-hover:text-[#d4af37] transition-colors">{video.title}</h3>
+                    <p className="text-white/30 text-xs">{video.description}</p>
                   </div>
                 </div>
               ))}
@@ -65,30 +65,30 @@ export default function VideoGallery() {
           </div>
 
           <div className={`reveal ${visible ? 'visible' : ''} mt-8 text-center`}>
-            <p className="text-white/30 text-sm">{meadowBreezeVideos.length} videos available</p>
+            <p className="text-white/20 text-sm">{meadowBreezeVideos.length} videos available</p>
           </div>
         </div>
       </section>
 
       {selectedVideo && (
-        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4" onClick={() => { setSelectedVideo(null); setVideoError(false); }}>
+        <div className="fixed inset-0 z-50 bg-[#0c0c0c]/98 flex items-center justify-center p-4" onClick={() => { setSelectedVideo(null); setVideoError(false); }}>
           <div className="relative max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => { setSelectedVideo(null); setVideoError(false); }} className="absolute -top-12 right-0 p-2 text-white/60 hover:text-white transition-colors" aria-label="Close"><X className="w-8 h-8" /></button>
-            <div className="aspect-video bg-black rounded-xl overflow-hidden">
+            <button onClick={() => { setSelectedVideo(null); setVideoError(false); }} className="absolute -top-12 right-0 p-2 text-white/40 hover:text-white transition-colors" aria-label="Close"><X className="w-7 h-7" /></button>
+            <div className="aspect-video bg-[#0c0c0c] rounded-lg overflow-hidden border border-white/5">
               {videoError ? (
-                <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]">
-                  <VideoOff className="w-16 h-16 text-[#c9a962]/50 mb-4" />
-                  <p className="text-[#c9a962] font-medium text-xl">Video Coming Soon</p>
-                  <p className="text-white/40 text-sm mt-2">Drop your video file at:</p>
-                  <code className="text-[#c9a962]/60 text-xs mt-1">/public{VIDEO_BASE_PATH}/{selectedVideo.videoFile}</code>
+                <div className="w-full h-full flex flex-col items-center justify-center">
+                  <VideoOff className="w-14 h-14 text-[#d4af37]/30 mb-4" />
+                  <p className="text-[#d4af37] font-medium text-lg">Video Coming Soon</p>
+                  <p className="text-white/20 text-sm mt-2">Drop your video file at:</p>
+                  <code className="text-[#d4af37]/40 text-xs mt-1">/public{VIDEO_BASE_PATH}/{selectedVideo.videoFile}</code>
                 </div>
               ) : (
                 <video src={getVideoUrl(selectedVideo.videoFile)} controls autoPlay className="w-full h-full" onError={() => setVideoError(true)}>Your browser does not support the video tag.</video>
               )}
             </div>
             <div className="mt-4">
-              <h3 className="text-white text-xl font-semibold">{selectedVideo.title}</h3>
-              <p className="text-white/50">{selectedVideo.description}</p>
+              <h3 className="text-white text-lg font-semibold">{selectedVideo.title}</h3>
+              <p className="text-white/40 text-sm">{selectedVideo.description}</p>
             </div>
           </div>
         </div>

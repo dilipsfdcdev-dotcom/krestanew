@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, MapPin } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -44,87 +44,96 @@ export default function Navigation() {
 
   return (
     <>
-      {!isProject && (
-        <div className="hidden lg:block bg-[#1a1a1a] text-white py-2 relative z-50">
-          <div className="container-luxury flex justify-between items-center text-sm">
-            <div className="flex items-center gap-6">
-              <a href="tel:+919888932555" className="flex items-center gap-2 hover:text-[#c9a962] transition-colors">
-                <Phone size={14} />
-                <span>+91-9888932555</span>
-              </a>
-              <a href="https://maps.app.goo.gl/4HvLznBYEHfcQcHP7" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#c9a962] transition-colors">
-                <MapPin size={14} />
-                <span>Hyderabad, Telangana</span>
-              </a>
-            </div>
-            <span className="text-[#c9a962] font-medium">Crafting Luxury, Building Dreams</span>
-          </div>
-        </div>
-      )}
-
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 shadow-lg py-3' : 'bg-transparent py-4 md:py-5'}`} style={{ top: 0 }}>
-        <div className="container-luxury flex items-center justify-between">
+      <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'py-3' : 'py-5 md:py-6'}`}>
+        <div className={`absolute inset-0 transition-all duration-500 ${scrolled ? 'bg-[#0c0c0c]/90 backdrop-blur-xl border-b border-white/5' : ''}`} />
+        <div className="container-luxury relative flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 md:w-11 md:h-11">
-              <Image src="/images/company/logo.webp" alt="Kresta Logo" fill className="object-contain" priority sizes="44px" />
+            <div className="relative w-9 h-9 md:w-10 md:h-10">
+              <Image src="/images/company/logo.webp" alt="Kresta Logo" fill className="object-contain" priority sizes="40px" />
             </div>
-            <div className={scrolled ? 'text-[#1a1a1a]' : 'text-white'}>
-              <h1 className="text-lg md:text-xl font-bold tracking-wide font-[family-name:var(--font-heading)] group-hover:text-[#c9a962] transition-colors">KRESTA</h1>
-              <p className="text-[9px] md:text-[10px] tracking-[0.15em] uppercase opacity-80">Infra & Developers</p>
+            <div>
+              <h1 className="text-base md:text-lg font-bold tracking-[0.15em] text-white group-hover:text-[#d4af37] transition-colors font-[family-name:var(--font-heading)]">KRESTA</h1>
+              <p className="text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-white/40">Infra & Developers</p>
             </div>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-7">
+          <div className="hidden lg:flex items-center gap-8">
             {links.map((link) => (
-              <Link key={link.name} href={link.href} className={`text-sm font-medium tracking-wide relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-[#c9a962] after:transition-all hover:after:w-full ${scrolled ? 'text-[#1a1a1a] hover:text-[#c9a962]' : 'text-white hover:text-[#c9a962]'} transition-colors`}>
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-[13px] font-medium tracking-wide text-white/60 hover:text-[#d4af37] transition-colors relative after:absolute after:bottom-[-6px] after:left-0 after:h-px after:w-0 after:bg-[#d4af37] after:transition-all hover:after:w-full"
+              >
                 {link.name}
               </Link>
             ))}
           </div>
 
-          <div className="hidden lg:block">
-            <a href="https://wa.me/919888932555?text=Hi%2C%20I%27m%20interested%20in%20Kresta%20projects" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 bg-[#c9a962] text-white rounded-full text-sm font-medium tracking-wide hover:bg-[#8b7355] transition-colors shadow-lg shadow-[#c9a962]/20">
-              Schedule a Visit
+          <div className="hidden lg:flex items-center gap-4">
+            <a href="tel:+919888932555" className="flex items-center gap-2 text-white/50 hover:text-[#d4af37] transition-colors text-sm">
+              <Phone size={14} />
+              <span className="text-[13px]">+91-9888932555</span>
+            </a>
+            <a
+              href="https://wa.me/919888932555?text=Hi%2C%20I%27m%20interested%20in%20Kresta%20projects"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-2 bg-[#d4af37] text-[#0c0c0c] rounded text-[13px] font-semibold tracking-wide hover:bg-[#f0d77b] transition-colors"
+            >
+              Schedule Visit
             </a>
           </div>
 
-          <button onClick={() => setMobileOpen(!mobileOpen)} className={`lg:hidden p-2 rounded-lg transition-colors ${scrolled ? 'text-[#1a1a1a] hover:bg-gray-100' : 'text-white hover:bg-white/10'}`} aria-label="Toggle menu">
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="lg:hidden p-2 text-white/70 hover:text-white transition-colors"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </nav>
 
       {mobileOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setMobileOpen(false)} />
-          <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl">
-            <div className="p-6 pt-20">
-              <div className="flex items-center gap-3 mb-8 pb-6 border-b border-gray-100">
-                <div className="relative w-12 h-12">
-                  <Image src="/images/company/logo.webp" alt="Kresta" fill className="object-contain" sizes="48px" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-bold text-[#1a1a1a] font-[family-name:var(--font-heading)]">KRESTA</h2>
-                  <p className="text-[10px] tracking-[0.15em] text-gray-500 uppercase">Infra & Developers</p>
-                </div>
+          <div className="absolute inset-0 bg-[#0c0c0c]/95 backdrop-blur-xl" onClick={() => setMobileOpen(false)} />
+          <div className="relative h-full flex flex-col justify-center items-center px-8">
+            <div className="flex items-center gap-3 mb-12">
+              <div className="relative w-12 h-12">
+                <Image src="/images/company/logo.webp" alt="Kresta" fill className="object-contain" sizes="48px" />
               </div>
-              <div className="space-y-1">
-                {links.map((link) => (
-                  <Link key={link.name} href={link.href} onClick={() => setMobileOpen(false)} className="block py-3 px-4 text-base font-medium text-[#1a1a1a] hover:text-[#c9a962] hover:bg-[#faf8f5] rounded-lg transition-colors">
-                    {link.name}
-                  </Link>
-                ))}
+              <div>
+                <h2 className="text-xl font-bold text-white font-[family-name:var(--font-heading)] tracking-wider">KRESTA</h2>
+                <p className="text-[10px] tracking-[0.2em] text-[#d4af37] uppercase">Infra & Developers</p>
               </div>
-              <a href="https://wa.me/919888932555" target="_blank" rel="noopener noreferrer" className="block w-full mt-8 py-4 bg-[#1a1a1a] text-white text-center rounded-xl font-medium hover:bg-[#333] transition-colors">
+            </div>
+
+            <div className="space-y-1 w-full max-w-xs">
+              {links.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block py-4 text-center text-xl font-light text-white/70 hover:text-[#d4af37] transition-colors font-[family-name:var(--font-heading)]"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-12 flex flex-col items-center gap-4">
+              <a
+                href="https://wa.me/919888932555"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 bg-[#d4af37] text-[#0c0c0c] rounded text-sm font-semibold tracking-wide hover:bg-[#f0d77b] transition-colors"
+              >
                 Schedule a Visit
               </a>
-              <div className="mt-8 pt-6 border-t border-gray-100">
-                <a href="tel:+919888932555" className="flex items-center gap-3 text-[#1a1a1a] mb-4 hover:text-[#c9a962] transition-colors">
-                  <Phone size={18} className="text-[#c9a962]" />
-                  <span>+91-9888932555</span>
-                </a>
-                <p className="text-sm text-gray-500">94, HIG, TV Colony, Vanasthalipuram, Hyderabad - 500070</p>
-              </div>
+              <a href="tel:+919888932555" className="flex items-center gap-2 text-white/40 hover:text-[#d4af37] transition-colors text-sm">
+                <Phone size={14} />
+                <span>+91-9888932555</span>
+              </a>
             </div>
           </div>
         </div>
