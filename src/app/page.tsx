@@ -1,30 +1,32 @@
+'use client';
+
 import dynamic from 'next/dynamic';
-import Navigation from "@/components/Navigation";
-import CompanyHero from "@/components/CompanyHero";
+import Navigation3D from '@/components/Navigation3D';
+import Hero3D from '@/components/Hero3D';
+import About3D from '@/components/About3D';
+import Projects3D from '@/components/Projects3D';
+import Contact3D from '@/components/Contact3D';
+import Footer3D from '@/components/Footer3D';
 
-// Lazy load below-the-fold components for faster initial page load
-const About = dynamic(() => import("@/components/About"), {
-  loading: () => <div className="min-h-[50vh] bg-[#faf8f5]" />,
-});
-const ProjectsShowcase = dynamic(() => import("@/components/ProjectsShowcase"), {
-  loading: () => <div className="min-h-[50vh] bg-[#0a0a0a]" />,
-});
-const Contact = dynamic(() => import("@/components/Contact"), {
-  loading: () => <div className="min-h-[50vh] bg-[#faf8f5]" />,
-});
-const Footer = dynamic(() => import("@/components/Footer"), {
-  loading: () => <div className="min-h-[20vh] bg-[#0a0a0a]" />,
+const Scene3D = dynamic(() => import('@/components/3d/Scene3D'), {
+  ssr: false,
 });
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="overflow-hidden">
-      <Navigation />
-      <CompanyHero />
-      <About />
-      <ProjectsShowcase />
-      <Contact />
-      <Footer />
+    <main className="relative">
+      {/* 3D Background Scene */}
+      <Scene3D />
+
+      {/* Content Overlay */}
+      <div className="relative z-10">
+        <Navigation3D />
+        <Hero3D />
+        <About3D />
+        <Projects3D />
+        <Contact3D />
+        <Footer3D />
+      </div>
     </main>
   );
 }

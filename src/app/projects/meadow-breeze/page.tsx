@@ -1,61 +1,59 @@
+'use client';
+
 import dynamic from 'next/dynamic';
-import Navigation from '@/components/Navigation';
-import ProjectHero from '@/components/project/ProjectHero';
-import ProjectOverview from '@/components/project/ProjectOverview';
+import Navigation3D from '@/components/Navigation3D';
+import ProjectHero3D from '@/components/project/ProjectHero3D';
+import ProjectOverview3D from '@/components/project/ProjectOverview3D';
+import Footer3D from '@/components/Footer3D';
 
-// Lazy load below-the-fold components for faster initial page load
-const VisionPhilosophy = dynamic(() => import('@/components/project/VisionPhilosophy'), {
-  loading: () => <div className="min-h-[50vh] bg-[#faf8f5]" />,
-});
-const LocationAdvantage = dynamic(() => import('@/components/project/LocationAdvantage'), {
-  loading: () => <div className="min-h-[50vh] bg-[#0a0a0a]" />,
-});
-const MasterPlan = dynamic(() => import('@/components/project/MasterPlan'), {
-  loading: () => <div className="min-h-[50vh] bg-[#faf8f5]" />,
-});
-const PlantForestScroll = dynamic(() => import('@/components/project/PlantForestScroll'), {
-  loading: () => <div className="min-h-[50vh] bg-[#faf8f5]" />,
-});
-const ProjectAmenities = dynamic(() => import('@/components/project/ProjectAmenities'), {
-  loading: () => <div className="min-h-[50vh] bg-[#0a0a0a]" />,
-});
-const LifestylePathways = dynamic(() => import('@/components/project/LifestylePathways'), {
-  loading: () => <div className="min-h-[50vh] bg-[#faf8f5]" />,
-});
-const WhyInvest = dynamic(() => import('@/components/project/WhyInvest'), {
-  loading: () => <div className="min-h-[50vh] bg-[#0a0a0a]" />,
-});
-const VideoGallery = dynamic(() => import('@/components/project/VideoGallery'), {
-  loading: () => <div className="min-h-[50vh] bg-[#0a0a0a]" />,
-});
-const ProjectContact = dynamic(() => import('@/components/project/ProjectContact'), {
-  loading: () => <div className="min-h-[50vh] bg-[#faf8f5]" />,
-});
-const Footer = dynamic(() => import('@/components/Footer'), {
-  loading: () => <div className="min-h-[20vh] bg-[#0a0a0a]" />,
-});
+const Scene3D = dynamic(() => import('@/components/3d/Scene3D'), { ssr: false });
 
-export const metadata = {
-  title: 'The Meadow Breeze | A Distinguished 100-Acre Farmland Estate by Kresta',
-  description: 'A distinguished 100-acre farmland estate nestled amidst the majestic Rachakonda Hills. 600-900 plants per plot, 360° panoramic mountain views, gated community with world-class amenities. 30 km from ORR Exit 11.',
-};
+const VisionPhilosophy3D = dynamic(() => import('@/components/project/VisionPhilosophy3D'), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
+const LocationAdvantage3D = dynamic(() => import('@/components/project/LocationAdvantage3D'), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
+const MasterPlan3D = dynamic(() => import('@/components/project/MasterPlan3D'), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
+const PlantForest3D = dynamic(() => import('@/components/project/PlantForest3D'), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
+const Amenities3D = dynamic(() => import('@/components/project/Amenities3D'), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
+const WhyInvest3D = dynamic(() => import('@/components/project/WhyInvest3D'), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
+const VideoGallery3D = dynamic(() => import('@/components/project/VideoGallery3D'), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
+const ProjectContact3D = dynamic(() => import('@/components/project/ProjectContact3D'), {
+  loading: () => <div className="min-h-[50vh]" />,
+});
 
 export default function MeadowBreezePage() {
   return (
-    <main className="overflow-hidden">
-      <Navigation />
-      <ProjectHero />
-      <ProjectOverview />
-      <VisionPhilosophy />
-      <LocationAdvantage />
-      <MasterPlan />
-      <PlantForestScroll />
-      <ProjectAmenities />
-      <LifestylePathways />
-      <WhyInvest />
-      <VideoGallery />
-      <ProjectContact />
-      <Footer />
+    <main className="relative">
+      {/* 3D Background Scene */}
+      <Scene3D />
+
+      {/* Content */}
+      <div className="relative z-10">
+        <Navigation3D />
+        <ProjectHero3D />
+        <ProjectOverview3D />
+        <VisionPhilosophy3D />
+        <LocationAdvantage3D />
+        <MasterPlan3D />
+        <PlantForest3D />
+        <Amenities3D />
+        <WhyInvest3D />
+        <VideoGallery3D />
+        <ProjectContact3D />
+        <Footer3D />
+      </div>
     </main>
   );
 }
