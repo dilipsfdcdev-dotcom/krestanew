@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Kresta Infra & Developers | The Meadow Breeze - Premium Farmland",
-  description: "The Meadow Breeze by Kresta - Premium 50-acre farmland community at Peepal Pahad, Choutuppal. 600-900 plants per plot, 360° mountain views, gated community with world-class amenities.",
+  description: "The Meadow Breeze by Kresta - Premium 100-acre farmland community at Peepal Pahad, Choutuppal. 600-900 plants per plot, 360° mountain views, gated community with world-class amenities.",
   keywords: "farmland, Hyderabad, Choutuppal, premium plots, organic farming, investment, Kresta, Meadow Breeze, Rachakonda",
   authors: [{ name: "Kresta Infra & Developers Pvt. Ltd." }],
   openGraph: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "The Meadow Breeze by Kresta",
-    description: "Premium 50-acre farmland community with personal forest setup",
+    description: "Premium 100-acre farmland community with personal forest setup",
   },
   robots: {
     index: true,
@@ -34,7 +34,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/images/company/logo.png" />
-        <meta name="theme-color" content="#1a1a1a" />
+        <meta name="theme-color" content="#0a0a0f" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -42,7 +42,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased bg-[#faf8f5]">
+      <body className="antialiased bg-[#0a0a0f] text-[#f0ead6]">
         {children}
       </body>
     </html>
