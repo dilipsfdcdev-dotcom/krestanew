@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #1a5632;
+    --color-primary-dark: #0a2515;
+    --color-gold: #d4a843;
+    --color-gold-dark: #b8860b;
+    --color-cream: #fefdf8;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-white text-gray-900;
+  }
+
+  ::selection {
+    background-color: rgba(212, 168, 67, 0.3);
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
+  }
+
+  .container-luxury {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl;
+  }
+
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+
+  .gradient-text-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#d4a843] via-[#f0d78c] to-[#d4a843];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-gradient-to-r from-[#d4a843] to-[#b8860b] text-white font-semibold rounded-full hover:shadow-lg hover:shadow-[#d4a843]/25 transition-all duration-300 hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-3.5 border-2 border-[#d4a843] text-[#d4a843] font-semibold rounded-full hover:bg-[#d4a843] hover:text-white transition-all duration-300;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center px-8 py-3.5 border-2 border-white/60 text-white font-semibold rounded-full hover:bg-white hover:text-[#0a2515] transition-all duration-300;
+  }
+
+  .luxury-card {
+    @apply bg-white rounded-2xl shadow-lg shadow-black/5 border border-gray-100 p-6 sm:p-8 hover:shadow-xl hover:shadow-black/10 transition-all duration-500;
+  }
+
+  .luxury-card-dark {
+    @apply bg-[#0f3620]/80 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 hover:border-[#d4a843]/30 transition-all duration-500;
+  }
+
+  .divider-gold {
+    @apply w-16 h-0.5 bg-gradient-to-r from-[#d4a843] to-[#b8860b];
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a2515;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4a843;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b8860b;
+}
