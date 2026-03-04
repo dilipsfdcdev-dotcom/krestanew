@@ -1,7 +1,7 @@
 export const company = {
   name: 'Kresta Infra & Developers Pvt. Ltd.',
   shortName: 'Kresta',
-  tagline: 'Crafting Luxury, Building Dreams',
+  tagline: 'Own What Endures',
   description:
     'Kresta Infra & Developers Pvt. Ltd. is a premier real estate development company specializing in luxury residential projects, premium farmland communities, commercial spaces, and integrated township developments.',
   descriptionExtended:

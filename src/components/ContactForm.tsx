@@ -40,10 +40,10 @@ Please share more details about your projects.`
   if (submitted) {
     return (
       <div className={`text-center p-8 rounded-2xl ${isDark ? 'glass-dark' : 'luxury-card'}`}>
-        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#d4a843]/10 flex items-center justify-center">
-          <Send className="w-7 h-7 text-[#d4a843]" />
+        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#8D5B30]/10 flex items-center justify-center">
+          <Send className="w-7 h-7 text-[#8D5B30]" />
         </div>
-        <h3 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-[#0a2515]'}`}>
+        <h3 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-[#33200F]'}`}>
           Thank You!
         </h3>
         <p className={isDark ? 'text-white/60' : 'text-gray-500'}>
@@ -54,8 +54,8 @@ Please share more details about your projects.`
   }
 
   const inputClass = isDark
-    ? 'w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:border-[#d4a843] focus:ring-1 focus:ring-[#d4a843] outline-none transition-all text-sm'
-    : 'w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-[#d4a843] focus:ring-1 focus:ring-[#d4a843] outline-none transition-all text-sm'
+    ? 'w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:border-[#8D5B30] focus:ring-1 focus:ring-[#8D5B30] outline-none transition-all text-sm'
+    : 'w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-[#8D5B30] focus:ring-1 focus:ring-[#8D5B30] outline-none transition-all text-sm'
 
   const labelClass = isDark
     ? 'block text-white/70 text-sm font-medium mb-1.5'

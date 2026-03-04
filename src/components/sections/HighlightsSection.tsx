@@ -33,10 +33,10 @@ const highlights = [
 
 export function HighlightsSection() {
   return (
-    <section className="section-padding bg-[#0a2515]">
+    <section className="section-padding bg-[#33200F]">
       <div className="container-luxury mx-auto">
         <FadeInUp className="text-center mb-16">
-          <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-3">
+          <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-3">
             Project Highlights
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
@@ -53,8 +53,8 @@ export function HighlightsSection() {
                 transition={{ duration: 0.3 }}
                 className="luxury-card-dark h-full flex flex-col items-center text-center cursor-default"
               >
-                <div className="w-16 h-16 rounded-2xl bg-[#d4a843]/10 flex items-center justify-center mb-6">
-                  <item.icon className="w-7 h-7 text-[#d4a843]" />
+                <div className="w-16 h-16 rounded-2xl bg-[#8D5B30]/10 flex items-center justify-center mb-6">
+                  <item.icon className="w-7 h-7 text-[#8D5B30]" />
                 </div>
                 <h3 className="text-white font-bold text-lg mb-3">
                   {item.title}

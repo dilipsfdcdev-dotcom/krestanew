@@ -14,7 +14,7 @@ const quickLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-[#06170d] text-white">
+    <footer className="bg-[#1a0f06] text-white">
       <div className="container-luxury mx-auto section-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
@@ -30,12 +30,12 @@ export function Footer() {
               </div>
               <div>
                 <span className="text-white font-bold text-lg">KRESTA</span>
-                <span className="block text-[#d4a843] text-[10px] tracking-[0.2em] uppercase">
+                <span className="block text-[#8D5B30] text-[10px] tracking-[0.2em] uppercase">
                   Infra & Developers
                 </span>
               </div>
             </Link>
-            <p className="text-[#d4a843] text-sm italic mb-4">
+            <p className="text-[#8D5B30] text-sm italic mb-4">
               {company.tagline}
             </p>
             <p className="text-white/60 text-sm leading-relaxed">
@@ -46,7 +46,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-[#d4a843] font-semibold mb-6 uppercase tracking-wider text-sm">
+            <h3 className="text-[#8D5B30] font-semibold mb-6 uppercase tracking-wider text-sm">
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -54,7 +54,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/60 hover:text-[#d4a843] text-sm transition-colors duration-300"
+                    className="text-white/60 hover:text-[#8D5B30] text-sm transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -65,7 +65,7 @@ export function Footer() {
 
           {/* Projects */}
           <div>
-            <h3 className="text-[#d4a843] font-semibold mb-6 uppercase tracking-wider text-sm">
+            <h3 className="text-[#8D5B30] font-semibold mb-6 uppercase tracking-wider text-sm">
               Our Projects
             </h3>
             <div className="space-y-4">
@@ -73,7 +73,7 @@ export function Footer() {
                 href="/projects/meadow-breeze"
                 className="block group"
               >
-                <span className="text-white group-hover:text-[#d4a843] transition-colors font-medium">
+                <span className="text-white group-hover:text-[#8D5B30] transition-colors font-medium">
                   The Meadow Breeze
                 </span>
                 <span className="block text-white/50 text-xs mt-1">
@@ -86,7 +86,7 @@ export function Footer() {
                 href="https://instagram.com/krestainfradevelopers"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-[#d4a843] hover:border-[#d4a843] transition-all"
+                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-[#8D5B30] hover:border-[#8D5B30] transition-all"
               >
                 <Instagram className="w-4 h-4" />
               </a>
@@ -95,28 +95,28 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-[#d4a843] font-semibold mb-6 uppercase tracking-wider text-sm">
+            <h3 className="text-[#8D5B30] font-semibold mb-6 uppercase tracking-wider text-sm">
               Contact Us
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <Phone className="w-4 h-4 text-[#d4a843] mt-0.5 shrink-0" />
+                <Phone className="w-4 h-4 text-[#8D5B30] mt-0.5 shrink-0" />
                 <a href={`tel:${company.phone}`} className="text-white/60 text-sm hover:text-white transition-colors">
                   {company.phone}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="w-4 h-4 text-[#d4a843] mt-0.5 shrink-0" />
+                <Mail className="w-4 h-4 text-[#8D5B30] mt-0.5 shrink-0" />
                 <a href={`mailto:${company.email}`} className="text-white/60 text-sm hover:text-white transition-colors">
                   {company.email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-[#d4a843] mt-0.5 shrink-0" />
+                <MapPin className="w-4 h-4 text-[#8D5B30] mt-0.5 shrink-0" />
                 <span className="text-white/60 text-sm">{company.address}</span>
               </li>
               <li className="flex items-start gap-3">
-                <Clock className="w-4 h-4 text-[#d4a843] mt-0.5 shrink-0" />
+                <Clock className="w-4 h-4 text-[#8D5B30] mt-0.5 shrink-0" />
                 <span className="text-white/60 text-sm">{company.workingHours}</span>
               </li>
             </ul>

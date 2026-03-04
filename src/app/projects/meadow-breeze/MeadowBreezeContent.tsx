@@ -64,7 +64,7 @@ export function MeadowBreezeContent() {
             priority
             quality={90}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a2515]/60 via-[#0a2515]/40 to-[#0a2515]/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#33200F]/60 via-[#33200F]/40 to-[#33200F]/80" />
         </div>
 
         <div className="relative z-10 container-luxury mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -78,9 +78,9 @@ export function MeadowBreezeContent() {
               initial={{ width: 0 }}
               animate={{ width: 80 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-0.5 bg-[#d4a843] mx-auto mb-8"
+              className="h-0.5 bg-[#8D5B30] mx-auto mb-8"
             />
-            <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-4">
+            <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-4">
               By Kresta
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
@@ -91,7 +91,7 @@ export function MeadowBreezeContent() {
               {meadowBreeze.tagline}
             </p>
             <div className="flex items-center justify-center gap-2 text-white/50 text-sm mb-8">
-              <MapPin className="w-4 h-4 text-[#d4a843]" />
+              <MapPin className="w-4 h-4 text-[#8D5B30]" />
               {meadowBreeze.location}
             </div>
 
@@ -99,7 +99,7 @@ export function MeadowBreezeContent() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto mb-10">
               {meadowBreeze.stats.map((stat) => (
                 <div key={stat.label} className="glass-dark p-4">
-                  <p className="text-[#d4a843] font-bold text-xl">{stat.value}</p>
+                  <p className="text-[#8D5B30] font-bold text-xl">{stat.value}</p>
                   <p className="text-white/50 text-xs mt-1">{stat.label}</p>
                 </div>
               ))}
@@ -125,7 +125,7 @@ export function MeadowBreezeContent() {
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
           <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
-            <ChevronDown className="w-6 h-6 text-[#d4a843]" />
+            <ChevronDown className="w-6 h-6 text-[#8D5B30]" />
           </motion.div>
         </motion.div>
       </section>
@@ -135,10 +135,10 @@ export function MeadowBreezeContent() {
         <div className="container-luxury mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <FadeInUp>
-              <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-3">
+              <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-3">
                 Premium Farmland Investment
               </p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#0a2515] mb-6">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#33200F] mb-6">
                 Welcome
               </h2>
               <div className="divider-gold mb-6" />
@@ -148,7 +148,7 @@ export function MeadowBreezeContent() {
               <p className="text-gray-500 leading-relaxed mb-4">
                 {meadowBreeze.fullDescription}
               </p>
-              <p className="text-[#0a2515]/80 italic leading-relaxed border-l-2 border-[#d4a843] pl-4">
+              <p className="text-[#33200F]/80 italic leading-relaxed border-l-2 border-[#8D5B30] pl-4">
                 {meadowBreeze.legacy}
               </p>
             </FadeInUp>
@@ -160,7 +160,7 @@ export function MeadowBreezeContent() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a2515]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#33200F]/40 to-transparent" />
               </div>
             </FadeInUp>
           </div>
@@ -168,13 +168,13 @@ export function MeadowBreezeContent() {
       </section>
 
       {/* Vision & Philosophy */}
-      <section className="section-padding bg-[#fefdf8]">
+      <section className="section-padding bg-[#faf6ee]">
         <div className="container-luxury mx-auto">
           <FadeInUp className="text-center mb-16">
-            <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-3">
+            <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-3">
               Our Approach
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0a2515] mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#33200F] mb-6">
               Vision & Philosophy
             </h2>
             <div className="divider-gold mx-auto mb-6" />
@@ -188,12 +188,12 @@ export function MeadowBreezeContent() {
             {meadowBreeze.vision.map((item, i) => (
               <FadeInUp key={item.title} delay={i * 0.1}>
                 <div className="luxury-card h-full hover:-translate-y-1 transition-transform">
-                  <div className="w-10 h-10 rounded-lg bg-[#0a2515] flex items-center justify-center mb-4">
-                    <span className="text-[#d4a843] font-bold text-sm">
+                  <div className="w-10 h-10 rounded-lg bg-[#33200F] flex items-center justify-center mb-4">
+                    <span className="text-[#8D5B30] font-bold text-sm">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-[#0a2515] mb-2">{item.title}</h3>
+                  <h3 className="text-lg font-bold text-[#33200F] mb-2">{item.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
                 </div>
               </FadeInUp>
@@ -203,10 +203,10 @@ export function MeadowBreezeContent() {
       </section>
 
       {/* Location Advantage */}
-      <section className="section-padding bg-[#0a2515]">
+      <section className="section-padding bg-[#33200F]">
         <div className="container-luxury mx-auto">
           <FadeInUp className="text-center mb-16">
-            <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-3">
+            <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-3">
               Connectivity
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
@@ -220,7 +220,7 @@ export function MeadowBreezeContent() {
             <FadeInUp>
               <div className="luxury-card-dark">
                 <h3 className="text-white font-bold text-xl mb-6 flex items-center gap-2">
-                  <Navigation className="w-5 h-5 text-[#d4a843]" />
+                  <Navigation className="w-5 h-5 text-[#8D5B30]" />
                   Distance & Connectivity
                 </h3>
                 <div className="space-y-0">
@@ -232,7 +232,7 @@ export function MeadowBreezeContent() {
                       }`}
                     >
                       <span className="text-white/70 text-sm">{item.landmark}</span>
-                      <span className="text-[#d4a843] font-semibold text-sm">{item.distance}</span>
+                      <span className="text-[#8D5B30] font-semibold text-sm">{item.distance}</span>
                     </div>
                   ))}
                 </div>
@@ -243,7 +243,7 @@ export function MeadowBreezeContent() {
             <FadeInUp delay={0.2}>
               <div className="luxury-card-dark">
                 <h3 className="text-white font-bold text-xl mb-6 flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-[#d4a843]" />
+                  <MapPin className="w-5 h-5 text-[#8D5B30]" />
                   Location Highlights
                 </h3>
                 <div className="space-y-4">
@@ -251,7 +251,7 @@ export function MeadowBreezeContent() {
                     const [title, desc] = highlight.split(' – ')
                     return (
                       <div key={title} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[#d4a843] shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-5 h-5 text-[#8D5B30] shrink-0 mt-0.5" />
                         <div>
                           <span className="text-white font-medium text-sm">{title}</span>
                           {desc && <span className="text-white/50 text-sm"> – {desc}</span>}
@@ -286,10 +286,10 @@ export function MeadowBreezeContent() {
       <section className="section-padding bg-white">
         <div className="container-luxury mx-auto">
           <FadeInUp className="text-center mb-16">
-            <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-3">
+            <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-3">
               Layout Design
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0a2515] mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#33200F] mb-6">
               Master Plan
             </h2>
             <div className="divider-gold mx-auto" />
@@ -305,8 +305,8 @@ export function MeadowBreezeContent() {
                 { label: 'Road Widths', value: meadowBreeze.roadWidths },
                 { label: 'Plants Per Plot', value: meadowBreeze.plantsPerPlot },
               ].map((spec) => (
-                <div key={spec.label} className="text-center p-4 rounded-xl bg-[#0a2515]/5">
-                  <p className="text-[#d4a843] font-bold text-lg">{spec.value}</p>
+                <div key={spec.label} className="text-center p-4 rounded-xl bg-[#33200F]/5">
+                  <p className="text-[#8D5B30] font-bold text-lg">{spec.value}</p>
                   <p className="text-gray-500 text-xs mt-1">{spec.label}</p>
                 </div>
               ))}
@@ -340,8 +340,8 @@ export function MeadowBreezeContent() {
                 'Green Buffer Zones',
                 'Strategic Plot Layout',
               ].map((feature) => (
-                <div key={feature} className="flex items-center gap-2 p-3 rounded-lg bg-[#fefdf8]">
-                  <CheckCircle2 className="w-4 h-4 text-[#d4a843] shrink-0" />
+                <div key={feature} className="flex items-center gap-2 p-3 rounded-lg bg-[#faf6ee]">
+                  <CheckCircle2 className="w-4 h-4 text-[#8D5B30] shrink-0" />
                   <span className="text-gray-600 text-sm">{feature}</span>
                 </div>
               ))}
@@ -351,10 +351,10 @@ export function MeadowBreezeContent() {
       </section>
 
       {/* Forest Concept */}
-      <section className="section-padding bg-[#0a2515]">
+      <section className="section-padding bg-[#33200F]">
         <div className="container-luxury mx-auto">
           <FadeInUp className="text-center mb-16">
-            <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-3">
+            <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-3">
               Plantation Concept
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -367,7 +367,7 @@ export function MeadowBreezeContent() {
             <p className="text-white/60 max-w-3xl mx-auto leading-relaxed">
               {meadowBreeze.forestConcept.description}
             </p>
-            <p className="text-[#d4a843] font-semibold text-lg mt-4 italic">
+            <p className="text-[#8D5B30] font-semibold text-lg mt-4 italic">
               &ldquo;{meadowBreeze.forestConcept.highlight}&rdquo;
             </p>
           </FadeInUp>
@@ -379,14 +379,14 @@ export function MeadowBreezeContent() {
               return (
                 <FadeInUp key={benefit.title} delay={i * 0.1}>
                   <div className="luxury-card-dark h-full">
-                    <div className="w-12 h-12 rounded-xl bg-[#d4a843]/10 flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6 text-[#d4a843]" />
+                    <div className="w-12 h-12 rounded-xl bg-[#8D5B30]/10 flex items-center justify-center mb-4">
+                      <Icon className="w-6 h-6 text-[#8D5B30]" />
                     </div>
                     <h3 className="text-white font-bold mb-3">{benefit.title}</h3>
                     <ul className="space-y-2">
                       {benefit.points.map((point) => (
                         <li key={point} className="flex items-start gap-2 text-white/50 text-sm">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#d4a843] shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#8D5B30] shrink-0 mt-0.5" />
                           {point}
                         </li>
                       ))}
@@ -403,19 +403,19 @@ export function MeadowBreezeContent() {
               <h3 className="text-white font-bold text-xl mb-6">Combined Plant Summary</h3>
               <div className="grid grid-cols-3 gap-6">
                 <div>
-                  <p className="text-[#d4a843] font-bold text-2xl">
+                  <p className="text-[#8D5B30] font-bold text-2xl">
                     {meadowBreeze.forestConcept.plantSummary.total.varieties}
                   </p>
                   <p className="text-white/50 text-xs mt-1">Plant Varieties</p>
                 </div>
                 <div>
-                  <p className="text-[#d4a843] font-bold text-2xl">
+                  <p className="text-[#8D5B30] font-bold text-2xl">
                     {meadowBreeze.forestConcept.plantSummary.total.plants}
                   </p>
                   <p className="text-white/50 text-xs mt-1">Total Plants/Plot</p>
                 </div>
                 <div>
-                  <p className="text-[#d4a843] font-bold text-2xl">124</p>
+                  <p className="text-[#8D5B30] font-bold text-2xl">124</p>
                   <p className="text-white/50 text-xs mt-1">Green Sanctuaries</p>
                 </div>
               </div>
@@ -428,10 +428,10 @@ export function MeadowBreezeContent() {
       <section className="section-padding bg-white">
         <div className="container-luxury mx-auto">
           <FadeInUp className="text-center mb-16">
-            <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-3">
+            <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-3">
               Curated Selection
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0a2515] mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#33200F] mb-6">
               Plant Gallery
             </h2>
             <div className="divider-gold mx-auto" />
@@ -481,13 +481,13 @@ export function MeadowBreezeContent() {
       </section>
 
       {/* Plot Details */}
-      <section className="section-padding bg-[#fefdf8]">
+      <section className="section-padding bg-[#faf6ee]">
         <div className="container-luxury mx-auto">
           <FadeInUp className="text-center mb-16">
-            <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-3">
+            <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-3">
               Investment Options
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0a2515] mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#33200F] mb-6">
               Plot Details
             </h2>
             <div className="divider-gold mx-auto" />
@@ -497,7 +497,7 @@ export function MeadowBreezeContent() {
             <div className="overflow-x-auto">
               <table className="w-full luxury-card p-0 overflow-hidden">
                 <thead>
-                  <tr className="bg-[#0a2515] text-white">
+                  <tr className="bg-[#33200F] text-white">
                     <th className="text-left p-4 font-semibold text-sm">Size</th>
                     <th className="text-left p-4 font-semibold text-sm">Approx. Area</th>
                     <th className="text-left p-4 font-semibold text-sm">Ideal For</th>
@@ -505,8 +505,8 @@ export function MeadowBreezeContent() {
                 </thead>
                 <tbody>
                   {meadowBreeze.plotOptions.map((plot, i) => (
-                    <tr key={plot.size} className={`border-b border-gray-100 ${i % 2 === 0 ? 'bg-white' : 'bg-[#fefdf8]'}`}>
-                      <td className="p-4 text-[#d4a843] font-semibold text-sm">{plot.size}</td>
+                    <tr key={plot.size} className={`border-b border-gray-100 ${i % 2 === 0 ? 'bg-white' : 'bg-[#faf6ee]'}`}>
+                      <td className="p-4 text-[#8D5B30] font-semibold text-sm">{plot.size}</td>
                       <td className="p-4 text-gray-600 text-sm">{plot.area}</td>
                       <td className="p-4 text-gray-500 text-sm">{plot.idealFor}</td>
                     </tr>
@@ -522,10 +522,10 @@ export function MeadowBreezeContent() {
       <section className="section-padding bg-white">
         <div className="container-luxury mx-auto">
           <FadeInUp className="text-center mb-16">
-            <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-3">
+            <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-3">
               World-Class Infrastructure
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0a2515] mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#33200F] mb-6">
               Amenities
             </h2>
             <div className="divider-gold mx-auto" />
@@ -537,11 +537,11 @@ export function MeadowBreezeContent() {
               return (
                 <FadeInUp key={amenity.name} delay={i * 0.05}>
                   <div className="luxury-card flex items-start gap-4 hover:-translate-y-1 transition-transform">
-                    <div className="w-12 h-12 rounded-xl bg-[#0a2515] flex items-center justify-center shrink-0">
-                      <Icon className="w-5 h-5 text-[#d4a843]" />
+                    <div className="w-12 h-12 rounded-xl bg-[#33200F] flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-[#8D5B30]" />
                     </div>
                     <div>
-                      <h3 className="text-[#0a2515] font-bold mb-1">{amenity.name}</h3>
+                      <h3 className="text-[#33200F] font-bold mb-1">{amenity.name}</h3>
                       <p className="text-gray-500 text-sm">{amenity.description}</p>
                     </div>
                   </div>
@@ -553,10 +553,10 @@ export function MeadowBreezeContent() {
       </section>
 
       {/* Lifestyle Pathways */}
-      <section className="section-padding bg-[#0a2515]">
+      <section className="section-padding bg-[#33200F]">
         <div className="container-luxury mx-auto">
           <FadeInUp className="text-center mb-16">
-            <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-3">
+            <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-3">
               Four Distinct Pathways
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
@@ -572,8 +572,8 @@ export function MeadowBreezeContent() {
                 <FadeInUp key={lifestyle.title} delay={i * 0.1}>
                   <div className="luxury-card-dark h-full">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-lg bg-[#d4a843]/10 flex items-center justify-center">
-                        <Icon className="w-5 h-5 text-[#d4a843]" />
+                      <div className="w-10 h-10 rounded-lg bg-[#8D5B30]/10 flex items-center justify-center">
+                        <Icon className="w-5 h-5 text-[#8D5B30]" />
                       </div>
                       <h3 className="text-white font-bold text-lg">{lifestyle.title}</h3>
                     </div>
@@ -583,7 +583,7 @@ export function MeadowBreezeContent() {
                     <ul className="space-y-2">
                       {lifestyle.features.map((feature) => (
                         <li key={feature} className="flex items-center gap-2 text-white/60 text-sm">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#d4a843] shrink-0" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#8D5B30] shrink-0" />
                           {feature}
                         </li>
                       ))}
@@ -597,13 +597,13 @@ export function MeadowBreezeContent() {
       </section>
 
       {/* Why Invest */}
-      <section className="section-padding bg-[#fefdf8]">
+      <section className="section-padding bg-[#faf6ee]">
         <div className="container-luxury mx-auto">
           <FadeInUp className="text-center mb-16">
-            <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-3">
+            <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-3">
               Investment Potential
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0a2515] mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#33200F] mb-6">
               Why Invest in The Meadow Breeze
             </h2>
             <div className="divider-gold mx-auto" />
@@ -613,8 +613,8 @@ export function MeadowBreezeContent() {
             {/* Market Factors */}
             <FadeInUp>
               <div className="luxury-card h-full">
-                <h3 className="text-xl font-bold text-[#0a2515] mb-6 flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-[#d4a843]" />
+                <h3 className="text-xl font-bold text-[#33200F] mb-6 flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5 text-[#8D5B30]" />
                   Market Factors
                 </h3>
                 <div className="space-y-0">
@@ -627,7 +627,7 @@ export function MeadowBreezeContent() {
                           : ''
                       }`}
                     >
-                      <span className="text-[#0a2515] font-medium text-sm">{item.factor}</span>
+                      <span className="text-[#33200F] font-medium text-sm">{item.factor}</span>
                       <span className="text-gray-500 text-sm text-right">{item.advantage}</span>
                     </div>
                   ))}
@@ -638,14 +638,14 @@ export function MeadowBreezeContent() {
             {/* Differentiators */}
             <FadeInUp delay={0.2}>
               <div className="luxury-card h-full">
-                <h3 className="text-xl font-bold text-[#0a2515] mb-6 flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-[#d4a843]" />
+                <h3 className="text-xl font-bold text-[#33200F] mb-6 flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-[#8D5B30]" />
                   Project Differentiators
                 </h3>
                 <div className="space-y-4">
                   {meadowBreeze.differentiators.map((item) => (
                     <div key={item} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-[#d4a843] shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-5 h-5 text-[#8D5B30] shrink-0 mt-0.5" />
                       <span className="text-gray-600 text-sm">{item}</span>
                     </div>
                   ))}
@@ -657,11 +657,11 @@ export function MeadowBreezeContent() {
       </section>
 
       {/* Book Site Visit Form */}
-      <section className="section-padding bg-[#0a2515]">
+      <section className="section-padding bg-[#33200F]">
         <div className="container-luxury mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <FadeInUp>
-              <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-3">
+              <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-3">
                 Get Started
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
@@ -674,13 +674,13 @@ export function MeadowBreezeContent() {
               </p>
               <div className="space-y-4">
                 <div className="flex items-center gap-3 text-white/60">
-                  <Phone className="w-5 h-5 text-[#d4a843]" />
+                  <Phone className="w-5 h-5 text-[#8D5B30]" />
                   <a href={`tel:${company.phone}`} className="hover:text-white transition-colors">
                     {company.phone}
                   </a>
                 </div>
                 <div className="flex items-center gap-3 text-white/60">
-                  <MapPin className="w-5 h-5 text-[#d4a843]" />
+                  <MapPin className="w-5 h-5 text-[#8D5B30]" />
                   <span>{meadowBreeze.location}</span>
                 </div>
               </div>

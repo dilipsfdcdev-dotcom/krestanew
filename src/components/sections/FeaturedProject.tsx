@@ -11,13 +11,13 @@ const highlightIcons = [Mountain, ShieldCheck, Leaf, TreePine]
 
 export function FeaturedProject() {
   return (
-    <section className="section-padding bg-gradient-to-b from-[#fefdf8] to-white">
+    <section className="section-padding bg-gradient-to-b from-[#faf6ee] to-white">
       <div className="container-luxury mx-auto">
         <FadeInUp className="text-center mb-16">
-          <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-3">
+          <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-3">
             Featured Development
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0a2515] mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#33200F] mb-6">
             Our Premium Developments
           </h2>
           <div className="divider-gold mx-auto" />
@@ -34,9 +34,9 @@ export function FeaturedProject() {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a2515]/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#33200F]/60 to-transparent" />
                 <div className="absolute bottom-6 left-6">
-                  <span className="bg-[#d4a843] text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">
+                  <span className="bg-[#8D5B30] text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">
                     Now Selling
                   </span>
                 </div>
@@ -44,24 +44,24 @@ export function FeaturedProject() {
 
               {/* Content */}
               <div className="p-8 sm:p-10 lg:p-12">
-                <p className="text-[#d4a843] text-sm tracking-wider uppercase mb-2">
+                <p className="text-[#8D5B30] text-sm tracking-wider uppercase mb-2">
                   By Kresta
                 </p>
-                <h3 className="text-3xl sm:text-4xl font-bold text-[#0a2515] mb-2">
+                <h3 className="text-3xl sm:text-4xl font-bold text-[#33200F] mb-2">
                   {meadowBreeze.name}
                 </h3>
                 <p className="text-gray-500 text-sm mb-4">
                   {meadowBreeze.location}
                 </p>
-                <p className="text-[#0a2515]/80 italic text-lg mb-6">
+                <p className="text-[#33200F]/80 italic text-lg mb-6">
                   &ldquo;{meadowBreeze.tagline}&rdquo;
                 </p>
 
                 {/* Stats */}
                 <div className="grid grid-cols-3 gap-4 mb-8">
                   {meadowBreeze.stats.slice(0, 3).map((stat) => (
-                    <div key={stat.label} className="text-center p-3 rounded-xl bg-[#0a2515]/5">
-                      <p className="text-[#d4a843] font-bold text-lg">{stat.value}</p>
+                    <div key={stat.label} className="text-center p-3 rounded-xl bg-[#33200F]/5">
+                      <p className="text-[#8D5B30] font-bold text-lg">{stat.value}</p>
                       <p className="text-gray-500 text-xs mt-1">{stat.label}</p>
                     </div>
                   ))}
@@ -73,7 +73,7 @@ export function FeaturedProject() {
                     const Icon = highlightIcons[i]
                     return (
                       <div key={highlight} className="flex items-center gap-2">
-                        <Icon className="w-4 h-4 text-[#d4a843] shrink-0" />
+                        <Icon className="w-4 h-4 text-[#8D5B30] shrink-0" />
                         <span className="text-sm text-gray-600">{highlight}</span>
                       </div>
                     )

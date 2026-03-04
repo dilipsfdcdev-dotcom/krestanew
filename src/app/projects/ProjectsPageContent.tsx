@@ -14,9 +14,9 @@ export function ProjectsPageContent() {
     <>
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a2515] via-[#1a5632] to-[#0f3620]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#33200F] via-[#4F3408] to-[#3F1C15]" />
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#d4a843] rounded-full blur-[150px]" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#8D5B30] rounded-full blur-[150px]" />
         </div>
         <div className="relative z-10 container-luxury mx-auto px-4 sm:px-6 lg:px-8 text-center py-32">
           <motion.div
@@ -24,7 +24,7 @@ export function ProjectsPageContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-4">
+            <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-4">
               Our Developments
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
@@ -53,9 +53,9 @@ export function ProjectsPageContent() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a2515]/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#33200F]/60 to-transparent" />
                   <div className="absolute bottom-6 left-6">
-                    <span className="bg-[#d4a843] text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">
+                    <span className="bg-[#8D5B30] text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">
                       Now Selling
                     </span>
                   </div>
@@ -63,17 +63,17 @@ export function ProjectsPageContent() {
 
                 {/* Content */}
                 <div className="p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
-                  <p className="text-[#d4a843] text-sm tracking-wider uppercase mb-2">
+                  <p className="text-[#8D5B30] text-sm tracking-wider uppercase mb-2">
                     Premium Farmland Estate
                   </p>
-                  <h2 className="text-3xl sm:text-4xl font-bold text-[#0a2515] mb-2">
+                  <h2 className="text-3xl sm:text-4xl font-bold text-[#33200F] mb-2">
                     {meadowBreeze.name}
                   </h2>
                   <div className="flex items-center gap-2 text-gray-500 text-sm mb-4">
-                    <MapPin className="w-4 h-4 text-[#d4a843]" />
+                    <MapPin className="w-4 h-4 text-[#8D5B30]" />
                     {meadowBreeze.location}
                   </div>
-                  <p className="text-[#0a2515]/80 italic text-lg mb-4">
+                  <p className="text-[#33200F]/80 italic text-lg mb-4">
                     &ldquo;{meadowBreeze.tagline}&rdquo;
                   </p>
                   <p className="text-gray-500 mb-6 leading-relaxed">
@@ -83,8 +83,8 @@ export function ProjectsPageContent() {
                   {/* Stats */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                     {meadowBreeze.stats.map((stat) => (
-                      <div key={stat.label} className="text-center p-3 rounded-xl bg-[#0a2515]/5">
-                        <p className="text-[#d4a843] font-bold text-lg">{stat.value}</p>
+                      <div key={stat.label} className="text-center p-3 rounded-xl bg-[#33200F]/5">
+                        <p className="text-[#8D5B30] font-bold text-lg">{stat.value}</p>
                         <p className="text-gray-500 text-xs mt-1">{stat.label}</p>
                       </div>
                     ))}
@@ -96,7 +96,7 @@ export function ProjectsPageContent() {
                       const Icon = highlightIcons[i]
                       return (
                         <div key={highlight} className="flex items-center gap-2">
-                          <Icon className="w-4 h-4 text-[#d4a843] shrink-0" />
+                          <Icon className="w-4 h-4 text-[#8D5B30] shrink-0" />
                           <span className="text-sm text-gray-600">{highlight}</span>
                         </div>
                       )

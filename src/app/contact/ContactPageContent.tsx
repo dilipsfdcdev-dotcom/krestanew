@@ -19,14 +19,14 @@ export function ContactPageContent() {
     <>
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a2515] via-[#1a5632] to-[#0f3620]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#33200F] via-[#4F3408] to-[#3F1C15]" />
         <div className="relative z-10 container-luxury mx-auto px-4 sm:px-6 lg:px-8 text-center py-32">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-4">
+            <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-4">
               Get in Touch
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
@@ -46,14 +46,14 @@ export function ContactPageContent() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Info */}
             <FadeInUp>
-              <h2 className="text-3xl font-bold text-[#0a2515] mb-8">
+              <h2 className="text-3xl font-bold text-[#33200F] mb-8">
                 Let&apos;s Start a Conversation
               </h2>
               <div className="space-y-6 mb-8">
                 {contactInfo.map((item) => (
                   <div key={item.label} className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#0a2515] flex items-center justify-center shrink-0">
-                      <item.icon className="w-5 h-5 text-[#d4a843]" />
+                    <div className="w-12 h-12 rounded-xl bg-[#33200F] flex items-center justify-center shrink-0">
+                      <item.icon className="w-5 h-5 text-[#8D5B30]" />
                     </div>
                     <div>
                       <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">{item.label}</p>
@@ -62,12 +62,12 @@ export function ContactPageContent() {
                           href={item.href}
                           target={item.href.startsWith('http') ? '_blank' : undefined}
                           rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className="text-[#0a2515] font-medium hover:text-[#d4a843] transition-colors"
+                          className="text-[#33200F] font-medium hover:text-[#8D5B30] transition-colors"
                         >
                           {item.value}
                         </a>
                       ) : (
-                        <p className="text-[#0a2515] font-medium">{item.value}</p>
+                        <p className="text-[#33200F] font-medium">{item.value}</p>
                       )}
                     </div>
                   </div>

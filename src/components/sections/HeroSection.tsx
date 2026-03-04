@@ -18,8 +18,8 @@ export function HeroSection() {
           priority
           quality={90}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a2515]/70 via-[#0a2515]/50 to-[#0a2515]/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2515]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#33200F]/70 via-[#33200F]/50 to-[#33200F]/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#33200F]/60 to-transparent" />
       </div>
 
       {/* Content */}
@@ -35,24 +35,21 @@ export function HeroSection() {
             initial={{ width: 0 }}
             animate={{ width: 80 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="h-0.5 bg-gradient-to-r from-[#d4a843] to-[#b8860b] mx-auto mb-8"
+            className="h-0.5 bg-gradient-to-r from-[#8D5B30] to-[#753429] mx-auto mb-8"
           />
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-[#d4a843] text-sm sm:text-base tracking-[0.3em] uppercase mb-6"
+            className="text-[#8D5B30] text-sm sm:text-base tracking-[0.3em] uppercase mb-6"
           >
             Kresta Infra & Developers
           </motion.p>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-            Crafting{' '}
-            <span className="gradient-text-gold">Luxury</span>,
-            <br />
-            Building{' '}
-            <span className="gradient-text-gold">Dreams</span>
+            Own What{' '}
+            <span className="gradient-text-gold">Endures</span>
           </h1>
 
           <motion.p
@@ -61,8 +58,8 @@ export function HeroSection() {
             transition={{ delay: 0.6 }}
             className="text-white/70 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            Premium real estate solutions — from luxury residences and farmland
-            estates to commercial spaces and integrated townships.
+            A living landscape shaped by restraint, not imposition.
+            Designed around nature, never against it.
           </motion.p>
 
           <motion.div
@@ -93,7 +90,7 @@ export function HeroSection() {
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
         >
-          <ChevronDown className="w-6 h-6 text-[#d4a843]" />
+          <ChevronDown className="w-6 h-6 text-[#8D5B30]" />
         </motion.div>
       </motion.div>
     </section>

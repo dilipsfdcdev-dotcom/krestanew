@@ -29,7 +29,7 @@ export function ScheduleVisitContent() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a2515]/70 via-[#0a2515]/50 to-[#0a2515]/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#33200F]/70 via-[#33200F]/50 to-[#33200F]/80" />
         </div>
         <div className="relative z-10 container-luxury mx-auto px-4 sm:px-6 lg:px-8 text-center py-32">
           <motion.div
@@ -37,7 +37,7 @@ export function ScheduleVisitContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-[#d4a843] text-sm tracking-[0.3em] uppercase mb-4">
+            <p className="text-[#8D5B30] text-sm tracking-[0.3em] uppercase mb-4">
               Experience It Yourself
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
@@ -58,43 +58,43 @@ export function ScheduleVisitContent() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Info */}
             <FadeInUp>
-              <h2 className="text-3xl font-bold text-[#0a2515] mb-6">
+              <h2 className="text-3xl font-bold text-[#33200F] mb-6">
                 Why Visit The Meadow Breeze?
               </h2>
               <div className="divider-gold mb-6" />
               <div className="space-y-4 mb-8">
                 {benefits.map((benefit) => (
                   <div key={benefit} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-[#d4a843] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-[#8D5B30] shrink-0 mt-0.5" />
                     <span className="text-gray-600">{benefit}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="luxury-card bg-[#fefdf8]">
-                <h3 className="text-[#0a2515] font-bold mb-4 flex items-center gap-2">
-                  <Calendar className="w-5 h-5 text-[#d4a843]" />
+              <div className="luxury-card bg-[#faf6ee]">
+                <h3 className="text-[#33200F] font-bold mb-4 flex items-center gap-2">
+                  <Calendar className="w-5 h-5 text-[#8D5B30]" />
                   Visit Details
                 </h3>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
-                    <Car className="w-5 h-5 text-[#d4a843] shrink-0 mt-0.5" />
+                    <Car className="w-5 h-5 text-[#8D5B30] shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-[#0a2515] font-medium">Free Pickup Available</p>
+                      <p className="text-[#33200F] font-medium">Free Pickup Available</p>
                       <p className="text-gray-500 text-sm">From ORR Exit 11 on weekends</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <Phone className="w-5 h-5 text-[#d4a843] shrink-0 mt-0.5" />
+                    <Phone className="w-5 h-5 text-[#8D5B30] shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-[#0a2515] font-medium">{company.phone}</p>
+                      <p className="text-[#33200F] font-medium">{company.phone}</p>
                       <p className="text-gray-500 text-sm">Call or WhatsApp to confirm</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-[#d4a843] shrink-0 mt-0.5" />
+                    <MapPin className="w-5 h-5 text-[#8D5B30] shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-[#0a2515] font-medium">Peepal Pahad, Choutuppal</p>
+                      <p className="text-[#33200F] font-medium">Peepal Pahad, Choutuppal</p>
                       <p className="text-gray-500 text-sm">30 km from ORR Exit 11</p>
                     </div>
                   </div>
@@ -104,7 +104,7 @@ export function ScheduleVisitContent() {
 
             {/* Form */}
             <FadeInUp delay={0.2}>
-              <h2 className="text-3xl font-bold text-[#0a2515] mb-6">
+              <h2 className="text-3xl font-bold text-[#33200F] mb-6">
                 Book Your Visit
               </h2>
               <ContactForm variant="light" />

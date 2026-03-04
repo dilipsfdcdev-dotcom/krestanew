@@ -4,11 +4,11 @@
 
 @layer base {
   :root {
-    --color-primary: #1a5632;
-    --color-primary-dark: #0a2515;
-    --color-gold: #d4a843;
-    --color-gold-dark: #b8860b;
-    --color-cream: #fefdf8;
+    --color-primary: #4F3408;
+    --color-primary-dark: #33200F;
+    --color-gold: #8D5B30;
+    --color-gold-dark: #753429;
+    --color-cream: #EFE8B9;
   }
 
   html {
@@ -22,7 +22,7 @@
   }
 
   ::selection {
-    background-color: rgba(212, 168, 67, 0.3);
+    background-color: rgba(141, 91, 48, 0.3);
   }
 }
 
@@ -44,19 +44,19 @@
   }
 
   .gradient-text-gold {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#d4a843] via-[#f0d78c] to-[#d4a843];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#8D5B30] via-[#c29e71] to-[#8D5B30];
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-3.5 bg-gradient-to-r from-[#d4a843] to-[#b8860b] text-white font-semibold rounded-full hover:shadow-lg hover:shadow-[#d4a843]/25 transition-all duration-300 hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-gradient-to-r from-[#8D5B30] to-[#753429] text-white font-semibold rounded-full hover:shadow-lg hover:shadow-[#8D5B30]/25 transition-all duration-300 hover:-translate-y-0.5;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center px-8 py-3.5 border-2 border-[#d4a843] text-[#d4a843] font-semibold rounded-full hover:bg-[#d4a843] hover:text-white transition-all duration-300;
+    @apply inline-flex items-center justify-center px-8 py-3.5 border-2 border-[#8D5B30] text-[#8D5B30] font-semibold rounded-full hover:bg-[#8D5B30] hover:text-white transition-all duration-300;
   }
 
   .btn-outline-white {
-    @apply inline-flex items-center justify-center px-8 py-3.5 border-2 border-white/60 text-white font-semibold rounded-full hover:bg-white hover:text-[#0a2515] transition-all duration-300;
+    @apply inline-flex items-center justify-center px-8 py-3.5 border-2 border-white/60 text-white font-semibold rounded-full hover:bg-white hover:text-[#33200F] transition-all duration-300;
   }
 
   .luxury-card {
@@ -64,11 +64,11 @@
   }
 
   .luxury-card-dark {
-    @apply bg-[#0f3620]/80 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 hover:border-[#d4a843]/30 transition-all duration-500;
+    @apply bg-[#3F1C15]/80 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 hover:border-[#8D5B30]/30 transition-all duration-500;
   }
 
   .divider-gold {
-    @apply w-16 h-0.5 bg-gradient-to-r from-[#d4a843] to-[#b8860b];
+    @apply w-16 h-0.5 bg-gradient-to-r from-[#8D5B30] to-[#753429];
   }
 }
 
@@ -78,14 +78,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a2515;
+  background: #33200F;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4a843;
+  background: #8D5B30;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b8860b;
+  background: #753429;
 }

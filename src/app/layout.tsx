@@ -6,7 +6,7 @@ import { WhatsAppButton } from '@/components/WhatsAppButton'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Kresta Infra & Developers | Crafting Luxury, Building Dreams',
+    default: 'Kresta Infra & Developers | Own What Endures',
     template: '%s | Kresta Infra & Developers',
   },
   description:
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     siteName: 'Kresta Infra & Developers',
-    title: 'Kresta Infra & Developers | Crafting Luxury, Building Dreams',
+    title: 'Kresta Infra & Developers | Own What Endures',
     description:
       'Premium real estate development company specializing in luxury residences, farmland estates, and integrated townships in Hyderabad.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kresta Infra & Developers | Crafting Luxury, Building Dreams',
+    title: 'Kresta Infra & Developers | Own What Endures',
     description:
       'Premium real estate development company in Hyderabad.',
   },
@@ -61,7 +61,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet"
         />
         <script
