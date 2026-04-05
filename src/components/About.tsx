@@ -1,129 +1,85 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { Award, Clock, MapPin } from 'lucide-react';
+import Image from 'next/image';
+import { useReveal } from '@/hooks/useReveal';
 
 const values = [
-  {
-    icon: Award,
-    title: 'Premium Quality',
-    description: 'World-class construction standards and materials ensuring lasting value for generations.',
-  },
-  {
-    icon: Clock,
-    title: 'Timely Delivery',
-    description: 'Committed to meeting project deadlines with transparent progress updates.',
-  },
-  {
-    icon: MapPin,
-    title: 'Strategic Locations',
-    description: 'Prime locations with excellent connectivity and appreciation potential.',
-  },
+  { icon: Award, title: 'Premium Quality', description: 'World-class construction standards and materials ensuring lasting value for generations.' },
+  { icon: Clock, title: 'Timely Delivery', description: 'Committed to meeting project deadlines with transparent progress updates.' },
+  { icon: MapPin, title: 'Strategic Locations', description: 'Prime locations with excellent connectivity and appreciation potential.' },
 ];
 
 export default function About() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const { ref, visible } = useReveal();
 
   return (
-    <section id="about" className="py-24 md:py-32 bg-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pattern-lines" />
+    <section id="about" className="py-28 md:py-40 bg-[#0c0c0c] relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#d4af37]/[0.02] to-transparent" />
 
-      <div className="container-luxury">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <motion.div
-            ref={ref}
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="section-subtitle text-[#c9a962] font-medium mb-4 block">
-              About Kresta
-            </span>
-            <h2 className="section-title font-bold text-[#1a1a1a] mb-6">
-              Crafting Luxury,
-              <span className="text-[#c9a962]"> Building Dreams</span>
+      <div className="container-luxury relative" ref={ref}>
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          <div className={`reveal-left ${visible ? 'visible' : ''} lg:col-span-7`}>
+            <span className="label-gold mb-6 block">About Kresta</span>
+
+            <h2 className="heading-section text-white mb-8 font-[family-name:var(--font-heading)]">
+              Where Vision Meets{' '}
+              <span className="text-gold-gradient italic">Legacy</span>
             </h2>
-            <div className="line-gold-solid mb-8" />
 
-            <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              Kresta Infra & Developers Pvt. Ltd. is a premier real estate development company
-              specializing in luxury residential projects, premium farmland communities, commercial
-              spaces, and integrated township developments.
+            <div className="divider-gold mb-10" />
+
+            <p className="text-white/50 text-lg leading-relaxed mb-6 max-w-2xl">
+              Kresta Infra & Developers Pvt. Ltd. is a premier real estate development company specializing in luxury residential projects, premium farmland communities, commercial spaces, and integrated township developments.
             </p>
-            <p className="text-gray-600 leading-relaxed mb-8">
-              From high-rise apartments to serene farmland estates, we deliver diverse real estate
-              solutions with world-class quality. Our vision is to transform spaces into thriving
-              communities that blend modern living with sustainable design.
+            <p className="text-white/40 leading-relaxed mb-12 max-w-2xl">
+              From high-rise apartments to serene farmland estates, we deliver diverse real estate solutions with world-class quality. Our vision is to transform spaces into thriving communities that blend modern living with sustainable design.
             </p>
 
-            {/* Values */}
-            <div className="space-y-6">
-              {values.map((value, index) => (
-                <motion.div
-                  key={value.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
-                  className="flex gap-4"
-                >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
-                    <value.icon className="w-5 h-5 text-[#c9a962]" />
+            <div className="space-y-4">
+              {values.map((value, i) => (
+                <div key={value.title} className={`reveal ${visible ? 'visible' : ''} stagger-${i + 1} group flex items-center gap-5 p-5 glass rounded-lg hover:border-[#d4af37]/20 transition-all`}>
+                  <div className="w-12 h-12 rounded bg-[#d4af37]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#d4af37]/20 transition-colors">
+                    <value.icon className="w-5 h-5 text-[#d4af37]" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-[#1a1a1a] mb-1">{value.title}</h3>
-                    <p className="text-gray-600 text-sm">{value.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right Images */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="relative">
-              {/* Main Image */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl img-zoom">
-                <img
-                  src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600"
-                  alt="Kresta Farmland"
-                  className="w-full h-[500px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              </div>
-
-              {/* Floating Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="absolute -bottom-8 -left-8 bg-white p-6 rounded-xl shadow-xl"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-[#c9a962] flex items-center justify-center">
-                    <Award className="w-7 h-7 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-2xl font-bold text-[#1a1a1a]">Since 2024</h4>
-                    <p className="text-gray-500 text-sm">Trusted Developer</p>
+                    <h3 className="font-semibold text-white mb-0.5 text-sm tracking-wide">{value.title}</h3>
+                    <p className="text-white/40 text-sm">{value.description}</p>
                   </div>
                 </div>
-              </motion.div>
-
-              {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-[#c9a962] rounded-2xl" />
-              <div className="absolute -bottom-4 right-20 w-16 h-16 bg-[#c9a962]/10 rounded-full" />
+              ))}
             </div>
-          </motion.div>
+          </div>
+
+          <div className={`reveal-right ${visible ? 'visible' : ''} lg:col-span-5`}>
+            <div className="relative">
+              <div className="relative rounded-lg overflow-hidden img-zoom aspect-[3/4]">
+                <Image
+                  src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600"
+                  alt="Kresta Farmland"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent" />
+              </div>
+
+              <div className={`reveal ${visible ? 'visible' : ''} stagger-4 absolute -bottom-4 -left-4 md:-left-8 glass p-5 rounded-lg`}>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded bg-[#d4af37] flex items-center justify-center">
+                    <Award className="w-6 h-6 text-[#0c0c0c]" />
+                  </div>
+                  <div>
+                    <h4 className="text-2xl font-bold text-white font-[family-name:var(--font-heading)]">Since 2024</h4>
+                    <p className="text-white/40 text-xs tracking-widest uppercase">Trusted Developer</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute -top-4 -right-4 w-24 h-24 border-t border-r border-[#d4af37]/20 rounded-tr-lg" />
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,7 +1,4 @@
-'use client';
-
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import Image from 'next/image';
 import { ChevronDown, MapPin, TreePine, Mountain, Shield } from 'lucide-react';
 
 const highlights = [
@@ -11,162 +8,71 @@ const highlights = [
 ];
 
 export default function ProjectHero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
-
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Parallax */}
-      <motion.div style={{ scale }} className="absolute inset-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000')`,
-          }}
+    <section className="relative min-h-screen flex items-end overflow-hidden bg-[#0c0c0c]">
+      <div className="absolute inset-0">
+        <Image
+          src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000"
+          alt="The Meadow Breeze"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/90 via-[#1a1a1a]/80 to-[#0a0a0a]/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c0c] via-[#0c0c0c]/50 to-[#0c0c0c]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0c0c0c]/70 to-transparent" />
+      </div>
 
-        {/* Static Gradient Elements - removed infinite animations for performance */}
-        <div className="absolute top-1/4 left-10 w-64 h-64 bg-[#c9a962]/20 rounded-full filter blur-[100px]" />
-        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[100px]" />
-      </motion.div>
+      <div className="hidden lg:block absolute left-12 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#d4af37]/20 to-transparent" />
 
-      {/* Content */}
-      <motion.div style={{ y, opacity }} className="relative z-10 container-luxury text-center px-4">
-        {/* Project Name */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <p className="text-white/60 text-sm md:text-base tracking-[0.15em] uppercase mb-3">
-            A Distinguished 100-Acre Farmland Estate
-          </p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-2">
+      <div className="relative z-10 container-luxury pb-24 md:pb-32 pt-40">
+        <div className="max-w-3xl">
+          <div className="hero-fade-1 mb-6">
+            <span className="label-gold">A Distinguished 100-Acre Farmland Estate</span>
+          </div>
+
+          <h1 className="hero-fade-2 heading-display text-white mb-3 font-[family-name:var(--font-heading)]">
             The Meadow Breeze
           </h1>
-          <p className="text-[#c9a962] text-base md:text-lg tracking-[0.2em] uppercase font-medium">
-            by Kresta
+          <p className="hero-fade-2 text-[#d4af37] text-sm tracking-[0.25em] uppercase font-medium mb-6">by Kresta</p>
+
+          <div className="hero-line w-20 h-px bg-[#d4af37] mb-8" />
+
+          <p className="hero-fade-3 text-xl md:text-2xl text-white/60 font-light italic font-[family-name:var(--font-heading)] mb-4">
+            &ldquo;Where the hills whisper peace and the breeze carries serenity&rdquo;
           </p>
-        </motion.div>
 
-        {/* Animated Divider */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="w-32 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto my-8"
-        />
+          <div className="hero-fade-3 flex items-center gap-2 text-white/40 mb-10">
+            <MapPin className="w-4 h-4 text-[#d4af37]" />
+            <span className="text-sm">Peepal Pahad, Choutuppal, Yadadri Bhuvanagiri District</span>
+          </div>
 
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-xl md:text-2xl lg:text-3xl text-white/90 font-light mb-4 italic"
-          style={{ fontFamily: 'var(--font-heading)' }}
-        >
-          "Where the hills whisper peace and the breeze carries serenity"
-        </motion.p>
+          <div className="hero-fade-4 flex flex-wrap gap-3 mb-12">
+            {highlights.map((item) => (
+              <div key={item.text} className="flex items-center gap-2 px-4 py-2.5 glass rounded hover:border-[#d4af37]/20 transition-all">
+                <item.icon className="w-4 h-4 text-[#d4af37]" />
+                <span className="text-white/80 font-medium text-sm">{item.text}</span>
+              </div>
+            ))}
+          </div>
 
-        {/* Location */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="flex items-center justify-center gap-2 text-white/70 mb-10"
-        >
-          <MapPin className="w-5 h-5 text-[#c9a962]" />
-          <span>Peepal Pahad, Choutuppal, Yadadri Bhuvanagiri District</span>
-        </motion.div>
+          <div className="hero-fade-5 flex flex-wrap gap-4">
+            <a href="#overview" className="px-8 py-4 bg-[#d4af37] text-[#0c0c0c] font-semibold text-sm tracking-wide hover:bg-[#f0d77b] transition-all">
+              Explore Project
+            </a>
+            <a href="https://wa.me/919888932555?text=Hi%2C%20I%27m%20interested%20in%20The%20Meadow%20Breeze%20project.%20Please%20share%20more%20details." target="_blank" rel="noopener noreferrer" className="px-8 py-4 border border-white/15 text-white font-medium text-sm tracking-wide hover:border-[#d4af37]/50 hover:text-[#d4af37] transition-all">
+              Book Site Visit
+            </a>
+          </div>
+        </div>
+      </div>
 
-        {/* Highlights Pills */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
-        >
-          {highlights.map((item, index) => (
-            <motion.div
-              key={item.text}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 1.3 + index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -3 }}
-              className="flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-white/20 hover:border-[#c9a962]/50 transition-all"
-            >
-              <item.icon className="w-5 h-5 text-[#c9a962]" />
-              <span className="text-white font-medium">{item.text}</span>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <a
-            href="#overview"
-            className="group relative px-8 py-4 bg-[#c9a962] text-white rounded-full font-medium overflow-hidden transition-all hover:shadow-lg hover:shadow-[#c9a962]/30"
-          >
-            <span className="relative z-10">Explore Project</span>
-            <motion.div
-              className="absolute inset-0 bg-[#8b7355]"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          </a>
-          <a
-            href="https://wa.me/919888932555?text=Hi%2C%20I%27m%20interested%20in%20The%20Meadow%20Breeze%20project.%20Please%20share%20more%20details."
-            target="_blank"
-            className="px-8 py-4 border border-white/30 text-white rounded-full font-medium hover:bg-white/10 hover:border-[#c9a962]/50 transition-all"
-          >
-            Book Site Visit
-          </a>
-        </motion.div>
-      </motion.div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-      >
-        <a href="#overview" className="flex flex-col items-center text-white/60 hover:text-[#c9a962] transition-colors">
-          <span className="text-xs tracking-widest uppercase mb-2">Scroll to Explore</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            <ChevronDown size={24} />
-          </motion.div>
+      <div className="hero-fade-5 absolute bottom-6 left-1/2 -translate-x-1/2 z-10">
+        <a href="#overview" className="flex flex-col items-center text-white/30 hover:text-[#d4af37] transition-colors">
+          <span className="text-[10px] tracking-[0.3em] uppercase mb-3">Explore</span>
+          <div className="float-gentle"><ChevronDown size={18} /></div>
         </a>
-      </motion.div>
-
-      {/* Modern Sanctuary Text */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-8 right-8 hidden lg:block"
-      >
-        <p className="text-white/40 text-sm italic" style={{ fontFamily: 'var(--font-heading)' }}>
-          Modern Sanctuary
-        </p>
-      </motion.div>
+      </div>
     </section>
   );
 }
