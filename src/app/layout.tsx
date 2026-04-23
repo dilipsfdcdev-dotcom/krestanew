@@ -50,7 +50,7 @@ export default function RootLayout({
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <meta name="theme-color" content="#1a1a1a" />
       </head>
-      <body className="antialiased bg-[#faf8f5]">
+      <body className="antialiased bg-[#050505] text-[#f5f5f4]">
         {children}
       </body>
     </html>
