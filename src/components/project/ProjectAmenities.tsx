@@ -16,69 +16,19 @@ import {
 } from 'lucide-react';
 
 const amenities = [
-  {
-    icon: Shield,
-    title: '24/7 Security',
-    description: 'Round-the-clock CCTV surveillance and security patrol',
-    gradient: 'from-red-500 to-orange-500',
-  },
-  {
-    icon: Droplets,
-    title: 'Water Supply',
-    description: 'Dedicated bore wells and underground tank',
-    gradient: 'from-blue-500 to-cyan-500',
-  },
-  {
-    icon: TreePine,
-    title: 'Drip Irrigation',
-    description: 'Modern efficient irrigation systems for farming and plantation',
-    gradient: 'from-green-500 to-emerald-500',
-  },
-  {
-    icon: Zap,
-    title: 'Electricity',
-    description: 'Dedicated transformer for uninterrupted power',
-    gradient: 'from-yellow-500 to-amber-500',
-  },
-  {
-    icon: Route,
-    title: 'Wide Roads',
-    description: '60 ft, 40 ft & 33 ft wide internal roads',
-    gradient: 'from-purple-500 to-pink-500',
-  },
-  {
-    icon: Lock,
-    title: 'Gated Entry',
-    description: 'Controlled single access point with security',
-    gradient: 'from-indigo-500 to-blue-500',
-  },
-  {
-    icon: Cable,
-    title: 'Underground Cables',
-    description: 'Clean modern aesthetics, no overhead wires',
-    gradient: 'from-gray-500 to-slate-500',
-  },
-  {
-    icon: CloudRain,
-    title: 'Drainage System',
-    description: 'Effective water management and harvesting',
-    gradient: 'from-teal-500 to-cyan-500',
-  },
-  {
-    icon: Footprints,
-    title: 'Walking Trails',
-    description: 'Nature paths throughout the property',
-    gradient: 'from-lime-500 to-green-500',
-  },
-  {
-    icon: Users,
-    title: 'Agronomist Support',
-    description: 'Expert farming guidance and organic methodology',
-    gradient: 'from-orange-500 to-red-500',
-  },
+  { icon: Shield, title: '24 / 7 Security', description: 'Round-the-clock CCTV & patrol' },
+  { icon: Droplets, title: 'Water Supply', description: 'Dedicated bore wells & tank' },
+  { icon: TreePine, title: 'Drip Irrigation', description: 'Modern efficient systems' },
+  { icon: Zap, title: 'Electricity', description: 'Dedicated transformer' },
+  { icon: Route, title: 'Wide Roads', description: '60 · 40 · 33 ft internal roads' },
+  { icon: Lock, title: 'Gated Entry', description: 'Single controlled access' },
+  { icon: Cable, title: 'Underground Cables', description: 'No overhead wires' },
+  { icon: CloudRain, title: 'Drainage & Harvesting', description: 'Effective water management' },
+  { icon: Footprints, title: 'Walking Trails', description: 'Nature paths throughout' },
+  { icon: Users, title: 'Agronomist Support', description: 'Expert organic guidance' },
 ];
 
-const additionalFeatures = [
+const additional = [
   'Avenue plantation on all roads',
   'Rainwater harvesting infrastructure',
   'Organic farming support',
@@ -87,111 +37,101 @@ const additionalFeatures = [
 
 export default function ProjectAmenities() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const inView = useInView(ref, { once: true, margin: '-20%' });
 
   return (
-    <section id="amenities" className="py-24 md:py-32 bg-white relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-full opacity-5 pattern-lines" />
-      </div>
-
-      <div className="container-luxury relative z-10" ref={ref}>
-        {/* Section Header */}
+    <section
+      id="amenities"
+      ref={ref}
+      className="relative py-32 md:py-44 bg-[#050505] noise"
+    >
+      <div className="container-edge">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16"
         >
-          <span className="text-[#c9a962] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-            World-Class Facilities
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a1a] mb-4">
-            Premium Amenities
-          </h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6"
-          />
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Every detail thoughtfully planned to ensure your farmland experience
-            is nothing short of extraordinary
+          <div className="max-w-3xl">
+            <p className="text-eyebrow mb-6">Amenities · World-Class Facilities</p>
+            <h2 className="text-section text-white">
+              Every detail,
+              <span className="italic text-gradient-gold"> considered.</span>
+            </h2>
+            <div className="rule-gold mt-8" />
+          </div>
+          <p className="text-white/55 text-[15px] max-w-md leading-relaxed">
+            Infrastructure you'd expect from a premium residential community,
+            integrated into a working farmland estate.
           </p>
         </motion.div>
 
-        {/* Amenities Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-          {amenities.map((amenity, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+          {amenities.map((a, i) => (
             <motion.div
-              key={amenity.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + index * 0.05 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group"
+              key={a.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.45, delay: 0.06 * i }}
+              className="surface-card surface-card-hover p-6 md:p-7"
             >
-              <div className="h-full p-5 bg-gradient-to-br from-[#faf8f5] to-white rounded-2xl border border-gray-100 hover:border-[#c9a962]/30 hover:shadow-xl transition-all duration-300">
-                <motion.div
-                  whileHover={{ rotate: [0, -10, 10, 0] }}
-                  transition={{ duration: 0.5 }}
-                  className={`w-12 h-12 rounded-xl bg-gradient-to-br ${amenity.gradient} flex items-center justify-center mb-4 shadow-lg`}
-                >
-                  <amenity.icon className="w-6 h-6 text-white" />
-                </motion.div>
-                <h3 className="font-bold text-[#1a1a1a] mb-1">{amenity.title}</h3>
-                <p className="text-gray-500 text-sm">{amenity.description}</p>
+              <div className="w-10 h-10 rounded-full border border-[#c9a962]/30 flex items-center justify-center mb-5">
+                <a.icon className="w-4 h-4 text-[#c9a962]" />
               </div>
+              <h3 className="text-white font-serif text-lg mb-1.5">
+                {a.title}
+              </h3>
+              <p className="text-white/50 text-[12px] leading-relaxed">
+                {a.description}
+              </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Additional Features */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-12 p-8 bg-gradient-to-br from-[#faf8f5] to-white rounded-2xl border border-[#c9a962]/20"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.35 }}
+          className="mt-10 surface-card p-8 md:p-10"
         >
-          <h3 className="text-xl font-bold text-[#1a1a1a] mb-6 text-center">Additional Features</h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {additionalFeatures.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-                className="flex items-center gap-2 px-5 py-3 bg-white rounded-full shadow-md border border-gray-100"
+          <p className="text-eyebrow mb-5">Additional Features</p>
+          <div className="flex flex-wrap gap-2">
+            {additional.map((f) => (
+              <span
+                key={f}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-white/75 text-[13px]"
               >
-                <div className="w-2 h-2 rounded-full bg-[#c9a962]" />
-                <span className="text-gray-700">{feature}</span>
-              </motion.div>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#c9a962]" />
+                {f}
+              </span>
             ))}
           </div>
         </motion.div>
 
-        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-16 rounded-3xl border border-white/10 bg-[#0a0a0a] p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-6"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-gradient-to-r from-[#1a1a1a] to-[#333] rounded-2xl text-white">
-            <div className="text-left">
-              <h4 className="font-semibold mb-1">Ready to experience luxury farmland?</h4>
-              <p className="text-white/70 text-sm">Schedule a site visit and see these amenities firsthand</p>
-            </div>
-            <a
-              href="https://wa.me/919888932555?text=Hi%2C%20I%20would%20like%20to%20schedule%20a%20site%20visit%20for%20The%20Meadow%20Breeze."
-              target="_blank"
-              className="px-6 py-3 bg-[#c9a962] text-white rounded-full font-medium hover:bg-[#8b7355] transition-all whitespace-nowrap"
-            >
-              Book Site Visit
-            </a>
+          <div className="max-w-xl">
+            <h4 className="text-2xl md:text-3xl font-serif text-white mb-3">
+              Experience the estate firsthand.
+            </h4>
+            <p className="text-white/55 text-[15px] leading-relaxed">
+              Schedule a private site visit — walk the plots, meet the team,
+              see the amenities under construction.
+            </p>
           </div>
+          <a
+            href="https://wa.me/919888932555?text=Hi%2C%20I%20would%20like%20to%20schedule%20a%20site%20visit%20for%20The%20Meadow%20Breeze."
+            target="_blank"
+            rel="noreferrer"
+            className="btn-primary shrink-0"
+          >
+            Book Site Visit
+            <span aria-hidden>→</span>
+          </a>
         </motion.div>
       </div>
     </section>

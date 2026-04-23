@@ -2,168 +2,207 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { MapPin, Car, TreePine, Home, Shield, Droplets, Zap, Leaf } from 'lucide-react';
+import {
+  MapPin,
+  Car,
+  TreePine,
+  Home,
+  Shield,
+  Leaf,
+  ArrowUpRight,
+} from 'lucide-react';
 
 const plotSizes = [
-  { size: '10 Guntas', area: '~1,210 sq yds', description: 'Compact farmhouse, weekend home, nature retreat' },
-  { size: '12.5-15 Guntas', area: '~1,510-1,815 sq yds', description: 'Farmhouse with landscaped garden' },
-  { size: '17-20 Guntas', area: '~2,060-2,420 sq yds', description: 'Medium farmhouse with farming/orchard area' },
-  { size: '22-25 Guntas', area: '~2,660-3,025 sq yds', description: 'Large farmhouse estate, corner & premium plots' },
-  { size: '25+ Guntas', area: '3,025+ sq yds', description: 'Premium estate near forest & boulder zones' },
+  { size: '10 Guntas', area: '~1,210 sq.yd', description: 'Compact farmhouse · weekend retreat' },
+  { size: '12.5–15 Guntas', area: '~1,510–1,815 sq.yd', description: 'Farmhouse with landscaped garden' },
+  { size: '17–20 Guntas', area: '~2,060–2,420 sq.yd', description: 'Medium farmhouse · orchard area' },
+  { size: '22–25 Guntas', area: '~2,660–3,025 sq.yd', description: 'Large estate · corner & premium plots' },
+  { size: '25+ Guntas', area: '3,025+ sq.yd', description: 'Premium estate near forest & boulder zones' },
 ];
 
 const locationHighlights = [
   { icon: MapPin, text: '30 km from ORR Exit 11' },
   { icon: Car, text: '7 km from Vijayawada Highway' },
-  { icon: TreePine, text: '360° Panoramic Mountain Views' },
-  { icon: Shield, text: 'Pure, Pollution-Free Environment' },
+  { icon: TreePine, text: '360° panoramic mountain views' },
+  { icon: Shield, text: 'Pure, pollution-free environment' },
 ];
 
 const investmentPoints = [
-  'Rising land values in Rachakonda corridor',
-  'Only 124 plots in exclusive gated community',
+  'Rising land values in the Rachakonda corridor',
+  'Only 124 plots in an exclusive gated community',
   'Clear titles with all legal documentation verified',
   'Infrastructure growth with ORR & highways nearby',
-  'Pre-planted estate with 600-900 plants per plot',
+  'Pre-planted estate with 600–900 plants per plot',
   '24/7 gated community with CCTV security',
+];
+
+const stats = [
+  { value: '124', label: 'Total Plots', icon: Home },
+  { value: '179,103', label: 'Sq.yd Area', icon: MapPin },
+  { value: '600–900', label: 'Plants / Plot', icon: TreePine },
+  { value: '100%', label: 'Organic Setup', icon: Leaf },
 ];
 
 export default function ProjectOverview() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const inView = useInView(ref, { once: true, margin: '-20%' });
 
   return (
-    <section id="overview" className="py-24 md:py-32 bg-white relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pattern-dots" />
-
-      <div className="container-luxury" ref={ref}>
-        {/* Section Header */}
+    <section
+      id="overview"
+      ref={ref}
+      className="relative py-32 md:py-44 bg-[#050505] noise"
+    >
+      <div className="container-edge">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="max-w-4xl mb-20"
         >
-          <span className="text-[#c9a962] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-            A Distinguished 100-Acre Farmland Estate
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a1a] mb-4">
-            Where the Hills Stand Guard
+          <p className="text-eyebrow mb-6">Overview · 50-Acre Estate</p>
+          <h2 className="text-section text-white">
+            Where the hills stand guard,
+            <br />
+            <span className="italic text-gradient-gold">serenity is inherited.</span>
           </h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-4"
-          />
-          <p className="text-gray-600 max-w-3xl mx-auto">
-            Nestled in the majestic Rachakonda Hills, The Meadow Breeze is crafted for those who value serenity, privacy, and purposeful living. Here, you don&apos;t merely own land — you inherit peace, purpose, and a deeper bond with nature.
+          <div className="rule-gold mt-10" />
+          <p className="mt-10 text-white/60 text-[15px] md:text-base leading-relaxed max-w-2xl">
+            Nestled in the majestic Rachakonda Hills, The Meadow Breeze is
+            composed for those who value privacy, purpose and the patient
+            company of nature. Here you do not merely own land — you inherit
+            quiet, continuity and a deeper bond with the earth.
           </p>
         </motion.div>
 
-        {/* Main Stats */}
+        {/* Stats strip */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="grid grid-cols-2 md:grid-cols-4 rounded-3xl border border-white/10 overflow-hidden mb-20"
         >
-          {[
-            { value: '124', label: 'Total Plots', icon: Home },
-            { value: '179,103', label: 'Sq. Yards Area', icon: MapPin },
-            { value: '600-900', label: 'Plants/Plot', icon: TreePine },
-            { value: '100%', label: 'Organic Setup', icon: Leaf },
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className="p-6 bg-gradient-to-br from-[#faf8f5] to-white rounded-2xl border border-[#c9a962]/20 shadow-lg hover:shadow-xl transition-all"
+          {stats.map((s, i) => (
+            <div
+              key={s.label}
+              className={`relative p-7 md:p-9 bg-[#0a0a0a] ${
+                i < stats.length - 1 ? 'md:border-r border-white/10' : ''
+              } ${i % 2 === 0 ? 'border-r border-white/10 md:border-r' : ''} ${
+                i < 2 ? 'border-b md:border-b-0 border-white/10' : ''
+              }`}
             >
-              <stat.icon className="w-8 h-8 text-[#c9a962] mb-3" />
-              <h3 className="text-2xl md:text-3xl font-bold text-[#1a1a1a]">{stat.value}</h3>
-              <p className="text-gray-500 text-sm">{stat.label}</p>
-            </motion.div>
+              <s.icon className="w-5 h-5 text-[#c9a962] mb-5 opacity-70" />
+              <div className="text-[10px] tracking-[0.35em] uppercase text-white/45 mb-2">
+                {s.label}
+              </div>
+              <div className="text-3xl md:text-4xl font-serif text-white">
+                {s.value}
+              </div>
+            </div>
           ))}
         </motion.div>
 
-        {/* Location & Investment Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          {/* Location Highlights */}
+        {/* Location + Investment split */}
+        <div className="grid lg:grid-cols-2 gap-6 mb-24">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-[#1a1a1a] rounded-3xl p-8 md:p-10 text-white relative overflow-hidden"
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="surface-card p-8 md:p-10 relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-40 h-40 bg-[#c9a962]/10 rounded-full filter blur-[60px]" />
-            <h3 className="text-2xl font-bold mb-6">Strategic Location</h3>
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#c9a962]/10 rounded-full filter blur-[80px]" />
+            <p className="text-eyebrow mb-5">Strategic Location</p>
+            <h3 className="text-2xl md:text-3xl font-serif text-white mb-8">
+              Connected, yet cloistered.
+            </h3>
             <div className="space-y-4 relative z-10">
-              {locationHighlights.map((item, index) => (
+              {locationHighlights.map((item, i) => (
                 <motion.div
                   key={item.text}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                  className="flex items-center gap-4"
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }}
+                  className="flex items-center gap-4 py-3 border-t border-white/8"
                 >
-                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                    <item.icon className="w-5 h-5 text-[#c9a962]" />
-                  </div>
-                  <span className="text-white/90">{item.text}</span>
+                  <item.icon className="w-4 h-4 text-[#c9a962] shrink-0" />
+                  <span className="text-white/80 text-sm">{item.text}</span>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Investment Highlights */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-gradient-to-br from-[#faf8f5] to-white rounded-3xl p-8 md:p-10 border border-[#c9a962]/20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.25 }}
+            className="surface-card p-8 md:p-10 relative overflow-hidden"
           >
-            <h3 className="text-2xl font-bold text-[#1a1a1a] mb-6">Investment Benefits</h3>
-            <div className="space-y-3">
-              {investmentPoints.map((point, index) => (
+            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#c9a962]/10 rounded-full filter blur-[80px]" />
+            <p className="text-eyebrow mb-5">Investment Benefits</p>
+            <h3 className="text-2xl md:text-3xl font-serif text-white mb-8">
+              Land that outlives cycles.
+            </h3>
+            <div className="space-y-3 relative z-10">
+              {investmentPoints.map((point, i) => (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                  key={i}
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.35 + i * 0.05 }}
                   className="flex items-start gap-3"
                 >
-                  <div className="w-2 h-2 rounded-full bg-[#c9a962] mt-2 flex-shrink-0" />
-                  <span className="text-gray-600">{point}</span>
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#c9a962] shrink-0" />
+                  <span className="text-white/75 text-sm leading-relaxed">
+                    {point}
+                  </span>
                 </motion.div>
               ))}
             </div>
           </motion.div>
         </div>
 
-        {/* Plot Sizes */}
+        {/* Plot sizes */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <h3 className="text-2xl font-bold text-[#1a1a1a] text-center mb-8">Available Plot Sizes</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {plotSizes.map((plot, index) => (
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <p className="text-eyebrow mb-3">Plot Composition</p>
+              <h3 className="text-2xl md:text-3xl font-serif text-white">
+                Sized for every vision.
+              </h3>
+            </div>
+            <a
+              href="#contact"
+              className="hidden md:inline-flex items-center gap-2 text-[#c9a962] text-sm tracking-[0.2em] uppercase link-underline"
+            >
+              Enquire <ArrowUpRight size={14} />
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 rounded-3xl border border-white/10 overflow-hidden">
+            {plotSizes.map((plot, i) => (
               <motion.div
                 key={plot.size}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="p-5 bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl hover:border-[#c9a962]/30 transition-all text-center"
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
+                className={`p-7 bg-[#0a0a0a] hover:bg-[#111] transition-colors ${
+                  i < plotSizes.length - 1 ? 'lg:border-r border-white/10' : ''
+                } ${i !== plotSizes.length - 1 ? 'border-b lg:border-b-0 border-white/10' : ''}`}
               >
-                <h4 className="text-xl font-bold text-[#1a1a1a] mb-1">{plot.size}</h4>
-                <p className="text-[#c9a962] font-medium text-sm mb-2">{plot.area}</p>
-                <p className="text-gray-500 text-xs">{plot.description}</p>
+                <div className="text-[10px] tracking-[0.35em] uppercase text-white/45 mb-3">
+                  Option {String(i + 1).padStart(2, '0')}
+                </div>
+                <h4 className="text-xl md:text-2xl font-serif text-white mb-2">
+                  {plot.size}
+                </h4>
+                <p className="text-[#c9a962] text-sm mb-4">{plot.area}</p>
+                <p className="text-white/55 text-[13px] leading-relaxed">
+                  {plot.description}
+                </p>
               </motion.div>
             ))}
           </div>

@@ -6,324 +6,286 @@ import AdaptiveImage from '../AdaptiveImage';
 import { plants, plantCategories, plantStats } from '@/data/plants';
 import { TreePine, Leaf, Wind, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 
+const benefits = [
+  {
+    title: 'Climate-responsive living',
+    points: ['Natural temperature reduction', 'Improved soil moisture', 'Wind & dust barriers'],
+  },
+  {
+    title: 'Health & well-being',
+    points: ['Higher oxygen levels', 'Reduced stress', 'Toxin-free environment'],
+  },
+  {
+    title: 'Long-term land value',
+    points: ['Green plots appreciate faster', 'Premium resale value', 'Evergreen visual beauty'],
+  },
+  {
+    title: 'Sustainable development',
+    points: ['Supports biodiversity', 'Lowers carbon footprint', 'Eco-conscious living'],
+  },
+];
+
 export default function PlantForestScroll() {
   const ref = useRef(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-15%' });
+  const [category, setCategory] = useState<string>('all');
 
-  const filteredPlants = selectedCategory === 'all'
-    ? plants
-    : plants.filter(plant => plant.category === selectedCategory);
+  const filtered = category === 'all' ? plants : plants.filter((p) => p.category === category);
 
   const categoryList = [
-    { id: 'all', name: 'All Plants', count: plants.length },
+    { id: 'all', name: 'All', count: plants.length },
     ...Object.entries(plantCategories).map(([id, name]) => ({
       id,
       name,
-      count: plants.filter(p => p.category === id).length,
+      count: plants.filter((p) => p.category === id).length,
     })),
   ];
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 400;
-      scrollContainerRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
-    }
+  const scroll = (dir: 'left' | 'right') => {
+    scrollRef.current?.scrollBy({ left: dir === 'left' ? -420 : 420, behavior: 'smooth' });
   };
 
   return (
-    <section id="forest" className="py-24 md:py-32 bg-[#faf8f5] relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5 pattern-dots" />
-
-      <div className="container-luxury relative z-10" ref={ref}>
-        {/* Section Header */}
+    <section
+      id="forest"
+      ref={ref}
+      className="relative py-32 md:py-44 bg-[#050505]"
+    >
+      <div className="container-edge">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="max-w-4xl mb-16"
         >
-          <span className="text-[#c9a962] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-            A Forest for Every Plot
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a1a] mb-4">
-            Living Inside Nature, Not Beside It
+          <p className="text-eyebrow mb-6">Forest · 600–900 Plants / Plot</p>
+          <h2 className="text-section text-white">
+            We are not near a forest.
+            <br />
+            <span className="italic text-gradient-gold">We are inside one.</span>
           </h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6"
-          />
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            At The Meadow Breeze, nature is not an add-on — it is the foundation. Each plot is thoughtfully designed with a curated mini forest of 600-900 plants, transforming private land ownership into a living ecosystem.
-          </p>
-          <p className="text-[#c9a962] font-medium mt-4 italic">
-            We are not near a forest. We are inside one.
+          <div className="rule-gold mt-10" />
+          <p className="mt-10 text-white/60 text-[15px] md:text-base leading-relaxed max-w-2xl">
+            Every plot is composed with a curated mini-forest of 600–900
+            plants. Nature isn't an amenity here — it is the foundation.
+            Shade, fruit, fragrance and biodiversity arrive with the land.
           </p>
         </motion.div>
 
-        {/* Stats Cards */}
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="grid grid-cols-2 md:grid-cols-4 rounded-3xl border border-white/10 overflow-hidden mb-14"
         >
           {[
-            { icon: TreePine, value: plantStats.totalSpecies, label: 'Tree Species', color: 'from-[#1a1a1a] to-[#333]' },
-            { icon: Leaf, value: '600-900', label: 'Plants Per Plot', color: 'from-[#c9a962] to-[#8b7355]' },
-            { icon: Wind, value: plantStats.categories, label: 'Categories', color: 'from-[#1a1a1a] to-[#333]' },
-            { icon: Heart, value: '100%', label: 'Organic', color: 'from-[#c9a962] to-[#8b7355]' },
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              className={`p-5 bg-gradient-to-br ${stat.color} rounded-2xl text-white text-center`}
+            { icon: TreePine, value: plantStats.totalSpecies, label: 'Tree Species' },
+            { icon: Leaf, value: '600–900', label: 'Plants / Plot' },
+            { icon: Wind, value: plantStats.categories, label: 'Categories' },
+            { icon: Heart, value: '100%', label: 'Organic' },
+          ].map((s, i) => (
+            <div
+              key={s.label}
+              className={`p-6 md:p-8 bg-[#0a0a0a] ${
+                i < 3 ? 'md:border-r border-white/10' : ''
+              } ${i % 2 === 0 ? 'border-r border-white/10 md:border-r' : ''} ${
+                i < 2 ? 'border-b md:border-b-0 border-white/10' : ''
+              }`}
             >
-              <stat.icon className="w-8 h-8 mx-auto mb-2 opacity-80" />
-              <h3 className="text-2xl font-bold">{stat.value}</h3>
-              <p className="text-white/70 text-sm">{stat.label}</p>
-            </motion.div>
+              <s.icon className="w-5 h-5 text-[#c9a962] mb-3" />
+              <div className="text-2xl md:text-3xl font-serif text-white">{s.value}</div>
+              <div className="text-[10px] tracking-[0.35em] uppercase text-white/45 mt-2">
+                {s.label}
+              </div>
+            </div>
           ))}
         </motion.div>
 
-        {/* Category Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-8"
-        >
-          <div className="flex flex-wrap justify-center gap-3">
-            {categoryList.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
-                  selectedCategory === category.id
-                    ? 'bg-[#1a1a1a] text-white shadow-lg scale-105'
-                    : 'bg-white border border-gray-200 text-gray-600 hover:border-[#c9a962] hover:text-[#c9a962]'
-                }`}
-              >
-                {category.name} ({category.count})
-              </button>
-            ))}
-          </div>
-        </motion.div>
+        {/* Category chips */}
+        <div className="flex flex-wrap gap-2 mb-8">
+          {categoryList.map((c) => (
+            <button
+              key={c.id}
+              onClick={() => setCategory(c.id)}
+              className={`px-4 py-2 rounded-full text-[12px] tracking-[0.15em] uppercase transition-all border ${
+                category === c.id
+                  ? 'bg-[#c9a962] text-black border-[#c9a962]'
+                  : 'border-white/15 text-white/60 hover:border-[#c9a962]/60 hover:text-white'
+              }`}
+            >
+              {c.name} <span className="opacity-60">({c.count})</span>
+            </button>
+          ))}
+        </div>
 
-        {/* Horizontal Scroll Container */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="relative"
-        >
-          {/* Navigation Arrows */}
-          {filteredPlants.length > 3 && (
+        {/* Carousel */}
+        <div className="relative">
+          {filtered.length > 3 && (
             <>
               <button
                 onClick={() => scroll('left')}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all -ml-6 hidden md:flex"
+                className="hidden md:flex absolute left-0 -translate-x-1/2 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full surface-glass items-center justify-center text-white hover:text-[#c9a962] transition-colors"
+                aria-label="Scroll left"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft size={18} />
               </button>
               <button
                 onClick={() => scroll('right')}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all -mr-6 hidden md:flex"
+                className="hidden md:flex absolute right-0 translate-x-1/2 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full surface-glass items-center justify-center text-white hover:text-[#c9a962] transition-colors"
+                aria-label="Scroll right"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight size={18} />
               </button>
             </>
           )}
 
-          {/* Scrollable Plant Cards */}
           <div
-            ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory"
+            ref={scrollRef}
+            className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {filteredPlants.map((plant, index) => (
+            {filtered.map((plant) => (
               <div
                 key={plant.id}
-                className="flex-shrink-0 w-[300px] snap-start"
+                className="shrink-0 w-[280px] md:w-[320px] snap-start"
               >
-                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow h-full border border-gray-100 hover:border-[#c9a962]/30">
-                  {/* Image */}
-                  <div className="relative h-56 overflow-hidden">
+                <div className="relative rounded-2xl overflow-hidden bg-[#0a0a0a] border border-white/10 hover:border-[#c9a962]/30 transition-colors h-full group">
+                  <div className="relative aspect-[4/5] overflow-hidden">
                     <AdaptiveImage
                       basePath={plant.imagePath}
                       alt={plant.name}
                       fill
-                      className="object-cover hover:scale-105 transition-transform duration-300"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
                       fallbackText={plant.name}
-                      sizes="300px"
+                      sizes="320px"
                     />
-                    <div className="absolute top-3 left-3">
-                      <span className="px-3 py-1 bg-white/90 text-[#1a1a1a] text-xs font-medium rounded-full">
-                        {plantCategories[plant.category as keyof typeof plantCategories]}
-                      </span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute top-4 left-4 text-[10px] tracking-[0.3em] uppercase text-white/80 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                      {plantCategories[plant.category as keyof typeof plantCategories]}
+                    </div>
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-xl font-serif text-white mb-1.5">{plant.name}</h3>
                     </div>
                   </div>
-
-                  {/* Content */}
                   <div className="p-5">
-                    <h3 className="font-bold text-[#1a1a1a] text-lg mb-2">{plant.name}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{plant.description}</p>
+                    <p className="text-white/60 text-[13px] leading-relaxed line-clamp-3">
+                      {plant.description}
+                    </p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Scroll Hint for Mobile */}
-          <div className="flex justify-center mt-4 md:hidden">
-            <p className="text-sm text-gray-500">← Swipe to explore →</p>
+          <div className="mt-3 md:hidden text-center text-white/40 text-[11px] tracking-[0.25em] uppercase">
+            Swipe to explore
           </div>
-        </motion.div>
+        </div>
 
-        {/* Forest Benefits */}
+        {/* Ecosystem callout */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="mt-16 bg-gradient-to-r from-[#1a1a1a] to-[#333] rounded-3xl p-8 md:p-12 text-white relative overflow-hidden"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, delay: 0.25 }}
+          className="mt-20 relative rounded-3xl overflow-hidden border border-white/10 bg-[#0a0a0a]"
         >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#c9a962]/10 rounded-full filter blur-[80px]" />
-          <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">A Self-Sustaining Green Ecosystem</h3>
-              <p className="text-white/70 mb-6">
-                Our scientifically planned mix of avenue trees, native forest species, palms, bamboo, medicinal plants, ornamentals, and fruit-bearing trees creates a dense green cover, natural temperature regulation, and a self-sustaining micro-ecosystem.
+          <div className="grid md:grid-cols-2">
+            <div className="p-10 md:p-14">
+              <p className="text-eyebrow mb-5">Micro-Ecosystem</p>
+              <h3 className="text-3xl md:text-4xl font-serif text-white mb-6">
+                A self-sustaining
+                <span className="italic text-gradient-gold"> green estate.</span>
+              </h3>
+              <p className="text-white/65 leading-relaxed mb-6">
+                Our planned mix of avenue trees, native forest species, palms,
+                bamboo, medicinal plants, ornamentals and fruit-bearing trees
+                creates a dense canopy, natural temperature regulation and a
+                self-sustaining micro-ecosystem.
               </p>
-              <div className="space-y-3">
+              <ul className="space-y-3">
                 {[
-                  'Multi-level forest structure for year-round greenery',
-                  'Thick tree canopy reduces heat by 3-5°C naturally',
-                  'Higher oxygen levels & pollution-free environment',
-                  'Supports birds, butterflies & local biodiversity',
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#c9a962]" />
-                    <span className="text-white/90">{item}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="text-[#c9a962] font-medium mt-6 italic text-sm">
-                Every plot becomes a private green sanctuary.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-2xl overflow-hidden h-32 relative">
-                <AdaptiveImage
-                  basePath="/images/projects/meadow-breeze/plants/Marri (Banyan)"
-                  alt="Forest"
-                  fill
-                  className="object-cover"
-                  fallbackText="Forest"
-                />
-              </div>
-              <div className="rounded-2xl overflow-hidden h-32 mt-6 relative">
-                <AdaptiveImage
-                  basePath="/images/projects/meadow-breeze/plants/Rain Tree"
-                  alt="Trees"
-                  fill
-                  className="object-cover"
-                  fallbackText="Trees"
-                />
-              </div>
-              <div className="rounded-2xl overflow-hidden h-32 relative">
-                <AdaptiveImage
-                  basePath="/images/projects/meadow-breeze/plants/Green Bamboo"
-                  alt="Nature"
-                  fill
-                  className="object-cover"
-                  fallbackText="Nature"
-                />
-              </div>
-              <div className="rounded-2xl overflow-hidden h-32 mt-6 relative">
-                <AdaptiveImage
-                  basePath="/images/projects/meadow-breeze/plants/Gulmohar"
-                  alt="Green"
-                  fill
-                  className="object-cover"
-                  fallbackText="Green"
-                />
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Why a Forest-Based Layout */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {[
-            {
-              title: 'Climate-Responsive Living',
-              points: ['Natural temperature reduction', 'Improved soil moisture', 'Natural wind & dust barriers'],
-            },
-            {
-              title: 'Health & Well-being',
-              points: ['Higher oxygen levels', 'Reduced stress & improved wellness', 'Toxin-free environment'],
-            },
-            {
-              title: 'Long-Term Land Value',
-              points: ['Green plots appreciate faster', 'Premium resale value', 'Evergreen visual beauty'],
-            },
-            {
-              title: 'Sustainable Development',
-              points: ['Supports local biodiversity', 'Lowers carbon footprint', 'Eco-conscious living'],
-            },
-          ].map((benefit, index) => (
-            <motion.div
-              key={benefit.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
-              className="p-6 bg-white rounded-2xl border border-gray-100 shadow-lg"
-            >
-              <h4 className="font-bold text-[#1a1a1a] mb-4">{benefit.title}</h4>
-              <ul className="space-y-2">
-                {benefit.points.map((point, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                    <span className="text-[#c9a962] mt-1">✓</span>
-                    {point}
+                  'Multi-level structure for year-round greenery',
+                  'Thick canopy cools the estate by 3–5 °C',
+                  'Higher oxygen · pollution-free air',
+                  'Habitat for birds, butterflies and wildlife',
+                ].map((t) => (
+                  <li key={t} className="flex items-center gap-3 text-white/80 text-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#c9a962]" />
+                    {t}
                   </li>
                 ))}
               </ul>
-            </motion.div>
-          ))}
+            </div>
+            <div className="grid grid-cols-2 gap-1 md:gap-1.5 p-1 md:p-1.5 bg-black">
+              <div className="relative aspect-square rounded-xl overflow-hidden">
+                <AdaptiveImage
+                  basePath="/images/projects/meadow-breeze/plants/Marri (Banyan)"
+                  alt="Banyan"
+                  fill
+                  className="object-cover"
+                  fallbackText="Banyan"
+                />
+              </div>
+              <div className="relative aspect-square rounded-xl overflow-hidden">
+                <AdaptiveImage
+                  basePath="/images/projects/meadow-breeze/plants/Rain Tree"
+                  alt="Rain Tree"
+                  fill
+                  className="object-cover"
+                  fallbackText="Rain Tree"
+                />
+              </div>
+              <div className="relative aspect-square rounded-xl overflow-hidden">
+                <AdaptiveImage
+                  basePath="/images/projects/meadow-breeze/plants/Green Bamboo"
+                  alt="Bamboo"
+                  fill
+                  className="object-cover"
+                  fallbackText="Bamboo"
+                />
+              </div>
+              <div className="relative aspect-square rounded-xl overflow-hidden">
+                <AdaptiveImage
+                  basePath="/images/projects/meadow-breeze/plants/Gulmohar"
+                  alt="Gulmohar"
+                  fill
+                  className="object-cover"
+                  fallbackText="Gulmohar"
+                />
+              </div>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Plant Count Note */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-8 text-center"
-        >
-          <p className="text-gray-500 text-sm">
-            {plants.length} plant varieties available
-          </p>
-        </motion.div>
+        {/* Benefits grid */}
+        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+          {benefits.map((b) => (
+            <div key={b.title} className="surface-card surface-card-hover p-7">
+              <h4 className="text-lg font-serif text-white mb-4">{b.title}</h4>
+              <ul className="space-y-2">
+                {b.points.map((p) => (
+                  <li
+                    key={p}
+                    className="text-white/60 text-[13px] flex items-start gap-2"
+                  >
+                    <span className="text-[#c9a962] mt-0.5">·</span>
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-10 text-white/40 text-xs tracking-[0.25em] uppercase">
+          {plants.length} plant varieties available
+        </p>
       </div>
 
-      {/* Custom Scrollbar Hide */}
       <style jsx global>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
       `}</style>
     </section>
   );

@@ -1,191 +1,206 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Home, Leaf, Palmtree, TrendingUp, Mountain, Flower2, Cable, Users, Shield, Building, MapPin, Calendar } from 'lucide-react';
+import {
+  Home,
+  Leaf,
+  Palmtree,
+  TrendingUp,
+  Mountain,
+  Flower2,
+  Cable,
+  Users,
+  Shield,
+  Building,
+  Calendar,
+  ArrowUpRight,
+} from 'lucide-react';
 
-const lifestyles = [
+type Lifestyle = {
+  id: string;
+  num: string;
+  icon: typeof Home;
+  title: string;
+  subtitle: string;
+  description: string;
+  features: { icon: typeof Home; text: string }[];
+};
+
+const lifestyles: Lifestyle[] = [
   {
     id: 'farmhouse',
+    num: '01',
     icon: Home,
-    title: 'Bespoke Farmhouse Living',
-    subtitle: 'Build Your Dream Countryside Retreat',
-    description: 'Build your dream countryside retreat amidst the Rachakonda Hills. With plot sizes from 10 to 50 Guntas, design a farmhouse that reflects your vision — modern minimalist, traditional heritage, or eco-luxury.',
+    title: 'Bespoke Farmhouse',
+    subtitle: 'Build your dream countryside retreat',
+    description:
+      'Design a farmhouse that reflects your vision — modern minimalist, traditional heritage or eco-luxury — with plot sizes from 10 to 50 Guntas amidst the Rachakonda Hills.',
     features: [
-      { icon: Mountain, text: '360° panoramic mountain views' },
-      { icon: Flower2, text: 'Pre-planted organic garden' },
-      { icon: Cable, text: 'Wide road access & underground utilities' },
-      { icon: Users, text: 'Agronomist support available' },
+      { icon: Mountain, text: '360° mountain views' },
+      { icon: Flower2, text: 'Pre-planted garden' },
+      { icon: Cable, text: 'Wide roads & utilities' },
+      { icon: Users, text: 'Agronomist support' },
     ],
-    gradient: 'from-amber-500 to-orange-600',
-    bgImage: 'bg-gradient-to-br from-amber-50 to-orange-50',
   },
   {
     id: 'organic',
+    num: '02',
     icon: Leaf,
     title: 'Organic Cultivation',
-    subtitle: 'Transform Your Plot Into a Thriving Farm',
-    description: 'Transform your plot into a thriving organic farm. With 600-900 plants already established and drip irrigation infrastructure in place, grow seasonal vegetables, medicinal herbs, fruit orchards, and exotic flowers.',
+    subtitle: 'Transform your plot into a thriving farm',
+    description:
+      'With 600–900 plants already established and drip irrigation in place, grow seasonal vegetables, medicinal herbs, fruit orchards, and exotic flowers — supported by expert agronomists.',
     features: [
-      { icon: Users, text: 'Expert agronomist guidance' },
-      { icon: Leaf, text: 'Drip irrigation system' },
-      { icon: Flower2, text: 'Organic farming methodology' },
-      { icon: TrendingUp, text: 'Market linkage assistance' },
+      { icon: Users, text: 'Expert guidance' },
+      { icon: Leaf, text: 'Drip irrigation' },
+      { icon: Flower2, text: 'Organic methodology' },
+      { icon: TrendingUp, text: 'Market linkage' },
     ],
-    gradient: 'from-green-500 to-emerald-600',
-    bgImage: 'bg-gradient-to-br from-green-50 to-emerald-50',
   },
   {
     id: 'weekend',
+    num: '03',
     icon: Palmtree,
     title: 'Weekend Escape',
-    subtitle: 'Your Sanctuary Far From City Chaos',
-    description: 'Just 30 km from ORR Exit 11, The Meadow Breeze is your sanctuary far from city\'s chaos. An escape to fresh mountain air, starlit nights, morning bird songs, and peaceful solitude.',
+    subtitle: 'Your sanctuary far from the city',
+    description:
+      'Just 30 km from ORR Exit 11. Fresh mountain air, starlit nights, morning bird songs and peaceful solitude — a retreat at an easy drive.',
     features: [
-      { icon: Calendar, text: 'Perfect for family weekends' },
+      { icon: Calendar, text: 'Family weekends' },
       { icon: Building, text: 'Corporate retreats' },
       { icon: Flower2, text: 'Wellness getaways' },
       { icon: Leaf, text: 'Creative inspiration' },
     ],
-    gradient: 'from-sky-500 to-blue-600',
-    bgImage: 'bg-gradient-to-br from-sky-50 to-blue-50',
   },
   {
     id: 'investment',
+    num: '04',
     icon: TrendingUp,
     title: 'Long-Term Investment',
-    subtitle: 'Premium Appreciating Land Asset',
-    description: 'Premium appreciating land asset in a rapidly developing corridor. Invest in a property that offers both lifestyle benefits and strong growth potential.',
+    subtitle: 'An appreciating land asset',
+    description:
+      'Premium farmland in a rapidly developing corridor — offering lifestyle benefits alongside strong long-term growth potential.',
     features: [
-      { icon: Shield, text: 'Clear title property' },
-      { icon: Shield, text: 'Gated community security' },
-      { icon: Users, text: 'Managed farmland services' },
-      { icon: TrendingUp, text: 'High growth potential' },
+      { icon: Shield, text: 'Clear title' },
+      { icon: Shield, text: 'Gated security' },
+      { icon: Users, text: 'Managed services' },
+      { icon: TrendingUp, text: 'High upside' },
     ],
-    gradient: 'from-purple-500 to-indigo-600',
-    bgImage: 'bg-gradient-to-br from-purple-50 to-indigo-50',
   },
 ];
 
 export default function LifestylePathways() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [activeLifestyle, setActiveLifestyle] = useState('farmhouse');
-
-  const activeData = lifestyles.find(l => l.id === activeLifestyle) || lifestyles[0];
+  const inView = useInView(ref, { once: true, margin: '-20%' });
+  const [active, setActive] = useState('farmhouse');
+  const current = lifestyles.find((l) => l.id === active) ?? lifestyles[0];
 
   return (
-    <section id="lifestyle" className="py-24 md:py-32 bg-[#0a0a0a] relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
+    <section
+      id="lifestyle"
+      ref={ref}
+      className="relative py-32 md:py-44 bg-[#050505]"
+    >
+      <div className="container-edge">
         <motion.div
-          className="absolute top-20 left-20 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[120px]"
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-20 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[120px]"
-          animate={{ scale: [1.2, 1, 1.2] }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
-      </div>
-
-      <div className="container-luxury relative z-10" ref={ref}>
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="max-w-4xl mb-16"
         >
-          <span className="text-[#c9a962] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-            Four Distinct Pathways
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            A Life of Possibilities
+          <p className="text-eyebrow mb-6">Pathways · 4 Ways to Live</p>
+          <h2 className="text-section text-white">
+            One estate.
+            <br />
+            <span className="italic text-gradient-gold">Four lives it can hold.</span>
           </h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6"
-          />
-          <p className="text-white/60 max-w-2xl mx-auto">
-            The Meadow Breeze offers four distinct lifestyle pathways — choose the one that resonates with your vision
-          </p>
+          <div className="rule-gold mt-10" />
         </motion.div>
 
-        {/* Lifestyle Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
-        >
-          {lifestyles.map((lifestyle) => (
+        {/* Tabs */}
+        <div className="grid md:grid-cols-4 gap-3 mb-10">
+          {lifestyles.map((l) => (
             <button
-              key={lifestyle.id}
-              onClick={() => setActiveLifestyle(lifestyle.id)}
-              className={`flex items-center gap-2 px-5 py-3 rounded-full font-medium transition-all ${
-                activeLifestyle === lifestyle.id
-                  ? 'bg-[#c9a962] text-white shadow-lg shadow-[#c9a962]/30'
-                  : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
+              key={l.id}
+              onClick={() => setActive(l.id)}
+              className={`relative text-left p-6 rounded-2xl border transition-all ${
+                active === l.id
+                  ? 'border-[#c9a962]/60 bg-[#111]'
+                  : 'border-white/10 bg-[#0a0a0a] hover:border-white/25'
               }`}
             >
-              <lifestyle.icon className="w-5 h-5" />
-              <span className="hidden sm:inline">{lifestyle.title}</span>
-              <span className="sm:hidden">{lifestyle.title.split(' ')[0]}</span>
+              <div className="flex items-center justify-between mb-5">
+                <l.icon
+                  className={`w-5 h-5 ${
+                    active === l.id ? 'text-[#c9a962]' : 'text-white/55'
+                  }`}
+                />
+                <span
+                  className={`text-[10px] tracking-[0.35em] uppercase ${
+                    active === l.id ? 'text-[#c9a962]' : 'text-white/40'
+                  }`}
+                >
+                  {l.num}
+                </span>
+              </div>
+              <div
+                className={`text-lg font-serif ${
+                  active === l.id ? 'text-white' : 'text-white/75'
+                }`}
+              >
+                {l.title}
+              </div>
             </button>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Active Lifestyle Content */}
-        <motion.div
-          key={activeLifestyle}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className={`${activeData.bgImage} rounded-3xl p-8 md:p-12`}
-        >
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className={`inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r ${activeData.gradient} rounded-full text-white mb-6`}>
-                <activeData.icon className="w-5 h-5" />
-                <span className="font-medium">{activeData.subtitle}</span>
-              </div>
-              <h3 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-4">
-                {activeData.title}
+        {/* Active panel */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current.id}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4 }}
+            className="grid md:grid-cols-12 gap-6"
+          >
+            <div className="md:col-span-7 surface-card p-8 md:p-12">
+              <p className="text-[11px] tracking-[0.35em] uppercase text-[#c9a962] mb-5">
+                {current.subtitle}
+              </p>
+              <h3 className="text-3xl md:text-5xl font-serif text-white mb-6">
+                {current.title}.
               </h3>
-              <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                {activeData.description}
+              <p className="text-white/65 text-[15px] leading-relaxed mb-10 max-w-xl">
+                {current.description}
               </p>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-full font-medium hover:bg-[#333] transition-colors"
+                className="inline-flex items-center gap-2 text-[#c9a962] text-sm tracking-[0.2em] uppercase link-underline"
               >
-                Explore This Lifestyle
-                <MapPin className="w-5 h-5" />
+                Explore this pathway <ArrowUpRight size={14} />
               </a>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              {activeData.features.map((feature, index) => (
+            <div className="md:col-span-5 grid grid-cols-2 gap-3">
+              {current.features.map((f, i) => (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="p-5 bg-white rounded-2xl shadow-lg"
+                  key={`${current.id}-${i}`}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.08 * i }}
+                  className="surface-card p-6"
                 >
-                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${activeData.gradient} flex items-center justify-center mb-3`}>
-                    <feature.icon className="w-5 h-5 text-white" />
-                  </div>
-                  <p className="text-[#1a1a1a] font-medium text-sm">{feature.text}</p>
+                  <f.icon className="w-4 h-4 text-[#c9a962] mb-4" />
+                  <p className="text-white/85 text-[13px] leading-snug">
+                    {f.text}
+                  </p>
                 </motion.div>
               ))}
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
