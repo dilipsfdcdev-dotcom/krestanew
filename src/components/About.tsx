@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 import { Award, Clock, MapPin } from 'lucide-react';
 
 const values = [
@@ -92,11 +93,13 @@ export default function About() {
           >
             <div className="relative">
               {/* Main Image */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl img-zoom">
-                <img
-                  src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600"
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl img-zoom h-[500px]">
+                <Image
+                  src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=75"
                   alt="Kresta Farmland"
-                  className="w-full h-[500px] object-cover"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               </div>

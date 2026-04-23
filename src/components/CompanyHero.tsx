@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
-import AdaptiveLogo from './AdaptiveLogo';
+import Image from 'next/image';
 
 
 // Reduced particles for better performance (8 instead of 30)
@@ -34,11 +34,13 @@ export default function CompanyHero() {
     <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
       <motion.div style={{ scale }} className="absolute inset-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000')`,
-          }}
+        <Image
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=75&w=1920"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/97 via-[#1a1a1a]/95 to-[#0a0a0a]/98" />
 
@@ -78,10 +80,11 @@ export default function CompanyHero() {
             />
             {/* Company Logo */}
             <div className="w-28 h-28 md:w-32 md:h-32 relative">
-              <AdaptiveLogo
-                basePath="/images/company/logo"
+              <Image
+                src="/images/company/logo.webp"
                 alt="Kresta Logo"
                 fill
+                sizes="(max-width: 768px) 112px, 128px"
                 className="object-contain drop-shadow-2xl"
                 priority
               />
