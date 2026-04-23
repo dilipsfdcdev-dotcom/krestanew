@@ -1,129 +1,186 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { Award, Clock, MapPin } from 'lucide-react';
+import Image from 'next/image';
 
-const values = [
+type Chapter = {
+  tag: string;
+  title: string;
+  body: string;
+  image: string;
+};
+
+const chapters: Chapter[] = [
   {
-    icon: Award,
-    title: 'Premium Quality',
-    description: 'World-class construction standards and materials ensuring lasting value for generations.',
+    tag: '01 · Land',
+    title: 'Every parcel, a commitment.',
+    body:
+      'We begin with topography — reading contour, canopy and water before drawing a single line. The result is land that keeps its character as it becomes a home.',
+    image:
+      'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=75&w=1400',
   },
   {
-    icon: Clock,
-    title: 'Timely Delivery',
-    description: 'Committed to meeting project deadlines with transparent progress updates.',
+    tag: '02 · Craft',
+    title: 'Built like an heirloom.',
+    body:
+      'Premium materials, slow detailing, and engineering that outlives trends. We design for generations, not seasons — so value compounds with time.',
+    image:
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=75&w=1400',
   },
   {
-    icon: MapPin,
-    title: 'Strategic Locations',
-    description: 'Prime locations with excellent connectivity and appreciation potential.',
+    tag: '03 · Forest',
+    title: 'A living estate, not a plotted one.',
+    body:
+      'Six hundred to nine hundred native plants per plot, curated into working micro-forests. Shade, fruit, fragrance and biodiversity — composed, not scattered.',
+    image:
+      'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=75&w=1400',
   },
 ];
 
+function ChapterMedia({
+  progress,
+  index,
+  total,
+  image,
+}: {
+  progress: MotionValue<number>;
+  index: number;
+  total: number;
+  image: string;
+}) {
+  const start = index / total;
+  const end = (index + 1) / total;
+  const mid = (start + end) / 2;
+  const opacity = useTransform(
+    progress,
+    [start, mid - 0.01, mid + 0.01, end],
+    [0, 1, 1, 0]
+  );
+  const scale = useTransform(progress, [start, end], [1.05, 1.15]);
+  return (
+    <motion.div style={{ opacity, scale }} className="absolute inset-0">
+      <Image src={image} alt="" fill sizes="100vw" className="object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-[#050505]/40" />
+    </motion.div>
+  );
+}
+
+function ChapterText({
+  progress,
+  index,
+  total,
+  chapter,
+}: {
+  progress: MotionValue<number>;
+  index: number;
+  total: number;
+  chapter: Chapter;
+}) {
+  const start = index / total;
+  const end = (index + 1) / total;
+  const mid = (start + end) / 2;
+  const opacity = useTransform(
+    progress,
+    [start, mid - 0.02, mid + 0.02, end],
+    [0, 1, 1, 0]
+  );
+  const y = useTransform(progress, [start, end], [40, -40]);
+  return (
+    <motion.div
+      style={{ opacity, y }}
+      className="absolute inset-0 flex flex-col justify-end"
+    >
+      <p className="text-[11px] tracking-[0.4em] uppercase text-[#c9a962] mb-5">
+        {chapter.tag}
+      </p>
+      <h3 className="text-hero text-white max-w-3xl">{chapter.title}</h3>
+      <p className="mt-6 max-w-xl text-white/70 text-[15px] md:text-base leading-relaxed">
+        {chapter.body}
+      </p>
+    </motion.div>
+  );
+}
+
+function ChapterTick({
+  progress,
+  index,
+  total,
+}: {
+  progress: MotionValue<number>;
+  index: number;
+  total: number;
+}) {
+  const start = index / total;
+  const end = (index + 1) / total;
+  const opacity = useTransform(progress, [start, end], [0.3, 1]);
+  return <motion.span style={{ opacity }} className="block w-8 h-px bg-[#c9a962]" />;
+}
+
 export default function About() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end end'],
+  });
+
+  const total = chapters.length;
 
   return (
-    <section id="about" className="py-24 md:py-32 bg-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pattern-lines" />
+    <section id="vision" ref={ref} className="relative bg-[#050505]">
+      <div className="container-edge pt-32 md:pt-48 pb-24 md:pb-32">
+        <div className="max-w-4xl">
+          <p className="text-eyebrow mb-6">Philosophy</p>
+          <h2 className="text-section text-gradient-fade">
+            We design land the way architects design buildings — considered,
+            patient, and built to be inherited.
+          </h2>
+          <div className="mt-10 h-px w-24 bg-[#c9a962]" />
+        </div>
+      </div>
 
-      <div className="container-luxury">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <motion.div
-            ref={ref}
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="section-subtitle text-[#c9a962] font-medium mb-4 block">
-              About Kresta
-            </span>
-            <h2 className="section-title font-bold text-[#1a1a1a] mb-6">
-              Crafting Luxury,
-              <span className="text-[#c9a962]"> Building Dreams</span>
-            </h2>
-            <div className="line-gold-solid mb-8" />
+      <div className="relative" style={{ height: `${total * 100}vh` }}>
+        <div className="sticky top-0 h-screen overflow-hidden">
+          {chapters.map((c, i) => (
+            <ChapterMedia
+              key={c.tag}
+              progress={scrollYProgress}
+              index={i}
+              total={total}
+              image={c.image}
+            />
+          ))}
 
-            <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              Kresta Infra & Developers Pvt. Ltd. is a premier real estate development company
-              specializing in luxury residential projects, premium farmland communities, commercial
-              spaces, and integrated township developments.
-            </p>
-            <p className="text-gray-600 leading-relaxed mb-8">
-              From high-rise apartments to serene farmland estates, we deliver diverse real estate
-              solutions with world-class quality. Our vision is to transform spaces into thriving
-              communities that blend modern living with sustainable design.
-            </p>
+          <div className="absolute top-10 left-6 md:left-10 z-10 text-[11px] tracking-[0.35em] uppercase text-white/50">
+            Scroll · Story
+          </div>
 
-            {/* Values */}
-            <div className="space-y-6">
-              {values.map((value, index) => (
-                <motion.div
-                  key={value.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
-                  className="flex gap-4"
-                >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#c9a962]/10 flex items-center justify-center">
-                    <value.icon className="w-5 h-5 text-[#c9a962]" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-[#1a1a1a] mb-1">{value.title}</h3>
-                    <p className="text-gray-600 text-sm">{value.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right Images */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="relative">
-              {/* Main Image */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl img-zoom">
-                <img
-                  src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600"
-                  alt="Kresta Farmland"
-                  className="w-full h-[500px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          <div className="relative z-10 h-full container-edge flex items-end pb-20 md:pb-28">
+            <div className="w-full grid md:grid-cols-12 gap-8">
+              <div className="md:col-span-1 hidden md:flex flex-col gap-3 self-end">
+                {chapters.map((c, i) => (
+                  <ChapterTick
+                    key={c.tag}
+                    progress={scrollYProgress}
+                    index={i}
+                    total={total}
+                  />
+                ))}
               </div>
 
-              {/* Floating Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="absolute -bottom-8 -left-8 bg-white p-6 rounded-xl shadow-xl"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-[#c9a962] flex items-center justify-center">
-                    <Award className="w-7 h-7 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-2xl font-bold text-[#1a1a1a]">Since 2024</h4>
-                    <p className="text-gray-500 text-sm">Trusted Developer</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-[#c9a962] rounded-2xl" />
-              <div className="absolute -bottom-4 right-20 w-16 h-16 bg-[#c9a962]/10 rounded-full" />
+              <div className="md:col-span-10 md:col-start-2 relative min-h-[55vh]">
+                {chapters.map((c, i) => (
+                  <ChapterText
+                    key={c.tag}
+                    progress={scrollYProgress}
+                    index={i}
+                    total={total}
+                    chapter={c}
+                  />
+                ))}
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

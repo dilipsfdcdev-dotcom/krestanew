@@ -1,215 +1,207 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import AdaptiveImage from '../AdaptiveImage';
+import Image from 'next/image';
 import { Maximize2, X, MapPin, Route, TreePine, Home, Compass } from 'lucide-react';
 
 const planFeatures = [
-  { icon: Home, label: '124 Premium Plots', color: 'bg-emerald-500' },
-  { icon: Route, label: '60ft, 40ft & 33ft Roads', color: 'bg-blue-500' },
-  { icon: TreePine, label: 'Forest Area & Green Buffer', color: 'bg-green-500' },
-  { icon: MapPin, label: 'Premium Villa Section', color: 'bg-purple-500' },
-  { icon: Compass, label: 'Walking Trails Throughout', color: 'bg-orange-500' },
+  { icon: Home, label: '124 Premium Plots' },
+  { icon: Route, label: '60ft · 40ft · 33ft Roads' },
+  { icon: TreePine, label: 'Forest & Green Buffer' },
+  { icon: MapPin, label: 'Premium Villa Section' },
+  { icon: Compass, label: 'Walking Trails' },
 ];
 
-const masterPlanFeatures = [
-  'Wide Internal Roads — 60 ft & 40 ft for easy access',
-  'Forest Area — Surrounding the community for privacy',
-  'Premium Villa Section — Designated premium plots',
-  'Natural Boulder Preservation — Existing boulders as landmarks',
-  'Walking Trails — Throughout the property',
-  'Strategic Entrance — Wide access with gated security',
-  'Green Buffer Zones — Extensive plantation areas',
+const features = [
+  'Wide internal roads — 60 ft &amp; 40 ft for easy access',
+  'Forest area surrounding the community for privacy',
+  'Premium villa section — designated premium plots',
+  'Natural boulder preservation as landmarks',
+  'Walking trails throughout the property',
+  'Strategic entrance with gated security',
+  'Green buffer zones with extensive plantation',
 ];
 
 const stats = [
-  { label: 'Total Plot Area', value: '179,103 Sq. Yards' },
-  { label: 'Roads Area', value: '57,558 Sq. Yards' },
-  { label: 'Total Plots', value: '124' },
-  { label: 'Plants Per Plot', value: '600-900' },
+  { label: 'Total Plot Area', value: '179,103 sq.yd' },
+  { label: 'Roads Area', value: '57,558 sq.yd' },
+  { label: 'Plots', value: '124' },
+  { label: 'Plants / Plot', value: '600–900' },
 ];
+
+const LAYOUT_WEBP = '/images/projects/meadow-breeze/masterplan/layout.webp';
+const LAYOUT_JPG = '/images/projects/meadow-breeze/masterplan/layout.jpg';
 
 export default function MasterPlan() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const inView = useInView(ref, { once: true, margin: '-20%' });
+  const [src, setSrc] = useState(LAYOUT_WEBP);
+  const [open, setOpen] = useState(false);
 
   return (
     <>
-      <section id="masterplan" className="py-24 md:py-32 bg-[#0a0a0a] relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0">
+      <section
+        id="masterplan"
+        ref={ref}
+        className="relative py-32 md:py-44 bg-[#050505] noise"
+      >
+        <div className="container-edge">
           <motion.div
-            className="absolute top-20 left-20 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[120px]"
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 10, repeat: Infinity }}
-          />
-          <motion.div
-            className="absolute bottom-20 right-20 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[120px]"
-            animate={{ scale: [1.2, 1, 1.2] }}
-            transition={{ duration: 10, repeat: Infinity }}
-          />
-        </div>
-
-        <div className="container-luxury relative z-10" ref={ref}>
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16"
           >
-            <span className="text-[#c9a962] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-              Layout Design
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              Master Plan
-            </h2>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6"
-            />
-            <p className="text-white/60 max-w-2xl mx-auto">
-              Thoughtfully designed layout by S&S Architects and Infra, ensuring optimal space
-              utilization with natural forest surroundings
+            <div className="max-w-3xl">
+              <p className="text-eyebrow mb-6">Master Plan · 50-Acre Layout</p>
+              <h2 className="text-section text-white">
+                Composed by
+                <span className="italic text-gradient-gold"> S&amp;S Architects.</span>
+              </h2>
+              <div className="rule-gold mt-8" />
+            </div>
+            <p className="text-white/55 text-[15px] max-w-md leading-relaxed">
+              Thoughtfully laid out for optimal space, forest surroundings,
+              and roads that accommodate privacy as well as access.
             </p>
           </motion.div>
 
-          {/* Stats Bar */}
+          {/* Stats strip */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-8 mb-12"
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="grid grid-cols-2 md:grid-cols-4 rounded-3xl border border-white/10 overflow-hidden mb-10"
           >
-            {stats.map((stat, index) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-2xl md:text-3xl font-bold text-[#c9a962]">{stat.value}</p>
-                <p className="text-white/60 text-sm">{stat.label}</p>
+            {stats.map((s, i) => (
+              <div
+                key={s.label}
+                className={`p-6 md:p-8 bg-[#0a0a0a] ${
+                  i < stats.length - 1 ? 'md:border-r border-white/10' : ''
+                } ${i % 2 === 0 ? 'border-r border-white/10 md:border-r' : ''} ${
+                  i < 2 ? 'border-b md:border-b-0 border-white/10' : ''
+                }`}
+              >
+                <div className="text-[10px] tracking-[0.35em] uppercase text-white/45 mb-2">
+                  {s.label}
+                </div>
+                <div className="text-2xl md:text-3xl font-serif text-[#c9a962]">
+                  {s.value}
+                </div>
               </div>
             ))}
           </motion.div>
 
-          {/* Master Plan Image */}
+          {/* Plan image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.9, delay: 0.2 }}
+            className="group relative rounded-3xl overflow-hidden border border-white/10 bg-[#0a0a0a]"
           >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
-              <div className="relative aspect-[16/10] w-full bg-[#1a1a1a]/50">
-                <AdaptiveImage
-                  basePath="/images/projects/meadow-breeze/masterplan/layout"
-                  alt="The Meadow Breeze Master Plan"
-                  fill
-                  className="object-contain"
-                  fallbackText="Master Plan Coming Soon"
-                />
-              </div>
+            <div className="relative aspect-[16/10]">
+              <Image
+                src={src}
+                alt="The Meadow Breeze Master Plan"
+                fill
+                sizes="(min-width: 1280px) 1500px, 100vw"
+                className="object-contain"
+                onError={() => setSrc(LAYOUT_JPG)}
+              />
+            </div>
 
-              {/* Fullscreen Button */}
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setIsFullscreen(true)}
-                className="absolute top-4 right-4 p-3 bg-black/50 backdrop-blur-sm rounded-full text-white hover:bg-[#c9a962] transition-colors opacity-0 group-hover:opacity-100"
-              >
-                <Maximize2 className="w-5 h-5" />
-              </motion.button>
+            <button
+              onClick={() => setOpen(true)}
+              className="absolute top-5 right-5 w-11 h-11 rounded-full surface-glass flex items-center justify-center text-white hover:text-[#c9a962] transition-colors opacity-0 group-hover:opacity-100"
+              aria-label="Open fullscreen"
+            >
+              <Maximize2 size={16} />
+            </button>
 
-              {/* Overlay Info */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                <p className="text-white/80 text-sm">
-                  Designed by <span className="text-[#c9a962] font-medium">S&S Architects and Infra</span>
-                </p>
-              </div>
+            <div className="absolute bottom-0 inset-x-0 p-6 md:p-8 bg-gradient-to-t from-black/80 to-transparent">
+              <p className="text-white/70 text-sm tracking-wide">
+                Designed by{' '}
+                <span className="text-[#c9a962]">S&amp;S Architects and Infra</span>
+              </p>
             </div>
           </motion.div>
 
-          {/* Features Grid */}
+          {/* Feature icons */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-5 gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-10"
           >
-            {planFeatures.map((feature, index) => (
-              <motion.div
-                key={feature.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-[#c9a962]/30 transition-all text-center"
+            {planFeatures.map((f, i) => (
+              <div
+                key={f.label}
+                className="surface-card surface-card-hover p-5 md:p-6 text-center"
               >
-                <div className={`w-10 h-10 ${feature.color} rounded-lg flex items-center justify-center mx-auto mb-3`}>
-                  <feature.icon className="w-5 h-5 text-white" />
-                </div>
-                <p className="text-white/80 text-sm">{feature.label}</p>
-              </motion.div>
+                <f.icon className="w-5 h-5 text-[#c9a962] mx-auto mb-3" />
+                <p className="text-white/80 text-[13px]">{f.label}</p>
+              </div>
             ))}
           </motion.div>
 
-          {/* Master Plan Features List */}
+          {/* Features list */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="mt-12 p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-10 surface-card p-8 md:p-10"
           >
-            <h3 className="text-xl font-bold text-white mb-6 text-center">Master Plan Features</h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              {masterPlanFeatures.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.9 + index * 0.05 }}
-                  className="flex items-start gap-3"
-                >
-                  <div className="w-2 h-2 rounded-full bg-[#c9a962] mt-2 flex-shrink-0" />
-                  <span className="text-white/80">{feature}</span>
-                </motion.div>
+            <p className="text-eyebrow mb-6">Plan Features</p>
+            <div className="grid md:grid-cols-2 gap-x-10 gap-y-3">
+              {features.map((text, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#c9a962] shrink-0" />
+                  <span
+                    className="text-white/75 text-sm"
+                    dangerouslySetInnerHTML={{ __html: text }}
+                  />
+                </div>
               ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Fullscreen Modal */}
-      {isFullscreen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
-          onClick={() => setIsFullscreen(false)}
-        >
+      <AnimatePresence>
+        {open && (
           <motion.div
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            className="relative max-w-7xl w-full h-full flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-[#050505]/97 backdrop-blur-xl flex items-center justify-center p-4"
+            onClick={() => setOpen(false)}
           >
-            <AdaptiveImage
-              basePath="/images/projects/meadow-breeze/masterplan/layout"
-              alt="The Meadow Breeze Master Plan"
-              fill
-              className="object-contain"
-              fallbackText="Master Plan"
-            />
-            <button
-              onClick={() => setIsFullscreen(false)}
-              className="absolute top-4 right-4 p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-[#c9a962] transition-colors"
+            <motion.div
+              initial={{ scale: 0.96 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.96 }}
+              className="relative w-full max-w-7xl h-[85vh]"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="w-6 h-6" />
-            </button>
+              <Image
+                src={src}
+                alt="The Meadow Breeze Master Plan"
+                fill
+                sizes="100vw"
+                className="object-contain"
+              />
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute -top-2 -right-2 md:top-4 md:right-4 w-11 h-11 rounded-full surface-glass flex items-center justify-center text-white hover:text-[#c9a962] transition-colors"
+                aria-label="Close"
+              >
+                <X size={18} />
+              </button>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -1,204 +1,169 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import AdaptiveLogo from './AdaptiveLogo';
+import { ArrowDown } from 'lucide-react';
 
+const HERO_POSTER = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=75&w=1920';
+const HERO_VIDEO = '/videos/projects/meadow-breeze/Site Drone View 3.mp4';
 
-// Reduced particles for better performance (8 instead of 30)
-const particles = [
-  { left: 10, top: 20 },
-  { left: 30, top: 60 },
-  { left: 50, top: 30 },
-  { left: 70, top: 70 },
-  { left: 90, top: 25 },
-  { left: 20, top: 80 },
-  { left: 60, top: 50 },
-  { left: 80, top: 15 },
+const credits = [
+  '50 Acre Estate',
+  'Choutuppal · Telangana',
+  '600–900 Plants / Plot',
+  '360° Mountain Views',
+  'Gated Community',
+  'Organic Farming',
 ];
 
 export default function CompanyHero() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const [videoReady, setVideoReady] = useState(false);
+
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: ref,
     offset: ['start start', 'end start'],
   });
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '-15%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
+  // Defer video load until after first paint so it doesn't fight with the LCP poster
+  useEffect(() => {
+    const t = window.setTimeout(() => setVideoReady(true), 900);
+    return () => window.clearTimeout(t);
+  }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
-      <motion.div style={{ scale }} className="absolute inset-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000')`,
-          }}
+    <section
+      ref={ref}
+      className="relative min-h-[100svh] w-full overflow-hidden bg-[#050505] noise"
+    >
+      {/* Media layer */}
+      <motion.div style={{ y }} className="absolute inset-0">
+        <Image
+          src={HERO_POSTER}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/97 via-[#1a1a1a]/95 to-[#0a0a0a]/98" />
+        {videoReady && (
+          <video
+            className="media-full"
+            src={HERO_VIDEO}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster={HERO_POSTER}
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-[#050505]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.75)_100%)]" />
+      </motion.div>
 
-        {/* Static Particles - CSS only for better performance */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {particles.map((particle, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-[#c9a962]/30 rounded-full"
-              style={{
-                left: `${particle.left}%`,
-                top: `${particle.top}%`,
-              }}
-            />
-          ))}
+      {/* Corner meta */}
+      <div className="absolute top-28 left-6 md:left-10 z-10 hidden md:block">
+        <div className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase text-white/50">
+          <span className="w-6 h-px bg-[#c9a962]" />
+          <span>Est. 2024 · Hyderabad</span>
         </div>
+      </div>
+      <div className="absolute top-28 right-6 md:right-10 z-10 hidden md:block text-right">
+        <div className="text-[11px] tracking-[0.3em] uppercase text-white/50">
+          Reel · 00:00 / 00:32
+        </div>
+      </div>
 
-        {/* Static Gradient Orbs - removed infinite animations */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#c9a962]/5 rounded-full filter blur-[120px]" />
-      </motion.div>
+      {/* Hero content */}
+      <motion.div
+        style={{ y: contentY, opacity }}
+        className="relative z-10 min-h-[100svh] flex flex-col justify-end pb-28 md:pb-32"
+      >
+        <div className="container-edge">
+          <div className="max-w-5xl">
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-eyebrow mb-6"
+            >
+              Kresta Infra &amp; Developers
+            </motion.p>
 
-      {/* Content */}
-      <motion.div style={{ y, opacity }} className="relative z-10 container-luxury text-center px-4">
-        {/* Logo Animation */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5, rotateY: -180 }}
-          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-          transition={{ duration: 1.2, ease: 'easeOut' }}
-          className="mb-8"
-        >
-          <div className="relative inline-block">
-            {/* Static decorative ring */}
-            <div
-              className="absolute border-2 border-[#c9a962]/20 rounded-full"
-              style={{ width: '160px', height: '160px', top: '-20px', left: '-20px' }}
-            />
-            {/* Company Logo */}
-            <div className="w-28 h-28 md:w-32 md:h-32 relative">
-              <AdaptiveLogo
-                basePath="/images/company/logo"
-                alt="Kresta Logo"
-                fill
-                className="object-contain drop-shadow-2xl"
-                priority
-              />
-            </div>
-          </div>
-        </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.0, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="text-display text-white"
+            >
+              Land, <span className="italic text-gradient-gold">reimagined</span>
+              <br />
+              as heirloom.
+            </motion.h1>
 
-        {/* Company Name */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-2 tracking-tight">
-            <span className="text-gradient-gold">KRESTA</span>
-          </h1>
-          <p className="text-[#c9a962] text-sm md:text-base tracking-[0.3em] uppercase font-medium">
-            Infra & Developers Pvt. Ltd.
-          </p>
-        </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="mt-8 max-w-xl text-[15px] md:text-base text-white/70 leading-relaxed"
+            >
+              Gated farmland estates and luxury residences where architecture,
+              topography and horticulture are composed as a single work. Begin with
+              the Meadow Breeze — fifty acres at the foothills of Rachakonda.
+            </motion.p>
 
-        {/* Animated Line */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="w-32 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto my-8"
-        />
-
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="text-xl md:text-2xl lg:text-3xl text-white/90 font-light mb-4"
-          style={{ fontFamily: 'var(--font-heading)' }}
-        >
-          Crafting Luxury, Building Dreams
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-base md:text-lg text-white/60 max-w-2xl mx-auto mb-12"
-        >
-          Premium real estate solutions — from luxury residences and farmland estates
-          to commercial spaces and integrated townships
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
-        >
-          <Link
-            href="#projects"
-            className="group relative px-8 py-4 bg-[#c9a962] text-white rounded-full font-medium overflow-hidden transition-all hover:shadow-lg hover:shadow-[#c9a962]/30"
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              Explore Projects
-              <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                →
-              </motion.span>
-            </span>
             <motion.div
-              className="absolute inset-0 bg-[#8b7355]"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          </Link>
-          <Link
-            href="#contact"
-            className="px-8 py-4 border border-white/30 text-white rounded-full font-medium hover:bg-white/10 hover:border-[#c9a962]/50 transition-all"
-          >
-            Contact Us
-          </Link>
-        </motion.div>
-
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="mt-10 flex flex-wrap items-center gap-3"
+            >
+              <Link href="#projects" className="btn-primary">
+                Explore Projects
+                <span aria-hidden>→</span>
+              </Link>
+              <Link href="#contact" className="btn-ghost">
+                Schedule a Site Visit
+              </Link>
+            </motion.div>
+          </div>
+        </div>
       </motion.div>
 
-      {/* Scroll Indicator */}
+      {/* Credits marquee */}
+      <div className="absolute bottom-0 inset-x-0 z-10 border-t border-white/10 bg-black/40 backdrop-blur-sm">
+        <div className="overflow-hidden py-4">
+          <div className="marquee-track">
+            {[...credits, ...credits].map((c, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center gap-4 text-[11px] tracking-[0.35em] uppercase text-white/55 whitespace-nowrap"
+              >
+                <span className="w-1 h-1 rounded-full bg-[#c9a962]" />
+                {c}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll hint */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        transition={{ duration: 1, delay: 1.5 }}
+        className="absolute bottom-20 right-6 md:right-10 z-10 hidden md:flex flex-col items-center gap-3 text-[10px] tracking-[0.35em] uppercase text-white/50"
       >
-        <Link href="#about" className="flex flex-col items-center text-white/60 hover:text-[#c9a962] transition-colors group">
-          <span className="text-xs tracking-widest uppercase mb-2">Discover More</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="group-hover:text-[#c9a962]"
-          >
-            <ChevronDown size={24} />
-          </motion.div>
-        </Link>
-      </motion.div>
-
-      {/* Corner Decorations */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2 }}
-        className="hidden lg:block"
-      >
-        <div className="absolute top-8 left-8 w-20 h-20 border-l-2 border-t-2 border-[#c9a962]/30" />
-        <div className="absolute top-8 right-8 w-20 h-20 border-r-2 border-t-2 border-[#c9a962]/30" />
-        <div className="absolute bottom-8 left-8 w-20 h-20 border-l-2 border-b-2 border-[#c9a962]/30" />
-        <div className="absolute bottom-8 right-8 w-20 h-20 border-r-2 border-b-2 border-[#c9a962]/30" />
+        <span className="rotate-90 origin-center">Scroll</span>
+        <motion.span animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
+          <ArrowDown size={14} />
+        </motion.span>
       </motion.div>
     </section>
   );

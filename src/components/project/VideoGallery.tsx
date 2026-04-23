@@ -1,209 +1,203 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Play, X, Film, ChevronLeft, ChevronRight, VideoOff } from 'lucide-react';
+import { Play, X, Film, VideoOff } from 'lucide-react';
 import FallbackImage from '../FallbackImage';
 import { meadowBreezeVideos, VIDEO_BASE_PATH, Video } from '@/data/videos';
 
 export default function VideoGallery() {
   const ref = useRef(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
-  const [videoError, setVideoError] = useState(false);
+  const inView = useInView(ref, { once: true, margin: '-15%' });
+  const [selected, setSelected] = useState<Video | null>(null);
+  const [error, setError] = useState(false);
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const scrollAmount = 400;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const videoUrl = (file: string) => `${VIDEO_BASE_PATH}/${file}`;
 
-  // Get full video URL
-  const getVideoUrl = (videoFile: string) => `${VIDEO_BASE_PATH}/${videoFile}`;
+  const [feature, ...rest] = meadowBreezeVideos;
 
   return (
     <>
-      <section id="videos" className="py-24 md:py-32 bg-[#0a0a0a] relative overflow-hidden">
-        {/* Background Effects - Static gradient for better performance */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#c9a962]/10 rounded-full filter blur-[120px]" />
-        </div>
-
-        <div className="container-luxury relative z-10" ref={ref}>
-          {/* Section Header */}
+      <section
+        id="videos"
+        ref={ref}
+        className="relative py-32 md:py-44 bg-[#050505]"
+      >
+        <div className="container-edge">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-6">
-              <Film className="w-4 h-4 text-[#c9a962]" />
-              <span className="text-white/80 text-sm">Video Gallery</span>
+            <div className="max-w-3xl">
+              <p className="text-eyebrow mb-6 flex items-center gap-3">
+                <Film size={12} className="text-[#c9a962]" /> Film Archive
+              </p>
+              <h2 className="text-section text-white">
+                Experience the estate
+                <span className="italic text-gradient-gold"> in motion.</span>
+              </h2>
+              <div className="rule-gold mt-8" />
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              Experience The Meadow Breeze
-            </h2>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6"
-            />
-            <p className="text-white/60 max-w-2xl mx-auto">
-              Watch our videos to get a virtual tour of the stunning farmland community
+            <p className="text-white/55 text-[15px] max-w-md leading-relaxed">
+              Drone reels, site walkthroughs and panoramic views. Click any
+              tile to play in an immersive theatre.
             </p>
           </motion.div>
 
-          {/* Video Carousel */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
-          >
-            {/* Navigation Arrows */}
-            {meadowBreezeVideos.length > 2 && (
-              <>
-                <button
-                  onClick={() => scroll('left')}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-[#c9a962] transition-all -ml-6 hidden md:flex"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <button
-                  onClick={() => scroll('right')}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-[#c9a962] transition-all -mr-6 hidden md:flex"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </>
-            )}
-
-            {/* Scrollable Container */}
-            <div
-              ref={scrollRef}
-              className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          {/* Featured hero */}
+          {feature && (
+            <motion.button
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.9, delay: 0.1 }}
+              onClick={() => {
+                setSelected(feature);
+                setError(false);
+              }}
+              className="group relative block w-full rounded-3xl overflow-hidden border border-white/10 bg-[#0a0a0a] mb-5"
             >
-              {meadowBreezeVideos.map((video) => (
-                <div
-                  key={video.id}
-                  className="flex-shrink-0 w-[350px] md:w-[400px] snap-start"
-                >
-                  <div
-                    onClick={() => { setSelectedVideo(video); setVideoError(false); }}
-                    className="group cursor-pointer"
-                  >
-                    <div className="relative rounded-2xl overflow-hidden mb-4">
-                      <div className="aspect-video relative">
-                        <FallbackImage
-                          src={video.thumbnail}
-                          alt={video.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          fallbackText="Coming Soon"
-                          sizes="400px"
-                        />
-                      </div>
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-                      {/* Play Button */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-[#c9a962] rounded-full flex items-center justify-center shadow-lg group-hover:shadow-[#c9a962]/30 group-hover:scale-110 transition-all duration-300">
-                          <Play className="w-7 h-7 text-white ml-1" fill="white" />
-                        </div>
-                      </div>
-                      {/* Duration */}
-                      <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/60 rounded text-white text-xs">
-                        {video.duration}
-                      </div>
-                    </div>
-                    <h3 className="text-white font-semibold mb-1 group-hover:text-[#c9a962] transition-colors">
-                      {video.title}
-                    </h3>
-                    <p className="text-white/60 text-sm">{video.description}</p>
+              <div className="relative aspect-[21/9]">
+                <FallbackImage
+                  src={feature.thumbnail}
+                  alt={feature.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  fallbackText="Coming Soon"
+                  sizes="100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border border-white/30 surface-glass flex items-center justify-center group-hover:bg-[#c9a962] group-hover:border-[#c9a962] transition-all duration-500">
+                    <Play className="w-7 h-7 md:w-8 md:h-8 text-white ml-1" fill="currentColor" />
                   </div>
                 </div>
-              ))}
-            </div>
-          </motion.div>
+                <div className="absolute bottom-6 left-6 md:bottom-8 md:left-10 text-left">
+                  <p className="text-[10px] tracking-[0.35em] uppercase text-[#c9a962] mb-2">
+                    Featured · {feature.duration}
+                  </p>
+                  <h3 className="text-2xl md:text-4xl font-serif text-white">
+                    {feature.title}
+                  </h3>
+                </div>
+              </div>
+            </motion.button>
+          )}
 
-          {/* Video Count */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-8 text-center"
-          >
-            <p className="text-white/40 text-sm">
-              {meadowBreezeVideos.length} videos available
-            </p>
-          </motion.div>
+          {/* Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {rest.map((v, i) => (
+              <motion.button
+                key={v.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 * i }}
+                onClick={() => {
+                  setSelected(v);
+                  setError(false);
+                }}
+                className="group text-left rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] hover:border-[#c9a962]/40 transition-colors"
+              >
+                <div className="relative aspect-video">
+                  <FallbackImage
+                    src={v.thumbnail}
+                    alt={v.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    fallbackText="Coming Soon"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  />
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-14 h-14 rounded-full surface-glass flex items-center justify-center group-hover:bg-[#c9a962] group-hover:border-[#c9a962] transition-all">
+                      <Play className="w-5 h-5 text-white ml-0.5" fill="currentColor" />
+                    </div>
+                  </div>
+                  <div className="absolute bottom-3 right-3 text-[10px] tracking-widest text-white/80 bg-black/50 px-2 py-1 rounded">
+                    {v.duration}
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="text-white font-serif text-lg mb-1 group-hover:text-[#c9a962] transition-colors">
+                    {v.title}
+                  </h3>
+                  <p className="text-white/55 text-[13px] leading-relaxed line-clamp-2">
+                    {v.description}
+                  </p>
+                </div>
+              </motion.button>
+            ))}
+          </div>
+
+          <p className="mt-10 text-white/40 text-xs tracking-[0.25em] uppercase">
+            {meadowBreezeVideos.length} films in archive
+          </p>
         </div>
       </section>
 
-      {/* Video Modal */}
-      {selectedVideo && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
-          onClick={() => { setSelectedVideo(null); setVideoError(false); }}
-        >
+      <AnimatePresence>
+        {selected && (
           <motion.div
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            className="relative max-w-5xl w-full"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-[#050505]/97 backdrop-blur-xl flex items-center justify-center p-4"
+            onClick={() => {
+              setSelected(null);
+              setError(false);
+            }}
           >
-            <button
-              onClick={() => { setSelectedVideo(null); setVideoError(false); }}
-              className="absolute -top-12 right-0 p-2 text-white/60 hover:text-white transition-colors"
+            <motion.div
+              initial={{ scale: 0.96 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.96 }}
+              className="relative w-full max-w-6xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="w-8 h-8" />
-            </button>
-            <div className="aspect-video bg-black rounded-xl overflow-hidden">
-              {videoError ? (
-                <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]">
-                  <VideoOff className="w-16 h-16 text-[#c9a962]/50 mb-4" />
-                  <p className="text-[#c9a962] font-medium text-xl">Video Coming Soon</p>
-                  <p className="text-white/40 text-sm mt-2">Drop your video file at:</p>
-                  <code className="text-[#c9a962]/60 text-xs mt-1">
-                    /public{VIDEO_BASE_PATH}/{selectedVideo.videoFile}
-                  </code>
-                </div>
-              ) : (
-                <video
-                  src={getVideoUrl(selectedVideo.videoFile)}
-                  controls
-                  autoPlay
-                  className="w-full h-full"
-                  onError={() => setVideoError(true)}
-                >
-                  Your browser does not support the video tag.
-                </video>
-              )}
-            </div>
-            <div className="mt-4">
-              <h3 className="text-white text-xl font-semibold">{selectedVideo.title}</h3>
-              <p className="text-white/60">{selectedVideo.description}</p>
-            </div>
+              <button
+                onClick={() => {
+                  setSelected(null);
+                  setError(false);
+                }}
+                className="absolute -top-2 -right-2 md:-top-4 md:-right-4 z-10 w-11 h-11 rounded-full surface-glass flex items-center justify-center text-white hover:text-[#c9a962] transition-colors"
+                aria-label="Close"
+              >
+                <X size={18} />
+              </button>
+              <div className="aspect-video bg-black rounded-2xl overflow-hidden border border-white/10">
+                {error ? (
+                  <div className="w-full h-full flex flex-col items-center justify-center">
+                    <VideoOff className="w-12 h-12 text-[#c9a962]/60 mb-4" />
+                    <p className="text-[#c9a962] font-serif text-xl mb-2">Film coming soon</p>
+                    <code className="text-white/40 text-[11px]">
+                      /public{VIDEO_BASE_PATH}/{selected.videoFile}
+                    </code>
+                  </div>
+                ) : (
+                  <video
+                    src={videoUrl(selected.videoFile)}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="w-full h-full"
+                    onError={() => setError(true)}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                )}
+              </div>
+              <div className="mt-5 text-center">
+                <p className="text-[10px] tracking-[0.35em] uppercase text-[#c9a962] mb-1">
+                  {selected.duration}
+                </p>
+                <h3 className="text-white font-serif text-xl md:text-2xl">{selected.title}</h3>
+                <p className="text-white/55 text-sm mt-1">{selected.description}</p>
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
-
-      <style jsx global>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -1,214 +1,140 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import FallbackImage from './FallbackImage';
-import AdaptiveLogo from './AdaptiveLogo';
-import { MapPin, TreePine, ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight, MapPin } from 'lucide-react';
 
-const projects = [
-  {
-    id: 'meadow-breeze',
-    name: 'The Meadow Breeze',
-    tagline: 'Where the hills whisper peace and the breeze carries serenity',
-    location: 'Peepal Pahad, Choutuppal',
-    totalArea: '179,103 Sq. Yards',
-    totalPlots: 124,
-    plantsPerPlot: '600-900',
-    status: 'Now Booking',
-    features: ['360° Mountain Views', 'Gated Community', 'Organic Farming'],
-    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800',
-    logoPath: '/images/projects/meadow-breeze/logo',
-    slug: '/projects/meadow-breeze',
-  },
+const stats = [
+  { label: 'Plots', value: '124' },
+  { label: 'Plants / Plot', value: '600–900' },
+  { label: 'Area', value: '179,103 sq.yd' },
+  { label: 'Status', value: 'Now Booking' },
 ];
 
 export default function ProjectsShowcase() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-20%' });
+  const [hovering, setHovering] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const onEnter = () => {
+    setHovering(true);
+    const v = videoRef.current;
+    if (v) {
+      v.currentTime = 0;
+      v.play().catch(() => {});
+    }
+  };
+  const onLeave = () => {
+    setHovering(false);
+    videoRef.current?.pause();
+  };
 
   return (
-    <section id="projects" className="py-24 md:py-32 bg-[#faf8f5] relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pattern-lines" />
-        <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-[#c9a962]/10 rounded-full filter blur-[100px]"
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
-      </div>
-
-      <div className="container-luxury relative z-10" ref={ref}>
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={isInView ? { scale: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#1a4d2e]/10 rounded-full mb-6"
-          >
-            <Sparkles className="w-4 h-4 text-[#c9a962]" />
-            <span className="text-sm font-medium text-[#1a4d2e]">Featured Projects</span>
-          </motion.div>
-          <h2 className="section-title font-bold text-[#1a1a1a] mb-4">
-            Our Premium
-            <span className="text-[#1a4d2e]"> Developments</span>
-          </h2>
-          <div className="flex justify-center mb-6">
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent"
-            />
+    <section id="projects" ref={ref} className="relative py-32 md:py-44 bg-[#050505]">
+      <div className="container-edge">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+          <div>
+            <p className="text-eyebrow mb-5">Portfolio · 01</p>
+            <h2 className="text-section text-white max-w-2xl">
+              A single, uncompromising project
+              <span className="italic text-gradient-gold"> at a time.</span>
+            </h2>
           </div>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Discover our thoughtfully designed farmland communities that blend
-            luxury living with natural serenity
+          <p className="text-white/60 max-w-md">
+            Our current focus is The Meadow Breeze — a fifty-acre gated estate in
+            Peepal Pahad, Choutuppal. More developments follow when the work
+            deserves it.
           </p>
-        </motion.div>
-
-        {/* Projects Grid */}
-        <div className="space-y-16">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 + index * 0.2 }}
-            >
-              <Link href={project.slug} className="group block">
-                <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
-                  <div className="grid lg:grid-cols-2">
-                    {/* Image Section */}
-                    <div className="relative h-80 lg:h-[500px] overflow-hidden">
-                      <motion.div
-                        className="absolute inset-0"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.7 }}
-                      >
-                        <FallbackImage
-                          src={project.image}
-                          alt={project.name}
-                          fill
-                          className="object-cover"
-                          fallbackText="Coming Soon"
-                        />
-                      </motion.div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-                      {/* Status Badge */}
-                      <div className="absolute top-6 left-6">
-                        <motion.div
-                          animate={{ scale: [1, 1.05, 1] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                          className="px-4 py-2 bg-[#c9a962] text-white text-sm font-medium rounded-full shadow-lg"
-                        >
-                          {project.status}
-                        </motion.div>
-                      </div>
-
-                      {/* Project Logo */}
-                      <div className="absolute bottom-6 left-6 right-6">
-                        <div className="flex items-end justify-between">
-                          <div>
-                            <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                              {project.name}
-                            </h3>
-                            <div className="flex items-center gap-2 text-white/80">
-                              <MapPin className="w-4 h-4" />
-                              <span>{project.location}</span>
-                            </div>
-                          </div>
-                          <div className="hidden md:block w-20 h-20 relative">
-                            <AdaptiveLogo
-                              basePath={project.logoPath}
-                              alt={`${project.name} Logo`}
-                              fill
-                              className="object-contain"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Content Section */}
-                    <div className="p-8 lg:p-12 flex flex-col justify-center">
-                      <p className="text-xl text-gray-600 italic mb-8" style={{ fontFamily: 'var(--font-heading)' }}>
-                        "{project.tagline}"
-                      </p>
-
-                      {/* Stats */}
-                      <div className="grid grid-cols-3 gap-4 mb-8">
-                        <div className="text-center p-4 bg-[#faf8f5] rounded-xl">
-                          <p className="text-2xl font-bold text-[#1a4d2e]">{project.totalPlots}</p>
-                          <p className="text-sm text-gray-500">Plots</p>
-                        </div>
-                        <div className="text-center p-4 bg-[#faf8f5] rounded-xl">
-                          <p className="text-2xl font-bold text-[#1a4d2e]">{project.plantsPerPlot}</p>
-                          <p className="text-sm text-gray-500">Plants/Plot</p>
-                        </div>
-                        <div className="text-center p-4 bg-[#faf8f5] rounded-xl">
-                          <p className="text-lg font-bold text-[#1a4d2e]">{project.totalArea}</p>
-                          <p className="text-sm text-gray-500">Total Area</p>
-                        </div>
-                      </div>
-
-                      {/* Features */}
-                      <div className="flex flex-wrap gap-2 mb-8">
-                        {project.features.map((feature) => (
-                          <span
-                            key={feature}
-                            className="inline-flex items-center gap-1 px-3 py-1 bg-[#1a1a1a]/10 text-[#1a1a1a] text-sm rounded-full"
-                          >
-                            <TreePine className="w-3 h-3" />
-                            {feature}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* CTA */}
-                      <div className="flex items-center gap-4">
-                        <span className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-full font-medium group-hover:bg-[#333] transition-colors">
-                          View Project Details
-                          <motion.span
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                          >
-                            <ArrowRight className="w-4 h-4" />
-                          </motion.span>
-                        </span>
-                        <span className="text-[#c9a962] font-medium group-hover:underline">
-                          Book Site Visit
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
         </div>
 
-        {/* Coming Soon */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="inline-flex items-center gap-3 px-6 py-4 bg-white rounded-2xl shadow-lg border border-[#c9a962]/20">
-            <Sparkles className="w-5 h-5 text-[#c9a962]" />
-            <span className="text-gray-600">More exciting projects coming soon</span>
-          </div>
+          <Link
+            href="/projects/meadow-breeze"
+            onMouseEnter={onEnter}
+            onMouseLeave={onLeave}
+            className="group block relative overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0a]"
+          >
+            <div className="relative aspect-[16/10] md:aspect-[21/9]">
+              <Image
+                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=75&w=1800"
+                alt="The Meadow Breeze"
+                fill
+                sizes="(min-width: 1280px) 1600px, 100vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <video
+                ref={videoRef}
+                className={`media-full transition-opacity duration-700 ${
+                  hovering ? 'opacity-100' : 'opacity-0'
+                }`}
+                src="/videos/projects/meadow-breeze/Site Drone View 1.mp4"
+                muted
+                loop
+                playsInline
+                preload="none"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+
+              <div className="absolute top-6 left-6 flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-white/80">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#c9a962]" />
+                Now Booking
+              </div>
+
+              <div className="absolute top-6 right-6 w-12 h-12 rounded-full surface-glass flex items-center justify-center text-white transition-transform duration-500 group-hover:rotate-45">
+                <ArrowUpRight size={18} />
+              </div>
+
+              <div className="absolute bottom-0 inset-x-0 p-6 md:p-10">
+                <div className="flex items-center gap-2 text-white/70 text-[12px] tracking-[0.25em] uppercase mb-4">
+                  <MapPin size={14} className="text-[#c9a962]" />
+                  Peepal Pahad · Choutuppal
+                </div>
+                <h3 className="text-hero text-white">
+                  The Meadow <span className="italic text-gradient-gold">Breeze</span>
+                </h3>
+                <p className="mt-4 max-w-xl text-white/70 text-[15px] leading-relaxed">
+                  Where the hills whisper peace and the breeze carries serenity — a
+                  fifty-acre living estate at the foothills of Rachakonda.
+                </p>
+              </div>
+            </div>
+
+            {/* Stat bar */}
+            <div className="grid grid-cols-2 md:grid-cols-4 border-t border-white/10">
+              {stats.map((s, i) => (
+                <div
+                  key={s.label}
+                  className={`px-6 py-6 md:px-10 md:py-8 ${
+                    i < stats.length - 1 ? 'md:border-r border-white/10' : ''
+                  } ${i % 2 === 0 ? 'border-r border-white/10 md:border-r' : ''} ${
+                    i < 2 ? 'border-b md:border-b-0 border-white/10' : ''
+                  }`}
+                >
+                  <div className="text-[10px] tracking-[0.35em] uppercase text-white/45 mb-2">
+                    {s.label}
+                  </div>
+                  <div className="text-2xl md:text-3xl font-serif text-white">
+                    {s.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Link>
         </motion.div>
+
+        {/* Future whisper */}
+        <div className="mt-16 flex items-center gap-4 text-white/45 text-[12px] tracking-[0.3em] uppercase">
+          <span className="h-px flex-1 bg-white/10" />
+          More developments in composition
+          <span className="h-px flex-1 bg-white/10" />
+        </div>
       </div>
     </section>
   );

@@ -2,157 +2,136 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { MapPin, Navigation, Plane, Film, Castle, Route, Mountain, Wind, Sparkles, TrendingUp, Landmark } from 'lucide-react';
+import {
+  MapPin,
+  Navigation as NavIcon,
+  Plane,
+  Film,
+  Castle,
+  Route,
+  Mountain,
+  Wind,
+  Sparkles,
+  TrendingUp,
+  Landmark,
+  ArrowUpRight,
+} from 'lucide-react';
 
 const distances = [
   { landmark: 'ORR Exit 11', distance: '30 km', icon: Route },
-  { landmark: 'Vijayawada Highway', distance: '7 km', icon: Navigation },
+  { landmark: 'Vijayawada Highway', distance: '7 km', icon: NavIcon },
   { landmark: 'Ramoji Film City', distance: '25 km', icon: Film },
   { landmark: 'RGIA Airport', distance: '60 km', icon: Plane },
   { landmark: 'Proposed RRR', distance: '8 km', icon: Route },
   { landmark: 'Rachakonda Fort', distance: '10 km', icon: Castle },
 ];
 
-const locationHighlights = [
-  {
-    icon: Mountain,
-    title: 'Rachakonda Hills Setting',
-    description: 'Nestled amidst iconic hills, offering elevation, openness, and timeless charm.',
-  },
-  {
-    icon: Sparkles,
-    title: '360° Panoramic Mountain Views',
-    description: 'Sweeping, uninterrupted views of rolling hills and open horizons.',
-  },
-  {
-    icon: Wind,
-    title: 'Pure, Pollution-Free Environment',
-    description: 'Clean air and tranquil surroundings ideal for mindful living.',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Rapid Infrastructure Growth',
-    description: 'Located in fast-emerging growth corridor with strong appreciation potential.',
-  },
-  {
-    icon: Landmark,
-    title: 'Tourism & Cultural Significance',
-    description: 'Proximity to historic Rachakonda Fort adds prestige and future potential.',
-  },
+const highlights = [
+  { icon: Mountain, title: 'Rachakonda Hills Setting', description: 'Nestled amidst iconic hills — elevation, openness and timeless charm.' },
+  { icon: Sparkles, title: '360° Panoramic Views', description: 'Sweeping, uninterrupted views of rolling hills and open horizons.' },
+  { icon: Wind, title: 'Pure, Pollution-Free Air', description: 'Clean air and tranquil surroundings for mindful, slow living.' },
+  { icon: TrendingUp, title: 'Rapid Infrastructure Growth', description: 'A fast-emerging corridor with strong land-value appreciation.' },
+  { icon: Landmark, title: 'Tourism & Culture', description: 'Proximity to historic Rachakonda Fort adds prestige and future upside.' },
 ];
 
 export default function LocationAdvantage() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const inView = useInView(ref, { once: true, margin: '-20%' });
 
   return (
-    <section id="location" className="py-24 md:py-32 bg-white relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 opacity-5 pattern-lines" />
-
-      <div className="container-luxury relative z-10" ref={ref}>
-        {/* Section Header */}
+    <section
+      id="location"
+      ref={ref}
+      className="relative py-32 md:py-44 bg-[#050505]"
+    >
+      <div className="container-edge">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="max-w-4xl mb-16"
         >
-          <span className="text-[#c9a962] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-            Strategic Position
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a1a] mb-4">
-            Location Advantage
+          <p className="text-eyebrow mb-6">Location Advantage</p>
+          <h2 className="text-section text-white">
+            Quiet enough to breathe,
+            <br />
+            <span className="italic text-gradient-gold">close enough to return.</span>
           </h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6"
-          />
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            The Meadow Breeze enjoys a coveted location with excellent connectivity and natural beauty
-          </p>
+          <div className="rule-gold mt-10" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Distance & Connectivity */}
+        <div className="grid lg:grid-cols-12 gap-6">
+          {/* Distances table */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="lg:col-span-5 surface-card p-8 md:p-10"
           >
-            <h3 className="text-2xl font-bold text-[#1a1a1a] mb-6 flex items-center gap-3">
-              <MapPin className="w-6 h-6 text-[#c9a962]" />
-              Distance & Connectivity
-            </h3>
-            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#333] rounded-2xl p-6 md:p-8">
-              <div className="space-y-4">
-                {distances.map((item, index) => (
-                  <motion.div
-                    key={item.landmark}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                    className="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#c9a962]/20 flex items-center justify-center">
-                        <item.icon className="w-5 h-5 text-[#c9a962]" />
-                      </div>
-                      <span className="text-white/90">{item.landmark}</span>
-                    </div>
-                    <span className="text-[#c9a962] font-bold text-lg">{item.distance}</span>
-                  </motion.div>
-                ))}
-              </div>
+            <div className="flex items-center gap-3 mb-8">
+              <MapPin className="w-4 h-4 text-[#c9a962]" />
+              <span className="text-[10px] tracking-[0.35em] uppercase text-white/50">
+                Distance &amp; Connectivity
+              </span>
             </div>
-
-            {/* Map Link */}
-            <motion.a
-              href="https://maps.app.goo.gl/CBX5zyzryJZz9jqe6"
-              target="_blank"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="mt-6 flex items-center justify-center gap-2 p-4 bg-[#c9a962] text-white rounded-xl font-medium hover:bg-[#8b7355] transition-colors"
-            >
-              <MapPin className="w-5 h-5" />
-              View Project Location on Maps
-            </motion.a>
-          </motion.div>
-
-          {/* Location Highlights */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <h3 className="text-2xl font-bold text-[#1a1a1a] mb-6 flex items-center gap-3">
-              <Sparkles className="w-6 h-6 text-[#c9a962]" />
-              Location Highlights
-            </h3>
-            <div className="space-y-4">
-              {locationHighlights.map((highlight, index) => (
+            <div className="divide-y divide-white/8">
+              {distances.map((item, i) => (
                 <motion.div
-                  key={highlight.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  className="p-5 bg-gradient-to-br from-[#faf8f5] to-white rounded-2xl border border-gray-100 hover:border-[#c9a962]/30 hover:shadow-lg transition-all"
+                  key={item.landmark}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.25 + i * 0.06 }}
+                  className="flex items-center justify-between py-5"
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#c9a962]/10 flex items-center justify-center flex-shrink-0">
-                      <highlight.icon className="w-6 h-6 text-[#c9a962]" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-[#1a1a1a] mb-1">{highlight.title}</h4>
-                      <p className="text-gray-600 text-sm">{highlight.description}</p>
-                    </div>
+                  <div className="flex items-center gap-4">
+                    <item.icon className="w-4 h-4 text-[#c9a962]/80" />
+                    <span className="text-white/80 text-sm">{item.landmark}</span>
                   </div>
+                  <span className="font-serif text-xl md:text-2xl text-white">
+                    {item.distance}
+                  </span>
                 </motion.div>
               ))}
             </div>
+
+            <a
+              href="https://maps.app.goo.gl/CBX5zyzryJZz9jqe6"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-8 group inline-flex items-center gap-2 text-[#c9a962] text-sm tracking-[0.2em] uppercase link-underline"
+            >
+              View on Google Maps <ArrowUpRight size={14} />
+            </a>
+          </motion.div>
+
+          {/* Highlights list */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.25 }}
+            className="lg:col-span-7 space-y-3"
+          >
+            {highlights.map((h, i) => (
+              <motion.div
+                key={h.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }}
+                className="surface-card surface-card-hover p-6 md:p-8 flex gap-5 items-start"
+              >
+                <div className="w-11 h-11 rounded-full border border-[#c9a962]/30 flex items-center justify-center shrink-0">
+                  <h.icon className="w-4 h-4 text-[#c9a962]" />
+                </div>
+                <div>
+                  <h4 className="text-lg md:text-xl font-serif text-white mb-1.5">
+                    {h.title}
+                  </h4>
+                  <p className="text-white/60 text-sm leading-relaxed">
+                    {h.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </div>
