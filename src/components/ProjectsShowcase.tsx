@@ -1,10 +1,11 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import FallbackImage from './FallbackImage';
 import AdaptiveLogo from './AdaptiveLogo';
+import Reveal from './ui/Reveal';
+import SectionHeading from './ui/SectionHeading';
 import { MapPin, TreePine, ArrowRight, Sparkles } from 'lucide-react';
 
 const projects = [
@@ -13,179 +14,129 @@ const projects = [
     name: 'The Meadow Breeze',
     tagline: 'Where the hills whisper peace and the breeze carries serenity',
     location: 'Peepal Pahad, Choutuppal',
-    totalArea: '179,103 Sq. Yards',
+    totalArea: '179,103 Sq. Yds',
     totalPlots: 124,
-    plantsPerPlot: '600-900',
+    plantsPerPlot: '600–900',
     status: 'Now Booking',
     features: ['360° Mountain Views', 'Gated Community', 'Organic Farming'],
-    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800',
+    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1000&q=80',
     logoPath: '/images/projects/meadow-breeze/logo',
     slug: '/projects/meadow-breeze',
   },
 ];
 
 export default function ProjectsShowcase() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-
   return (
-    <section id="projects" className="py-24 md:py-32 bg-[#faf8f5] relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pattern-lines" />
-        <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-[#c9a962]/10 rounded-full filter blur-[100px]"
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 10, repeat: Infinity }}
+    <section id="projects" className="relative overflow-hidden bg-[#faf8f5] py-24 md:py-32">
+      <div className="pattern-grid absolute inset-0 opacity-60" />
+      <div className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(201,169,98,0.14),transparent_70%)]" />
+
+      <div className="container-luxury relative z-10">
+        <SectionHeading
+          eyebrow="Featured Development"
+          title={
+            <>
+              Our Premium <span className="text-[#1a4d2e]">Estates</span>
+            </>
+          }
+          description="Thoughtfully designed farmland communities that blend luxury living with natural serenity — a rare chance to own a piece of paradise."
+          className="mb-16"
         />
-      </div>
 
-      <div className="container-luxury relative z-10" ref={ref}>
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={isInView ? { scale: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#1a4d2e]/10 rounded-full mb-6"
-          >
-            <Sparkles className="w-4 h-4 text-[#c9a962]" />
-            <span className="text-sm font-medium text-[#1a4d2e]">Featured Projects</span>
-          </motion.div>
-          <h2 className="section-title font-bold text-[#1a1a1a] mb-4">
-            Our Premium
-            <span className="text-[#1a4d2e]"> Developments</span>
-          </h2>
-          <div className="flex justify-center mb-6">
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent"
-            />
-          </div>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Discover our thoughtfully designed farmland communities that blend
-            luxury living with natural serenity
-          </p>
-        </motion.div>
-
-        {/* Projects Grid */}
         <div className="space-y-16">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 + index * 0.2 }}
-            >
+          {projects.map((project) => (
+            <Reveal key={project.id} direction="up">
               <Link href={project.slug} className="group block">
-                <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
+                <div className="relative overflow-hidden rounded-[2rem] bg-white shadow-xl ring-1 ring-black/5 transition-all duration-500 hover:shadow-2xl">
                   <div className="grid lg:grid-cols-2">
-                    {/* Image Section */}
-                    <div className="relative h-80 lg:h-[500px] overflow-hidden">
-                      <motion.div
-                        className="absolute inset-0"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.7 }}
-                      >
+                    {/* Image */}
+                    <div className="relative h-80 overflow-hidden lg:h-[520px]">
+                      <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                         <FallbackImage
                           src={project.image}
                           alt={project.name}
                           fill
+                          sizes="(max-width: 1024px) 100vw, 50vw"
                           className="object-cover"
                           fallbackText="Coming Soon"
                         />
-                      </motion.div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
 
-                      {/* Status Badge */}
-                      <div className="absolute top-6 left-6">
-                        <motion.div
-                          animate={{ scale: [1, 1.05, 1] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                          className="px-4 py-2 bg-[#c9a962] text-white text-sm font-medium rounded-full shadow-lg"
-                        >
+                      {/* Status badge */}
+                      <div className="absolute left-6 top-6">
+                        <span className="inline-flex items-center gap-2 rounded-full bg-[#c9a962] px-4 py-2 text-sm font-medium text-white shadow-lg">
+                          <span className="relative flex h-2 w-2">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+                            <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+                          </span>
                           {project.status}
-                        </motion.div>
+                        </span>
                       </div>
 
-                      {/* Project Logo */}
-                      <div className="absolute bottom-6 left-6 right-6">
-                        <div className="flex items-end justify-between">
-                          <div>
-                            <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                              {project.name}
-                            </h3>
-                            <div className="flex items-center gap-2 text-white/80">
-                              <MapPin className="w-4 h-4" />
-                              <span>{project.location}</span>
-                            </div>
+                      {/* Title + logo */}
+                      <div className="absolute inset-x-6 bottom-6 flex items-end justify-between">
+                        <div>
+                          <h3 className="mb-2 text-3xl font-bold text-white md:text-4xl">
+                            {project.name}
+                          </h3>
+                          <div className="flex items-center gap-2 text-white/80">
+                            <MapPin className="h-4 w-4" />
+                            <span>{project.location}</span>
                           </div>
-                          <div className="hidden md:block w-20 h-20 relative">
-                            <AdaptiveLogo
-                              basePath={project.logoPath}
-                              alt={`${project.name} Logo`}
-                              fill
-                              className="object-contain"
-                            />
-                          </div>
+                        </div>
+                        <div className="relative hidden h-20 w-20 md:block">
+                          <AdaptiveLogo
+                            basePath={project.logoPath}
+                            alt={`${project.name} logo`}
+                            fill
+                            sizes="80px"
+                            className="object-contain drop-shadow-lg"
+                          />
                         </div>
                       </div>
                     </div>
 
-                    {/* Content Section */}
-                    <div className="p-8 lg:p-12 flex flex-col justify-center">
-                      <p className="text-xl text-gray-600 italic mb-8" style={{ fontFamily: 'var(--font-heading)' }}>
-                        "{project.tagline}"
+                    {/* Content */}
+                    <div className="flex flex-col justify-center p-8 lg:p-12">
+                      <p className="mb-8 font-[family-name:var(--font-heading)] text-xl italic text-gray-600">
+                        “{project.tagline}”
                       </p>
 
-                      {/* Stats */}
-                      <div className="grid grid-cols-3 gap-4 mb-8">
-                        <div className="text-center p-4 bg-[#faf8f5] rounded-xl">
-                          <p className="text-2xl font-bold text-[#1a4d2e]">{project.totalPlots}</p>
-                          <p className="text-sm text-gray-500">Plots</p>
-                        </div>
-                        <div className="text-center p-4 bg-[#faf8f5] rounded-xl">
-                          <p className="text-2xl font-bold text-[#1a4d2e]">{project.plantsPerPlot}</p>
-                          <p className="text-sm text-gray-500">Plants/Plot</p>
-                        </div>
-                        <div className="text-center p-4 bg-[#faf8f5] rounded-xl">
-                          <p className="text-lg font-bold text-[#1a4d2e]">{project.totalArea}</p>
-                          <p className="text-sm text-gray-500">Total Area</p>
-                        </div>
+                      <div className="mb-8 grid grid-cols-3 gap-4">
+                        {[
+                          { v: project.totalPlots, l: 'Plots' },
+                          { v: project.plantsPerPlot, l: 'Plants / Plot' },
+                          { v: project.totalArea, l: 'Total Area' },
+                        ].map((stat) => (
+                          <div
+                            key={stat.l}
+                            className="rounded-2xl bg-[#faf8f5] p-4 text-center ring-1 ring-black/5"
+                          >
+                            <p className="text-lg font-bold text-[#1a4d2e] md:text-2xl">{stat.v}</p>
+                            <p className="mt-1 text-xs text-gray-500">{stat.l}</p>
+                          </div>
+                        ))}
                       </div>
 
-                      {/* Features */}
-                      <div className="flex flex-wrap gap-2 mb-8">
+                      <div className="mb-8 flex flex-wrap gap-2">
                         {project.features.map((feature) => (
                           <span
                             key={feature}
-                            className="inline-flex items-center gap-1 px-3 py-1 bg-[#1a1a1a]/10 text-[#1a1a1a] text-sm rounded-full"
+                            className="inline-flex items-center gap-1 rounded-full bg-[#1a4d2e]/8 px-3 py-1.5 text-sm text-[#1a4d2e]"
                           >
-                            <TreePine className="w-3 h-3" />
+                            <TreePine className="h-3.5 w-3.5" />
                             {feature}
                           </span>
                         ))}
                       </div>
 
-                      {/* CTA */}
-                      <div className="flex items-center gap-4">
-                        <span className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a1a1a] text-white rounded-full font-medium group-hover:bg-[#333] transition-colors">
+                      <div className="flex flex-wrap items-center gap-4">
+                        <span className="inline-flex items-center gap-2 rounded-full bg-[#1a1a1a] px-6 py-3 font-medium text-white transition-colors group-hover:bg-[#1a4d2e]">
                           View Project Details
-                          <motion.span
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                          >
-                            <ArrowRight className="w-4 h-4" />
-                          </motion.span>
+                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </span>
-                        <span className="text-[#c9a962] font-medium group-hover:underline">
+                        <span className="font-medium text-[#c9a962] underline-animation">
                           Book Site Visit
                         </span>
                       </div>
@@ -193,20 +144,19 @@ export default function ProjectsShowcase() {
                   </div>
                 </div>
               </Link>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 
-        {/* Coming Soon */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex items-center gap-3 px-6 py-4 bg-white rounded-2xl shadow-lg border border-[#c9a962]/20">
-            <Sparkles className="w-5 h-5 text-[#c9a962]" />
-            <span className="text-gray-600">More exciting projects coming soon</span>
+          <div className="inline-flex items-center gap-3 rounded-2xl border border-[#c9a962]/20 bg-white px-6 py-4 shadow-lg">
+            <Sparkles className="h-5 w-5 text-[#c9a962]" />
+            <span className="text-gray-600">More signature estates launching soon</span>
           </div>
         </motion.div>
       </div>

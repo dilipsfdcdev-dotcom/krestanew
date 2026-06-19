@@ -2,8 +2,9 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Play, X, Film, ChevronLeft, ChevronRight, VideoOff } from 'lucide-react';
+import { Play, X, ChevronLeft, ChevronRight, VideoOff } from 'lucide-react';
 import FallbackImage from '../FallbackImage';
+import SectionHeading from '../ui/SectionHeading';
 import { meadowBreezeVideos, VIDEO_BASE_PATH, Video } from '@/data/videos';
 
 export default function VideoGallery() {
@@ -40,29 +41,13 @@ export default function VideoGallery() {
 
         <div className="container-luxury relative z-10" ref={ref}>
           {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-6">
-              <Film className="w-4 h-4 text-[#c9a962]" />
-              <span className="text-white/80 text-sm">Video Gallery</span>
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              Experience The Meadow Breeze
-            </h2>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6"
-            />
-            <p className="text-white/60 max-w-2xl mx-auto">
-              Watch our videos to get a virtual tour of the stunning farmland community
-            </p>
-          </motion.div>
+          <SectionHeading
+            dark
+            eyebrow="Video Gallery"
+            title="Experience The Meadow Breeze"
+            description="Real drone footage and walkthroughs — a virtual tour of the stunning farmland community."
+            className="mb-12"
+          />
 
           {/* Video Carousel */}
           <motion.div

@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import SectionHeading from '../ui/SectionHeading';
 import {
   Shield,
   Droplets,
@@ -91,29 +92,12 @@ export default function ProjectAmenities() {
 
       <div className="container-luxury relative z-10" ref={ref}>
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <span className="text-[#c9a962] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-            World-Class Facilities
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a1a] mb-4">
-            Premium Amenities
-          </h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6"
-          />
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Every detail thoughtfully planned to ensure your farmland experience
-            is nothing short of extraordinary
-          </p>
-        </motion.div>
+        <SectionHeading
+          eyebrow="World-Class Facilities"
+          title="Premium Amenities"
+          description="Every detail thoughtfully planned to ensure your farmland experience is nothing short of extraordinary."
+          className="mb-16"
+        />
 
         {/* Amenities Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
@@ -156,7 +140,7 @@ export default function ProjectAmenities() {
             <a
               href="https://wa.me/919888932555?text=Hi%2C%20I%20would%20like%20to%20schedule%20a%20site%20visit%20for%20The%20Meadow%20Breeze."
               target="_blank"
-              className="px-6 py-3 bg-[#c9a962] text-white rounded-full font-medium hover:bg-[#8b7355] transition-all whitespace-nowrap"
+              className="btn-gold whitespace-nowrap rounded-full px-6 py-3 font-medium text-white"
             >
               Book Site Visit
             </a>

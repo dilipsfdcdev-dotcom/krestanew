@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import AdaptiveImage from '../AdaptiveImage';
+import SectionHeading from '../ui/SectionHeading';
 import { Maximize2, X, MapPin, Route, TreePine, Home, Compass } from 'lucide-react';
 
 const planFeatures = [
@@ -43,29 +44,13 @@ export default function MasterPlan() {
 
         <div className="container-luxury relative z-10" ref={ref}>
           {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <span className="text-[#c9a962] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-              Layout Design
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              Master Plan
-            </h2>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6"
-            />
-            <p className="text-white/60 max-w-2xl mx-auto">
-              Thoughtfully designed layout by S&S Architects and Infra, ensuring optimal space
-              utilization with natural forest surroundings
-            </p>
-          </motion.div>
+          <SectionHeading
+            dark
+            eyebrow="Layout Design"
+            title="Master Plan"
+            description="A thoughtfully designed layout by S&S Architects and Infra — optimal space utilisation wrapped in natural forest surroundings."
+            className="mb-12"
+          />
 
           {/* Stats Bar */}
           <motion.div
@@ -74,7 +59,7 @@ export default function MasterPlan() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex flex-wrap justify-center gap-8 mb-12"
           >
-            {stats.map((stat, index) => (
+            {stats.map((stat) => (
               <div key={stat.label} className="text-center">
                 <p className="text-2xl md:text-3xl font-bold text-[#c9a962]">{stat.value}</p>
                 <p className="text-white/60 text-sm">{stat.label}</p>

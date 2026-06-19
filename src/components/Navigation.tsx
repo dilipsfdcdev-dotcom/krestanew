@@ -27,6 +27,7 @@ const projectNavLinks = [
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState('');
   const pathname = usePathname();
 
   const isProjectPage = pathname?.includes('/projects/');
@@ -36,9 +37,33 @@ export default function Navigation() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Scroll-spy: highlight the section currently in view.
+  useEffect(() => {
+    const ids = navLinks
+      .map((l) => l.href)
+      .filter((h) => h.startsWith('#'))
+      .map((h) => h.slice(1));
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveId(visible.target.id);
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5, 1] },
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [navLinks]);
 
   return (
     <>
@@ -95,19 +120,24 @@ export default function Navigation() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`text-sm font-medium tracking-wide underline-animation ${
-                    isScrolled
-                      ? 'text-[#1a1a1a] hover:text-[#c9a962]'
-                      : 'text-white hover:text-[#c9a962]'
-                  } transition-colors`}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = link.href === `#${activeId}`;
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`text-sm font-medium tracking-wide underline-animation transition-colors ${
+                      isActive
+                        ? 'text-[#c9a962]'
+                        : isScrolled
+                          ? 'text-[#1a1a1a] hover:text-[#c9a962]'
+                          : 'text-white hover:text-[#c9a962]'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
             </div>
 
             {/* CTA Button */}
@@ -115,7 +145,7 @@ export default function Navigation() {
               <a
                 href="https://wa.me/919888932555?text=Hi%2C%20I%27m%20interested%20in%20Kresta%20projects"
                 target="_blank"
-                className="px-5 xl:px-6 py-2.5 xl:py-3 bg-[#c9a962] text-white rounded-full text-sm font-medium tracking-wide hover:bg-[#8b7355] transition-all shadow-lg shadow-[#c9a962]/20"
+                className="btn-gold rounded-full px-6 py-3 text-sm font-medium tracking-wide text-white"
               >
                 Schedule a Visit
               </a>
