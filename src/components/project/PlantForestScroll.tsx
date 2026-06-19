@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import AdaptiveImage from '../AdaptiveImage';
+import SectionHeading from '../ui/SectionHeading';
 import { plants, plantCategories, plantStats } from '@/data/plants';
 import { TreePine, Leaf, Wind, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -42,29 +43,12 @@ export default function PlantForestScroll() {
 
       <div className="container-luxury relative z-10" ref={ref}>
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
-        >
-          <span className="text-[#c9a962] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-            Your Personal Forest
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a1a] mb-4">
-            600-900 Plants Per Plot
-          </h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto mb-6"
-          />
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Every plot comes with its own forest setup featuring diverse trees,
-            creating an oxygen-rich environment for you and your family
-          </p>
-        </motion.div>
+        <SectionHeading
+          eyebrow="Your Personal Forest"
+          title="600–900 Plants Per Plot"
+          description="Every plot comes with its own forest setup featuring diverse native trees, creating an oxygen-rich environment for you and your family."
+          className="mb-12"
+        />
 
         {/* Stats Cards */}
         <motion.div

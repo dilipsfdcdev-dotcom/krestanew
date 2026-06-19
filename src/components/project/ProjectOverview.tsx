@@ -2,7 +2,9 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { MapPin, Car, TreePine, Home, Shield, Droplets, Zap, Leaf } from 'lucide-react';
+import { MapPin, Car, TreePine, Home, Shield, Leaf } from 'lucide-react';
+import SectionHeading from '../ui/SectionHeading';
+import Counter from '../ui/Counter';
 
 const plotSizes = [
   { size: '10 Guntas', area: '1,210 sq yards', description: 'Compact farmhouse with garden' },
@@ -39,25 +41,12 @@ export default function ProjectOverview() {
 
       <div className="container-luxury" ref={ref}>
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <span className="text-[#c9a962] text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-            Project Overview
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a1a] mb-4">
-            Your Dream Farmland Awaits
-          </h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#c9a962] to-transparent mx-auto"
-          />
-        </motion.div>
+        <SectionHeading
+          eyebrow="Project Overview"
+          title="Your Dream Farmland Awaits"
+          description="A future-ready estate engineered for tranquillity, organic living and long-term appreciation."
+          className="mb-16"
+        />
 
         {/* Main Stats */}
         <motion.div
@@ -67,21 +56,21 @@ export default function ProjectOverview() {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
         >
           {[
-            { value: '124', label: 'Total Plots', icon: Home },
-            { value: '179,103', label: 'Sq. Yards Area', icon: MapPin },
-            { value: '600-900', label: 'Plants/Plot', icon: TreePine },
-            { value: '100%', label: 'Organic Setup', icon: Leaf },
+            { node: <Counter to={124} />, label: 'Total Plots', icon: Home },
+            { node: <Counter to={179103} separator />, label: 'Sq. Yards Area', icon: MapPin },
+            { node: '600–900', label: 'Plants / Plot', icon: TreePine },
+            { node: <Counter to={100} suffix="%" />, label: 'Organic Setup', icon: Leaf },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              whileHover={{ y: -5, scale: 1.02 }}
+              whileHover={{ y: -5 }}
               className="p-6 bg-gradient-to-br from-[#faf8f5] to-white rounded-2xl border border-[#c9a962]/20 shadow-lg hover:shadow-xl transition-all"
             >
               <stat.icon className="w-8 h-8 text-[#c9a962] mb-3" />
-              <h3 className="text-2xl md:text-3xl font-bold text-[#1a1a1a]">{stat.value}</h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-[#1a1a1a]">{stat.node}</h3>
               <p className="text-gray-500 text-sm">{stat.label}</p>
             </motion.div>
           ))}

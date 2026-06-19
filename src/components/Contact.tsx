@@ -89,8 +89,8 @@ Message: ${formData.message}`;
             <div className="line-gold" />
           </div>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-            Ready to own your piece of paradise? Reach out to us and let's discuss
-            how we can help you find the perfect plot
+            Ready to own your piece of paradise? Reach out and let&apos;s discuss
+            how we can help you find the perfect plot.
           </p>
         </motion.div>
 
@@ -260,7 +260,7 @@ Message: ${formData.message}`;
 
                   <button
                     type="submit"
-                    className="btn-luxury w-full py-4 bg-[#1a1a1a] text-white rounded-xl font-medium hover:bg-[#333] transition-all flex items-center justify-center gap-2"
+                    className="btn-gold flex w-full items-center justify-center gap-2 rounded-xl py-4 font-medium text-white"
                   >
                     <Send className="w-5 h-5" />
                     Send via WhatsApp
